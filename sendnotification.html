@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMART Liver</title>
+    <!-- Bootstrap CSS -->
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SMART Liver</title>
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #E4E4E4;
+                margin: 0;
+                padding: 0;
+            }
+            .header {
+                background-color: #223C97;
+                color: white;
+                padding: 10px 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                height: 50px;
+
+            }
+            .header .logo {
+                display: flex;
+                align-items: center;
+            }
+            .header .logo img {
+                height: 50px;
+                margin-right: 10px;
+            }
+            .header .title {
+                font-size: 20px;
+
+                white-space: nowrap;
+            }
+            .header .patient-info {
+                display: flex;
+                justify-content: flex-end;
+                width: 100%;
+            }
+            .header .patient-info .info-item {
+                margin-right: 30px;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+            }
+            .header .patient-info p {
+                margin: 0;
+                font-size: 14px;
+            }
+            .header .controls {
+                display: flex;
+                align-items: center;
+            }
+            .header .controls .dot {
+                height: 15px;
+                width: 15px;
+                border-radius: 50%;
+                margin-left: 10px;
+                cursor: pointer;
+            }
+            .header .controls .dot.yellow {
+                background-color: yellow;
+            }
+            .header .controls .dot.red {
+                background-color: red;
+            }
+            .container-fluid {
+                padding: 0 20px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .educational-container {
+                position: relative;
+                background-color: white;
+                padding: 10px;
+                border-radius: 10px;
+                margin-top: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                max-width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+                height: 210px;
+            }
+            .send-top-right {
+                position: absolute;
+                top: 30px;
+                right: 10px;
+            }
+            .section-title {
+                margin-bottom: 5px;
+                font-weight: bold;
+            }
+            .section-subtitle {
+            margin-bottom: 5px;
+
+            }
+            .card-container {
+                display: flex;
+                justify-content: space-between;
+                gap: 5px;
+            }
+            .card {
+                display: flex;
+                flex-direction: row; /* Align items in a row */
+                align-items: center;
+                background-color: white;
+                border: 1px solid #ddd;
+                border-radius: 10px;
+                padding: 5px; /* Increased padding for better spacing */
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                width: 100%; /* Make the card take full width */
+                margin: 10px; /* Add margin for spacing between cards */
+                gap: 15px; /* Add space between image and text */
+            }
+            .card img {
+                width: 120px; /* Adjust image size */
+                height: auto;
+                margin-right: 10px; /* Space between image and text */
+                border-radius: 8px; /* Rounded corners for the image */
+            }
+            .card-info {
+                flex: 1; /* Take the remaining space */
+            }
+            .card-info h3 {
+                font-size: 1.1rem; /* Adjusted font size */
+                font-weight: bold; /* Make titles bold */
+                margin-bottom: 5px;
+            }
+            .card-info p {
+                font-size: 0.9rem; /* Reduced font size for the description */
+                margin: 0; /* Remove margin */
+            }
+            .card.patient-engagement-card {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 150px;
+                background-color: white;
+                border: 1px solid #ddd;
+                border-radius: 10px;
+                padding: 5px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                text-align: center;
+                margin: 15px;
+                justify-content: center;
+            }
+            .card.patient-engagement-card h3 {
+                font-size: 1rem; /* Font size for titles */
+                font-weight: bold; /* Make titles bold */
+            }
+            .card.patient-engagement-card p {
+                font-size: 0.85rem; /* Reduced font size for the description */
+                margin: 0; /* Remove margin */
+            }
+            .task-container {
+                display: flex;
+                justify-content: space-between;
+                padding: 5px;
+                gap: 5px;
+                height: 420px;
+            }
+            .task-section {
+                position: relative;
+                background-color: white;
+                border: 1px solid #ddd;
+                border-radius: 10px;
+                padding: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                flex: 1;
+            }
+            .task-section.left {
+                max-width: calc(25% - 20px);
+            }
+            .task-section.right {
+                max-width: calc(80% - 20px);
+            }
+            .task-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 0px;
+            }
+            .task-table th, .task-table td {
+                padding: 8px;
+                font-size: 14px;
+                border: 1px solid black;
+            }
+            .task-table th {
+                background-color: #f2f2f2;
+            }
+            .task-table .status-overdue {
+                color: red;
+            }
+            .task-table .status-upcoming {
+                color: #007bff;
+            }
+            .btn {
+                background-color: #223C97;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-size: 1rem;
+            }
+            .btn:hover {
+                background-color: #223C97;
+            }
+            .btn-bottom-right {
+                position: absolute;
+                bottom: 10px;
+                right: 10px;
+            }
+            .btn-choose-recipients {
+                position: absolute;
+                bottom: 10px;
+                right: 10px;
+            }
+            .filter-links button {
+                color: #223C97;
+                background: none;
+                border: none;
+                cursor: pointer;
+                font-weight: bold;
+            }
+            .filter-links button:hover {
+                text-decoration: underline;
+            }
+            .card.selected {
+                border: 2px solid #223C97;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            }
+            .card.patient-engagement-card.selected {
+                border: 2px solid #223C97;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            }
+
+
+/* Media Queries for Smaller Screens */
+@media (max-width: 1400px) {
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #E4E4E4;
+        margin: 0;
+        padding: 0;
+    }
+    .header {
+        background-color: #223C97;
+        color: white;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 50px;
+    }
+    .header .logo {
+        display: flex;
+        align-items: center;
+    }
+    .header .logo img {
+        height: 50px;
+        margin-right: 10px;
+    }
+    .header .title {
+        font-size: 20px;
+        white-space: nowrap;
+    }
+    .header .patient-info {
+        display: none;
+    }
+    .container-fluid {
+        padding: 0 20px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .educational-container {
+        background-color: white;
+        padding: 10px;
+        border-radius: 10px;
+        margin-top: 10px !important;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        margin: 0 auto;
+        height: auto;
+    }
+    .send-top-right {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: #223C97;
+        color: white;
+        width: 75px !important;
+        height: 40px;
+        font-size: 0.85rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .send-top-right:hover {
+        background-color: #1a2c70;
+    }
+    .section-title, .section-subtitle {
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+    .card-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0px;
+    }
+    .card {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 5px 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        margin: 5px 0;
+        gap: 15px;
+    }
+    .card img {
+        width: 100px;
+        height: auto;
+        margin-right: 10px;
+        border-radius: 8px;
+    }
+    .card-info {
+        flex: 1;
+    }
+    .card-info h3 {
+        font-size: 1rem;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    .card-info p {
+        font-size: 0.85rem;
+        margin: 0;
+    }
+    /* Adjust the Patient Engagement container */
+    .task-section.left {
+        width: 100%;
+        margin: 0 auto;
+        padding: 10px 15px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 1200px;
+        box-sizing: border-box;
+    }
+    /* Specific Styles for Patient Engagement to Align Cards Vertically */
+    .task-section.left .card-container {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 0;
+    }
+    .task-section.left .card {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+        max-width: 600px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        background-color: white;
+        margin: 0;
+    }
+    .task-container {
+        display: flex;
+        flex-direction: column;
+        padding: 5px;
+        gap: 5px;
+    }
+    .task-section {
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        margin-bottom: 40px;
+        max-width: 100% !important; /* Set to full width for mobile */
+        margin: 0 auto; /* Center the container */
+    }
+    .task-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    .task-table th, .task-table td {
+        padding: 5px;
+        font-size: 14px;
+        border: 1px solid black;
+    }
+    .task-table th {
+        background-color: #f2f2f2;
+    }
+    .task-table .status-overdue {
+        color: red;
+    }
+    .task-table .status-upcoming {
+        color: #007bff;
+    }
+    .btn {
+        background-color: #223C97;
+        color: white;
+        padding: 5px 5px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1rem;
+
+    }
+    .btn:hover {
+        background-color: #223C97;
+    }
+    .btn-bottom-right {
+        margin-top: 20px;
+        position: relative;
+        bottom: 10px;
+        width: 20%;
+
+        top: 0px;
+        right: auto;
+        width: 75px !important;
+        height: 40px;
+    }
+    .btn-choose-recipients {
+        margin-top: 20px;
+        position: relative;
+        bottom: 10px;
+        width: auto;
+        top: 0px;
+        right: auto;
+        width: 150px !important;
+        height: 40px;
+    }
+    .filter-links button {
+        color: #223C97;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+    }
+    .filter-links button:hover {
+        text-decoration: underline;
+    }
+    .card.selected, .card.patient-engagement-card.selected {
+        border: 2px solid #223C97;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+}
+
+
+        </style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+    <div class="logo">
+        <img src="C:\Users\keert\Downloads\SMARTLiver\images\liver.png" alt="Logo">
+        <div class="title">SMART Liver</div>
+    </div>
+    <div class="patient-info">
+        <div class="info-item">
+            <p><strong>Name:</strong> Jessica Taylor</p>
+            <p><strong>Sex:</strong> Female</p>
+        </div>
+        <div class="info-item">
+            <p><strong>MRN:</strong> 65374683</p>
+            <p><strong>Age:</strong> 45</p>
+        </div>
+    </div>
+    <div class="controls">
+        <div class="dot yellow" onclick="minimizePage()"></div>
+        <div class="dot red" onclick="closePage()"></div>
+    </div>
+</div>
+
+<!-- Main Content -->
+<div class="container-fluid">
+    <div class="main-container">
+        <!-- Educational Materials Section -->
+        <div class="educational-container">
+            <div class="send-btn-container">
+                <button class="btn send-top-right" onclick="sendSelectedEducationalCards()">Send</button>
+            </div>
+            <h2 class="section-title">Educational Materials</h2>
+            <p class="section-subtitle">Select materials to send to patients.</p>
+            <div class="card-container">
+                <div class="card" onclick="toggleCardSelection(this)">
+                    <img src="C:\Users\keert\Downloads\SMARTLiver\images\fl.jpg" alt="ESLD Management">
+                    <div class="card-info">
+                        <h3>ESLD Management</h3>
+                        <p>Learn about managing ESLD effectively</p>
+                    </div>
+                </div>
+                <div class="card" onclick="toggleCardSelection(this)">
+                    <img src="C:\Users\keert\Downloads\SMARTLiver\images\diet.jpg" alt="Dietary Advice">
+                    <div class="card-info">
+                        <h3>Dietary Advice</h3>
+                        <p>Importance of diet in ESLD management</p>
+                    </div>
+                </div>
+                <div class="card" onclick="toggleCardSelection(this)">
+                    <img src="C:\Users\keert\Downloads\SMARTLiver\images\med.png" alt="Medication Adherence">
+                    <div class="card-info">
+                        <h3>Medication Adherence</h3>
+                        <p>Tips for sticking to medication plans</p>
+                    </div>
+                </div>
+                <div class="card" onclick="toggleCardSelection(this)">
+                    <img src="C:\Users\keert\Downloads\SMARTLiver\images\symp.jpg" alt="Symptom Management">
+                    <div class="card-info">
+                        <h3>Symptom Management</h3>
+                        <p>Techniques and strategies for managing symptoms</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Patient Engagement Section -->
+        <div class="task-container">
+            <div class="task-section left">
+                <h2 class="section-title">Patient Engagement</h2>
+                <p class="section-subtitle">Select materials to send reminders to patients.</p>
+                <div class="card-container patient-engagement">
+                    <div class="card patient-engagement-card" onclick="toggleCardSelection(this)">
+                        <img src="C:\Users\keert\Downloads\SMARTLiver\images\symprep.png" alt="Symptom Reports">
+                        <div>
+                            <h3>Symptom Reports</h3>
+                            <p>Track and report symptoms regularly</p>
+                        </div>
+                    </div>
+                    <div class="card patient-engagement-card" onclick="toggleCardSelection(this)">
+                        <img src="C:\Users\keert\Downloads\SMARTLiver\images\careplanrep.jpg" alt="Care Plans">
+                        <div>
+                            <h3>Care Plans</h3>
+                            <p>Ensure adherence to prescribed care plans</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-bottom-right" onclick="sendSelectedEngagementCards()">Send</button>
+            </div>
+
+            <!-- Share Tasks Section -->
+            <div class="task-section right">
+                <h2 class="section-title">Share Tasks</h2>
+                <p class="section-subtitle">Share task lists with patients, doctors, nurses, and medical assistants.</p>
+                <div class="filter-links">
+                    <button onclick="filterTasks('all')">ALL(<span id="all-count">14</span>)</button>
+                    <button onclick="filterTasks('overdue')">OVERDUE(<span id="overdue-count">2</span>)</button>
+                    <button onclick="filterTasks('upcoming')">UPCOMING(<span id="upcoming-count">5</span>)</button>
+                </div>
+                <div class="task-table-container" style="max-height: 228px; overflow-y: auto;">
+                    <table class="task-table">
+                        <thead>
+                        <tr>
+                            <th>Task Name</th>
+                            <th>Due Date</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                            <th>Select</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>INR for coagulation</td>
+                            <td>08/10/2024</td>
+                            <td class="status-overdue">Overdue</td>
+                            <td>Remind</td>
+                            <td><input type="checkbox" checked></td>
+                        </tr>
+                        <tr>
+                            <td>Paracentesis procedure</td>
+                            <td>08/11/2024</td>
+                            <td class="status-overdue">Overdue</td>
+                            <td>Remind</td>
+                            <td><input type="checkbox" checked></td>
+                        </tr>
+                        <tr>
+                            <td>Ultrasound for liver fibrosis</td>
+                            <td>08/20/2024</td>
+                            <td class="status-upcoming">Upcoming</td>
+                            <td>Remind</td>
+                            <td><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>Albumin levels</td>
+                            <td>08/20/2024</td>
+                            <td class="status-upcoming">Upcoming</td>
+                            <td>Remind</td>
+                            <td><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>Liver function tests</td>
+                            <td>08/21/2024</td>
+                            <td class="status-upcoming">Upcoming</td>
+                            <td>Remind</td>
+                            <td><input type="checkbox"></td>
+                        </tr>
+                        <tr>
+                            <td>Paracentesis procedure</td>
+                            <td>08/11/2024</td>
+                            <td class="status-overdue">Overdue</td>
+                            <td>Remind</td>
+                            <td><input type="checkbox" checked></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Updated Share Tasks Section Button -->
+                <div class="button-container">
+                    <button class="btn btn-choose-recipients" data-bs-toggle="modal" data-bs-target="#recipientModal">Choose Recipients</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal for Choosing Recipients -->
+<div class="modal fade" id="recipientModal" tabindex="-1" aria-labelledby="recipientModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="recipientModalLabel">Choose Recipients</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="recipientForm">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Patient" id="recipientPatient">
+                        <label class="form-check-label" for="recipientPatient">Patient</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Doctors (MD)" id="recipientDoctor">
+                        <label class="form-check-label" for="recipientDoctor">Doctors (MD)</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Medical Assistants (MA)" id="recipientMA">
+                        <label class="form-check-label" for="recipientMA">Medical Assistants (MA)</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="Nurses (RN)" id="recipientNurse">
+                        <label class="form-check-label" for="recipientNurse">Nurses (RN)</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="sendTasks()">Send</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+<script>
+    // Function to toggle the selected state of a card
+    function toggleCardSelection(cardElement) {
+        cardElement.classList.toggle('selected'); // Toggle 'selected' class
+    }
+
+    // Function to send selected cards in Educational Materials section
+    function sendSelectedEducationalCards() {
+        const selectedCards = document.querySelectorAll('.educational-container .card.selected');
+        if (selectedCards.length > 0) {
+            alert(`Sending ${selectedCards.length} selected educational material(s).`);
+        } else {
+            alert('No educational materials selected.');
+        }
+    }
+
+    // Function to send selected cards in Patient Engagement section
+    function sendSelectedEngagementCards() {
+        const selectedCards = document.querySelectorAll('.task-section.left .card.selected');
+        if (selectedCards.length > 0) {
+            alert(`Sending ${selectedCards.length} selected engagement card(s).`);
+        } else {
+            alert('No engagement cards selected.');
+        }
+    }
+
+    // Function to filter tasks based on status
+    function filterTasks(status) {
+        const rows = document.querySelectorAll('.task-table tbody tr');
+        let total = 0, overdueCount = 0, upcomingCount = 0;
+        rows.forEach(row => {
+            const statusText = row.cells[2].textContent.trim().toLowerCase();
+            if (statusText === "overdue") overdueCount++;
+            if (statusText === "upcoming") upcomingCount++;
+            if (status === 'all' || statusText === status) {
+                row.style.display = '';
+                total++;
+            } else {
+                row.style.display = 'none';
+            }
+        });
+        document.getElementById('all-count').textContent = rows.length;
+        document.getElementById('overdue-count').textContent = overdueCount;
+        document.getElementById('upcoming-count').textContent = upcomingCount;
+    }
+
+    // Function to send tasks to selected recipients
+    function sendTasks() {
+        const selectedRecipients = [];
+        document.querySelectorAll('#recipientForm .form-check-input').forEach((input) => {
+            if (input.checked) {
+                selectedRecipients.push(input.value);
+            }
+        });
+
+        if (selectedRecipients.length === 0) {
+            alert('Please select at least one recipient.');
+            return;
+        }
+
+        const selectedTasks = Array.from(document.querySelectorAll('.task-table tbody input[type="checkbox"]:checked'))
+            .map(checkbox => checkbox.closest('tr').cells[0].textContent);
+
+        if (selectedTasks.length === 0) {
+            alert('No tasks selected to send.');
+            return;
+        }
+
+        alert(`Sending tasks: ${selectedTasks.join(', ')} to recipients: ${selectedRecipients.join(', ')}`);
+        // Add logic to send tasks to the server or perform the desired action
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        filterTasks('all');
+    });
+
+
+</script>
+</body>
+</html>

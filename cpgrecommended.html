@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMART Liver App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #D9D9D9;
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: #223C97;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 50px;
+        }
+
+        .header .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .header .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .header .title {
+            font-size: 20px;
+            font-weight: normal;
+            white-space: nowrap;
+        }
+        .header .patient-info {
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+    }
+
+    .header .patient-info .info-item {
+        margin-right: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+     .header .patient-info {
+                display: flex;
+                justify-content: flex-end;
+                width: 100%;
+            }
+            .header .patient-info .info-item {
+                margin-right: 30px;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+            }
+            .header .patient-info p {
+                margin: 0;
+                font-size: 14px;
+            }
+
+         .header .controls {
+                display: flex;
+                align-items: center;
+            }
+            .header .controls .dot {
+                height: 15px;
+                width: 15px;
+                border-radius: 50%;
+                margin-left: 10px;
+                cursor: pointer;
+            }
+            .header .controls .dot.yellow {
+                background-color: yellow;
+            }
+            .header .controls .dot.red {
+                background-color: red;
+            }
+
+        .sub-header {
+            background-color: #D9D9D9;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .sub-header .buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .sub-header .buttons button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: normal;
+            background-color: #223C97;
+            color: white;
+            border: 2px solid transparent;
+            font-size: 14px;
+        }
+
+        .sub-header .buttons button.active {
+            border: 2px solid white;
+        }
+
+        .sub-header .view-liver-function-btn {
+            background-color: #223C97;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: normal;
+        }
+
+        .content {
+            display: flex;
+            height: calc(100vh - 120px);
+            background-color: #D9D9D9;
+            border: 1px solid #D9D9D9;
+        }
+
+        .sidebar {
+            background-color: #F2F8FD;
+            width: 240px;
+            padding: 10px 0;
+            overflow-y: auto;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar ul li {
+            padding: 8px 20px;
+            cursor: pointer;
+            color: #515151;
+            background-color: #F2F8FD;
+            transition: color 0.2s;
+            border-left: 3px solid transparent;
+        }
+
+        .sidebar ul li.active {
+            background-color: #F2F8FD;
+            font-weight: bold;
+            color: #223C97;
+            border-left: 3px solid #223C97;
+        }
+
+        .sidebar ul li:hover {
+            color: #223C97;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            padding: 0;
+            overflow-y: auto;
+            background-color: white;
+            margin: 20px;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .tab-buttons-container {
+            background-color: #F2F8FD;
+            padding: 10px 20px; /* Reduced padding to make the bar narrower */
+        }
+
+        .search-container {
+            width: 100%;
+            text-align: right;
+            padding-right: 20px;
+        }
+
+        .search-container input {
+            padding: 5px;
+            border: 1px solid #E0E0E0;
+            border-radius: 3px;
+            width: 200px;
+            font-size: 14px;
+        }
+
+        .search-container input:focus {
+            border: 1px solid #223C97;
+            outline: none;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .clickable {
+            color: #223C97;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .clickable:hover {
+            text-decoration: underline;
+        }
+
+        .necessity-option {
+            color: #000000;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .necessity-option.required {
+            color: #5CD416;
+        }
+
+        .necessity-option.not-required {
+            color: #FD1818;
+        }
+
+        .necessity-option.remind-me-later {
+            color: #223C97;
+        }
+
+        .necessity-option:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .header .patient-info {
+                font-size: 12px;
+            }
+
+            .sidebar {
+                width: 200px;
+            }
+        }
+    @media (max-width: 768px) {
+        .header {
+            flex-direction: column; /* Stack items */
+            align-items: flex-start; /* Align to left */
+            height: 60px;
+            padding: 10px;
+        }
+
+        .header .patient-info {
+            display: none;
+        }
+
+        .header .controls {
+            margin-top: 10px; /* Adjust margin */
+        }
+
+        .sidebar {
+            display: none;
+        }
+
+        .sub-header .buttons button,
+        .sub-header .view-liver-function-btn {
+            font-size: 14px; /* Smaller font size */
+            padding: 2px 10px; /* Reduced padding */
+            width: 100%; /* Full width for smaller screens */
+            max-width: 150px; /* Max width to prevent overly wide buttons */
+        }
+
+        .tab-buttons button {
+            font-size: 10px; /* Smaller font size */
+            padding: 5px 5px; /* Reduce button padding */
+            max-width: 150px; /* Max width for better control */
+        }
+
+        .tab-buttons .search-container input {
+            width: 70px; /* Adjust input width */
+            font-size: 10px;
+        }
+
+        .task-table th, .task-table td {
+            font-size: 13px;
+        }
+
+        .task-table .search-container input {
+            width: 100px; /* Adjust input width for smaller screens */
+            font-size: 10px;
+        }
+    }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="logo">
+        <img src="C:\Users\keert\Downloads\SMARTLiver\images\liver.png" alt="Logo">
+        <div class="title">SMART Liver</div>
+    </div>
+    <div class="patient-info">
+        <div class="info-item">
+            <p><strong>Name:</strong> Jessica Taylor</p>
+            <p><strong>Sex:</strong> Female</p>
+        </div>
+        <div class="info-item">
+            <p><strong>MRN:</strong> 65374683</p>
+            <p><strong>Age:</strong> 45</p>
+        </div>
+    </div>
+    <div class="controls">
+        <div class="dot yellow"  onclick="minimizePage()"></div>
+        <div class="dot red"  onclick="closePage()"></div>
+    </div>
+</div>
+
+<div class="sub-header">
+    <div class="buttons">
+        <button class="lab-based" onclick="window.location.href='file:///C:/Users/keert/Downloads/SMARTLiver/labbased.html'">Lab-Based</button>
+        <button class="cpg-recommended active" onclick="window.location.href='file:///C:/Users/keert/Downloads/SMARTLiver/cpgrecommended.html'">CPG-Recommended</button>
+        <button class="promis-score" onclick="window.location.href='file:///C:/Users/keert/Downloads/SMARTLiver/promis.html'">PROMIS Score</button>
+    </div>
+
+    <button class="view-liver-function-btn" onclick="window.location.href='file:///C:/Users/keert/Downloads/SMARTLiver/viewliverfunctiontests.html'">View Liver Function Tests</button>
+</div>
+
+<div class="content">
+    <div class="sidebar">
+        <ul id="sidebarList">
+            <li class="active" onclick="filterTasks('all')" id="allBtn">ALL(<span id="allCount">14</span>)</li>
+            <li onclick="filterTasks('CONDITION/STATUS')" id="conditionBtn">CONDITION/STATUS(<span id="conditionCount">2</span>)</li>
+            <li onclick="filterTasks('ORDER SETS')" id="orderSetsBtn">ORDER SETS(<span id="orderSetsCount">5</span>)</li>
+            <li onclick="filterTasks('PATIENT CARE')" id="patientCareBtn">PATIENT CARE(<span id="patientCareCount">0</span>)</li>
+            <li onclick="filterTasks('NUTRITION SERVICES')" id="nutritionBtn">NUTRITION SERVICES(<span id="nutritionServicesCount">2</span>)</li>
+            <li onclick="filterTasks('CONTINUOUS INFUSIONS')" id="continuousInfusionsBtn">CONTINUOUS INFUSIONS(<span id="continuousInfusionsCount">1</span>)</li>
+            <li onclick="filterTasks('LABORATORY SERVICES')" id="laboratoryServicesBtn">LABORATORY SERVICES(<span id="laboratoryServicesCount">2</span>)</li>
+            <li onclick="filterTasks('RADIOLOGY SERVICES')" id="radiologyBtn">RADIOLOGY SERVICES(<span id="radiologyServicesCount">2</span>)</li>
+            <li onclick="filterTasks('CARDIOVASCULAR SERVICES')" id="cardiovascularBtn">CARDIOVASCULAR SERVICES(<span id="cardiovascularServicesCount">2</span>)</li>
+            <li onclick="filterTasks('PULMONARY SERVICES')" id="pulmonaryBtn">PULMONARY SERVICES(<span id="pulmonaryServicesCount">2</span>)</li>
+            <li onclick="filterTasks('SURGICAL PROCEDURES')" id="surgicalBtn">SURGICAL PROCEDURES(<span id="surgicalProceduresCount">2</span>)</li>
+            <li onclick="filterTasks('OTHER DEPARTMENTS')" id="otherDeptsBtn">OTHER DEPARTMENTS(<span id="otherDepartmentsCount">2</span>)</li>
+            <li onclick="filterTasks('MEDICAL SUPPLIES')" id="medicalSuppliesBtn">MEDICAL SUPPLIES(<span id="medicalSuppliesCount">2</span>)</li>
+            <li onclick="filterTasks('NON CATEGORIZED')" id="nonCategorizedBtn">NON CATEGORIZED(<span id="nonCategorizedCount">2</span>)</li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div class="tab-buttons-container">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search" onkeyup="searchTasks()">
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Task Name</th>
+                <th>Guideline</th>
+                <th>Necessity</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-category="CONDITION/STATUS">
+                <td>Administer IV Albumin</td>
+                <td><a href="file:///C:/Users/keert/Downloads/SMARTLiver/viewcpg.html" class="clickable">View</a></td>
+                <td>
+                    <a href="#" class="necessity-option required" onclick="setNecessity(this, 'Required')">Required</a> /
+                    <a href="#" class="necessity-option not-required" onclick="setNecessity(this, 'Not Required')">Not Required</a> /
+                    <a href="#" class="necessity-option remind-me-later" onclick="setNecessity(this, 'Remind Me Later')">Remind Me Later</a>
+                </td>
+                <td><a href="#" class="clickable">Order Now</a></td>
+            </tr>
+            <tr data-category="ORDER SETS">
+                <td>INR for coagulation</td>
+                <td><a href="file:///C:/Users/keert/Downloads/SMARTLiver/viewcpg.html" class="clickable">View</a></td>
+                <td>
+                    <a href="#" class="necessity-option required" onclick="setNecessity(this, 'Required')">Required</a> /
+                    <a href="#" class="necessity-option not-required" onclick="setNecessity(this, 'Not Required')">Not Required</a> /
+                    <a href="#" class="necessity-option remind-me-later" onclick="setNecessity(this, 'Remind Me Later')">Remind Me Later</a>
+                </td>
+                <td><a href="#" class="clickable">Order Now</a></td>
+            </tr>
+            <tr data-category="CONDITION/STATUS">
+                <td>Hepatitis B vaccine</td>
+                <td><a href="file:///C:/Users/keert/Downloads/SMARTLiver/viewcpg.html" class="clickable">View</a></td>
+                <td>
+                    <a href="#" class="necessity-option required" onclick="setNecessity(this, 'Required')">Required</a> /
+                    <a href="#" class="necessity-option not-required" onclick="setNecessity(this, 'Not Required')">Not Required</a> /
+                    <a href="#" class="necessity-option remind-me-later" onclick="setNecessity(this, 'Remind Me Later')">Remind Me Later</a>
+                </td>
+                <td><a href="#" class="clickable">Order Now</a></td>
+            </tr>
+            <tr data-category="CONTINUOUS INFUSIONS">
+                <td>ALT and AST levels</td>
+                <td><a href="file:///C:/Users/keert/Downloads/SMARTLiver/viewcpg.html" class="clickable">View</a></td>
+                <td>
+                    <a href="#" class="necessity-option required" onclick="setNecessity(this, 'Required')">Required</a> /
+                    <a href="#" class="necessity-option not-required" onclick="setNecessity(this, 'Not Required')">Not Required</a> /
+                    <a href="#" class="necessity-option remind-me-later" onclick="setNecessity(this, 'Remind Me Later')">Remind Me Later</a>
+                </td>
+                <td><a href="#" class="clickable">Order Now</a></td>
+            </tr>
+            <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    function filterTasks(category) {
+        // Reset active state on sidebar buttons
+        document.querySelectorAll('.sidebar ul li').forEach(function(li) {
+            li.classList.remove('active');
+        });
+
+        // Set active state on clicked sidebar button
+        document.getElementById(category.toLowerCase().replace(/ /g, '') + 'Btn').classList.add('active');
+
+        // Filter table rows based on category
+        var rows = document.querySelectorAll('.table tbody tr');
+        var allCount = 0;
+        var counts = {
+            "CONDITION/STATUS": 0,
+            "ORDER SETS": 0,
+            "PATIENT CARE": 0,
+            "NUTRITION SERVICES": 0,
+            "CONTINUOUS INFUSIONS": 0,
+            "LABORATORY SERVICES": 0,
+            "RADIOLOGY SERVICES": 0,
+            "CARDIOVASCULAR SERVICES": 0,
+            "PULMONARY SERVICES": 0,
+            "SURGICAL PROCEDURES": 0,
+            "OTHER DEPARTMENTS": 0,
+            "MEDICAL SUPPLIES": 0,
+            "NON CATEGORIZED": 0
+        };
+
+        rows.forEach(function(row) {
+            row.style.display = 'none';
+            if (category === 'all' || row.dataset.category === category) {
+                row.style.display = '';
+                counts[row.dataset.category]++;
+                allCount++;
+            }
+        });
+
+        // Update counts in sidebar
+        document.getElementById('allCount').innerText = allCount;
+        Object.keys(counts).forEach(function(key) {
+            document.getElementById(key.toLowerCase().replace(/ /g, '') + 'Count').innerText = counts[key];
+        });
+    }
+
+    function setNecessity(element, choice) {
+        const parentTd = element.parentElement;
+        const options = parentTd.querySelectorAll('.necessity-option');
+
+        options.forEach(option => {
+            if (option.textContent.trim() === choice) {
+                option.classList.add('selected');
+                option.style.fontWeight = 'bold';
+            } else {
+                option.classList.remove('selected');
+                option.style.fontWeight = 'normal';
+            }
+        });
+
+        parentTd.innerHTML = `<span class="${element.className}">${choice}</span>`;
+    }
+
+    function searchTasks() {
+        var input = document.getElementById('searchInput').value.toLowerCase();
+        var rows = document.querySelectorAll('.table tbody tr');
+        rows.forEach(function(row) {
+            row.style.display = row.innerText.toLowerCase().includes(input) ? '' : 'none';
+        });
+
+        filterTasks(document.querySelector('.sidebar ul li.active').id.replace('Btn', ''));
+    }
+
+    // Initialize page by filtering all tasks
+    filterTasks('all');
+</script>
+
+</body>
+</html>
