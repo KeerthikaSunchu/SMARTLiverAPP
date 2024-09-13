@@ -225,27 +225,24 @@
             text-decoration: underline;
         }
 
-        .necessity-option {
-            color: #000000;
-            cursor: pointer;
-            text-decoration: none;
+        .necessity-label {
+             margin-right: 10px; /* Adds spacing between labels */
+             font-weight: normal; /* Default font weight */
+             cursor: pointer; /* Pointer cursor on hover */
         }
 
-        .necessity-option.required {
-            color: #5CD416;
+        .necessity-required {
+             color: #5CD416; /* Green color for 'Required' */
         }
 
-        .necessity-option.not-required {
-            color: #FD1818;
+        .necessity-not-required {
+              color: #FD1818; /* Red color for 'Not Required' */
         }
 
-        .necessity-option.remind-me-later {
-            color: #223C97;
+        .necessity-remind-me-later {
+              color: #223C97; /* Blue color for 'Remind Me Later' */
         }
 
-        .necessity-option:hover {
-            text-decoration: underline;
-        }
 
         @media (max-width: 768px) {
             .header .patient-info {
@@ -379,9 +376,15 @@
                 <td>Administer IV Albumin</td>
                 <td><a href="viewcpg.html" class="clickable">View</a></td>
                 <td>
-                    <a href="#" class="necessity-option required" onclick="setNecessity(this, 'Required')">Required</a> /
-                    <a href="#" class="necessity-option not-required" onclick="setNecessity(this, 'Not Required')">Not Required</a> /
-                    <a href="#" class="necessity-option remind-me-later" onclick="setNecessity(this, 'Remind Me Later')">Remind Me Later</a>
+                    <label class="necessity-label necessity-required">
+                        <input type="radio" name="necessity-task1" value="Required" onclick="setNecessity(this, 'Required')"> Required
+                    </label>
+                    <label class="necessity-label necessity-not-required">
+                        <input type="radio" name="necessity-task1" value="Not Required" onclick="setNecessity(this, 'Not Required')"> Not Required
+                    </label>
+                    <label class="necessity-label necessity-remind-me-later">
+                        <input type="radio" name="necessity-task1" value="Remind Me Later" onclick="setNecessity(this, 'Remind Me Later')"> Remind Me Later
+                    </label>
                 </td>
                 <td><a href="#" class="clickable">Order Now</a></td>
             </tr>
@@ -389,9 +392,15 @@
                 <td>INR for coagulation</td>
                 <td><a href="viewcpg.html" class="clickable">View</a></td>
                 <td>
-                    <a href="#" class="necessity-option required" onclick="setNecessity(this, 'Required')">Required</a> /
-                    <a href="#" class="necessity-option not-required" onclick="setNecessity(this, 'Not Required')">Not Required</a> /
-                    <a href="#" class="necessity-option remind-me-later" onclick="setNecessity(this, 'Remind Me Later')">Remind Me Later</a>
+                    <label class="necessity-label necessity-required">
+                        <input type="radio" name="necessity-task1" value="Required" onclick="setNecessity(this, 'Required')"> Required
+                    </label>
+                    <label class="necessity-label necessity-not-required">
+                        <input type="radio" name="necessity-task1" value="Not Required" onclick="setNecessity(this, 'Not Required')"> Not Required
+                    </label>
+                    <label class="necessity-label necessity-remind-me-later">
+                        <input type="radio" name="necessity-task1" value="Remind Me Later" onclick="setNecessity(this, 'Remind Me Later')"> Remind Me Later
+                    </label>
                 </td>
                 <td><a href="#" class="clickable">Order Now</a></td>
             </tr>
@@ -399,20 +408,34 @@
                 <td>Hepatitis B vaccine</td>
                 <td><a href="viewcpg.html" class="clickable">View</a></td>
                 <td>
-                    <a href="#" class="necessity-option required" onclick="setNecessity(this, 'Required')">Required</a> /
-                    <a href="#" class="necessity-option not-required" onclick="setNecessity(this, 'Not Required')">Not Required</a> /
-                    <a href="#" class="necessity-option remind-me-later" onclick="setNecessity(this, 'Remind Me Later')">Remind Me Later</a>
+                    <label class="necessity-label necessity-required">
+                        <input type="radio" name="necessity-task1" value="Required" onclick="setNecessity(this, 'Required')"> Required
+                    </label>
+                    <label class="necessity-label necessity-not-required">
+                        <input type="radio" name="necessity-task1" value="Not Required" onclick="setNecessity(this, 'Not Required')"> Not Required
+                    </label>
+                    <label class="necessity-label necessity-remind-me-later">
+                        <input type="radio" name="necessity-task1" value="Remind Me Later" onclick="setNecessity(this, 'Remind Me Later')"> Remind Me Later
+                    </label>
                 </td>
+
                 <td><a href="#" class="clickable">Order Now</a></td>
             </tr>
             <tr data-category="CONTINUOUS INFUSIONS">
                 <td>ALT and AST levels</td>
                 <td><a href="viewcpg.html" class="clickable">View</a></td>
                 <td>
-                    <a href="#" class="necessity-option required" onclick="setNecessity(this, 'Required')">Required</a> /
-                    <a href="#" class="necessity-option not-required" onclick="setNecessity(this, 'Not Required')">Not Required</a> /
-                    <a href="#" class="necessity-option remind-me-later" onclick="setNecessity(this, 'Remind Me Later')">Remind Me Later</a>
+                    <label class="necessity-label necessity-required">
+                        <input type="radio" name="necessity-task1" value="Required" onclick="setNecessity(this, 'Required')"> Required
+                    </label>
+                    <label class="necessity-label necessity-not-required">
+                        <input type="radio" name="necessity-task1" value="Not Required" onclick="setNecessity(this, 'Not Required')"> Not Required
+                    </label>
+                    <label class="necessity-label necessity-remind-me-later">
+                        <input type="radio" name="necessity-task1" value="Remind Me Later" onclick="setNecessity(this, 'Remind Me Later')"> Remind Me Later
+                    </label>
                 </td>
+
                 <td><a href="#" class="clickable">Order Now</a></td>
             </tr>
             <!-- Add more rows as needed -->
@@ -468,22 +491,22 @@
         });
     }
 
-    function setNecessity(element, choice) {
-        const parentTd = element.parentElement;
-        const options = parentTd.querySelectorAll('.necessity-option');
+     function setNecessity(element, choice) {
+        // Get all radio buttons within the same row
+        const parentTd = element.parentElement.parentElement;
+        const radios = parentTd.querySelectorAll('input[type="radio"]');
 
-        options.forEach(option => {
-            if (option.textContent.trim() === choice) {
-                option.classList.add('selected');
-                option.style.fontWeight = 'bold';
-            } else {
-                option.classList.remove('selected');
-                option.style.fontWeight = 'normal';
+        // Iterate through all radios and check if the selected one matches
+        radios.forEach(radio => {
+            if (radio.value === choice) {
+                radio.checked = true; // Mark the selected radio as checked
             }
         });
 
-        parentTd.innerHTML = `<span class="${element.className}">${choice}</span>`;
-    }
+        // Perform any additional actions needed after the selection
+        console.log("Selected necessity:", choice);
+     }
+
 
     function searchTasks() {
         var input = document.getElementById('searchInput').value.toLowerCase();
