@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="52b2f826-fd7e-4209-8c2a-0e03a2c3e2e4" name="Changes" comment="changing the path">
+    <list default="true" id="52b2f826-fd7e-4209-8c2a-0e03a2c3e2e4" name="Changes" comment="filter option for share tasks">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cpgrecommended.html" beforeDir="false" afterPath="$PROJECT_DIR$/cpgrecommended.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sendnotification.html" beforeDir="false" afterPath="$PROJECT_DIR$/sendnotification.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,16 +51,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "gh-pages",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/keert/Downloads/NEOROO",
-    "settings.editor.selected.configurable": "vcs.Git"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;gh-pages&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/keert/Downloads/NEOROO&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\keert\Downloads\SMARTLiver\images" />
@@ -128,7 +128,31 @@
       <option name="project" value="LOCAL" />
       <updated>1726252355097</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="radio button for cpg">
+      <option name="closed" value="true" />
+      <created>1726262793745</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1726262793745</updated>
+    </task>
+    <task id="LOCAL-00006" summary="liver icon for landing page">
+      <option name="closed" value="true" />
+      <created>1726364509145</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1726364509145</updated>
+    </task>
+    <task id="LOCAL-00007" summary="filter option for share tasks">
+      <option name="closed" value="true" />
+      <created>1726365883572</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1726365883572</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -146,6 +170,9 @@
     <MESSAGE value="hey" />
     <MESSAGE value="first commit" />
     <MESSAGE value="changing the path" />
-    <option name="LAST_COMMIT_MESSAGE" value="changing the path" />
+    <MESSAGE value="radio button for cpg" />
+    <MESSAGE value="liver icon for landing page" />
+    <MESSAGE value="filter option for share tasks" />
+    <option name="LAST_COMMIT_MESSAGE" value="filter option for share tasks" />
   </component>
 </project>
