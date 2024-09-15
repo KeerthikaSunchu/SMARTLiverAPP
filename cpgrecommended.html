@@ -307,7 +307,10 @@
 
 <div class="header">
     <div class="logo">
-        <img src="images/liver.png" alt="Logo">
+        <!-- Wrap the image with an anchor tag to make it clickable -->
+        <a href="index.html">
+            <img src="images/liver.png" alt="Logo">
+        </a>
         <div class="title">SMART Liver</div>
     </div>
     <div class="patient-info">
@@ -447,79 +450,79 @@
 <script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-    function filterTasks(category) {
-        // Reset active state on sidebar buttons
-        document.querySelectorAll('.sidebar ul li').forEach(function(li) {
-            li.classList.remove('active');
-        });
+function filterTasks(category) {
+// Reset active state on sidebar buttons
+document.querySelectorAll('.sidebar ul li').forEach(function(li) {
+li.classList.remove('active');
+});
 
-        // Set active state on clicked sidebar button
-        document.getElementById(category.toLowerCase().replace(/ /g, '') + 'Btn').classList.add('active');
+// Set active state on clicked sidebar button
+document.getElementById(category.toLowerCase().replace(/ /g, '') + 'Btn').classList.add('active');
 
-        // Filter table rows based on category
-        var rows = document.querySelectorAll('.table tbody tr');
-        var allCount = 0;
-        var counts = {
-            "CONDITION/STATUS": 0,
-            "ORDER SETS": 0,
-            "PATIENT CARE": 0,
-            "NUTRITION SERVICES": 0,
-            "CONTINUOUS INFUSIONS": 0,
-            "LABORATORY SERVICES": 0,
-            "RADIOLOGY SERVICES": 0,
-            "CARDIOVASCULAR SERVICES": 0,
-            "PULMONARY SERVICES": 0,
-            "SURGICAL PROCEDURES": 0,
-            "OTHER DEPARTMENTS": 0,
-            "MEDICAL SUPPLIES": 0,
-            "NON CATEGORIZED": 0
-        };
+// Filter table rows based on category
+var rows = document.querySelectorAll('.table tbody tr');
+var allCount = 0;
+var counts = {
+"CONDITION/STATUS": 0,
+"ORDER SETS": 0,
+"PATIENT CARE": 0,
+"NUTRITION SERVICES": 0,
+"CONTINUOUS INFUSIONS": 0,
+"LABORATORY SERVICES": 0,
+"RADIOLOGY SERVICES": 0,
+"CARDIOVASCULAR SERVICES": 0,
+"PULMONARY SERVICES": 0,
+"SURGICAL PROCEDURES": 0,
+"OTHER DEPARTMENTS": 0,
+"MEDICAL SUPPLIES": 0,
+"NON CATEGORIZED": 0
+};
 
-        rows.forEach(function(row) {
-            row.style.display = 'none';
-            if (category === 'all' || row.dataset.category === category) {
-                row.style.display = '';
-                counts[row.dataset.category]++;
-                allCount++;
-            }
-        });
+rows.forEach(function(row) {
+row.style.display = 'none';
+if (category === 'all' || row.dataset.category === category) {
+row.style.display = '';
+counts[row.dataset.category]++;
+allCount++;
+}
+});
 
-        // Update counts in sidebar
-        document.getElementById('allCount').innerText = allCount;
-        Object.keys(counts).forEach(function(key) {
-            document.getElementById(key.toLowerCase().replace(/ /g, '') + 'Count').innerText = counts[key];
-        });
-    }
+// Update counts in sidebar
+document.getElementById('allCount').innerText = allCount;
+Object.keys(counts).forEach(function(key) {
+document.getElementById(key.toLowerCase().replace(/ /g, '') + 'Count').innerText = counts[key];
+});
+}
 
-     function setNecessity(element, choice) {
-        // Get all radio buttons within the same row
-        const parentTd = element.parentElement.parentElement;
-        const radios = parentTd.querySelectorAll('input[type="radio"]');
+function setNecessity(element, choice) {
+// Get all radio buttons within the same row
+const parentTd = element.parentElement.parentElement;
+const radios = parentTd.querySelectorAll('input[type="radio"]');
 
-        // Iterate through all radios and check if the selected one matches
-        radios.forEach(radio => {
-            if (radio.value === choice) {
-                radio.checked = true; // Mark the selected radio as checked
-            }
-        });
+// Iterate through all radios and check if the selected one matches
+radios.forEach(radio => {
+if (radio.value === choice) {
+radio.checked = true; // Mark the selected radio as checked
+}
+});
 
-        // Perform any additional actions needed after the selection
-        console.log("Selected necessity:", choice);
-     }
+// Perform any additional actions needed after the selection
+console.log("Selected necessity:", choice);
+}
 
 
-    function searchTasks() {
-        var input = document.getElementById('searchInput').value.toLowerCase();
-        var rows = document.querySelectorAll('.table tbody tr');
-        rows.forEach(function(row) {
-            row.style.display = row.innerText.toLowerCase().includes(input) ? '' : 'none';
-        });
+function searchTasks() {
+var input = document.getElementById('searchInput').value.toLowerCase();
+var rows = document.querySelectorAll('.table tbody tr');
+rows.forEach(function(row) {
+row.style.display = row.innerText.toLowerCase().includes(input) ? '' : 'none';
+});
 
-        filterTasks(document.querySelector('.sidebar ul li.active').id.replace('Btn', ''));
-    }
+filterTasks(document.querySelector('.sidebar ul li.active').id.replace('Btn', ''));
+}
 
-    // Initialize page by filtering all tasks
-    filterTasks('all');
+// Initialize page by filtering all tasks
+filterTasks('all');
 </script>
 
 </body>

@@ -237,17 +237,19 @@
 </head>
 <body>
 
-<div class="container-fluid">
-    <div class="header">
-        <div style="display: flex; align-items: center;">
+<div class="header">
+    <div style="display: flex; align-items: center;">
+        <!-- Wrap the image with an <a> tag pointing to your target page -->
+        <a href="index.html">
             <img src="images/liver.png" alt="Logo">
-            <h1>SMART Liver</h1>
-        </div>
-        <div class="controls">
-            <div class="dot yellow"  onclick="minimizePage()"></div>
-            <div class="dot red"  onclick="closePage()"></div>
-        </div>
+        </a>
+        <h1>SMART Liver</h1>
     </div>
+    <div class="controls">
+        <div class="dot yellow" onclick="minimizePage()"></div>
+        <div class="dot red" onclick="closePage()"></div>
+    </div>
+</div>
 
     <div class="content">
         <div class="patient-info">
