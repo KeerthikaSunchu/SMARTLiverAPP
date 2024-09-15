@@ -227,15 +227,20 @@
                 right: 10px;
             }
             .filter-links button {
-                color: #223C97;
-                background: none;
-                border: none;
-                cursor: pointer;
-                font-weight: bold;
-            }
-            .filter-links button:hover {
-                text-decoration: underline;
-            }
+        color: #515151;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+    }
+    .filter-links button.active {
+    color: #223C97; /* Blue color for the active button */
+    border-bottom: 2px solid #223C97; /* Blue line underneath */
+    }
+    .filter-links button:hover {
+        text-decoration: underline;
+        color: #223C97;
+    }
             .card.selected {
                 border: 2px solid #223C97;
                 box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
@@ -453,20 +458,26 @@
         height: 40px;
     }
     .filter-links button {
-        color: #223C97;
+        color: #515151;
         background: none;
         border: none;
         cursor: pointer;
         font-weight: bold;
     }
+    .filter-links button.active {
+    color: #223C97; /* Blue color for the active button */
+    border-bottom: 2px solid #223C97; /* Blue line underneath */
+    }
     .filter-links button:hover {
         text-decoration: underline;
+        color: #223C97;
     }
     .card.selected, .card.patient-engagement-card.selected {
         border: 2px solid #223C97;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
 }
+
 
 
         </style>
@@ -569,9 +580,9 @@
                 <h2 class="section-title">Share Tasks</h2>
                 <p class="section-subtitle">Share task lists with patients, doctors, nurses, and medical assistants.</p>
                 <div class="filter-links">
-                    <button onclick="filterTasks('all')">ALL(<span id="all-count">14</span>)</button>
-                    <button onclick="filterTasks('overdue')">OVERDUE(<span id="overdue-count">2</span>)</button>
-                    <button onclick="filterTasks('upcoming')">UPCOMING(<span id="upcoming-count">5</span>)</button>
+                    <button id="filter-all" onclick="filterTasks('all')">ALL(<span id="all-count">6</span>)</button>
+                    <button id="filter-overdue" onclick="filterTasks('overdue')">OVERDUE(<span id="overdue-count">3</span>)</button>
+                    <button id="filter-upcoming" onclick="filterTasks('upcoming')">UPCOMING(<span id="upcoming-count">3</span>)</button>
                 </div>
                 <div class="task-table-container" style="max-height: 228px; overflow-y: auto;">
                     <table class="task-table">
@@ -704,25 +715,44 @@
         }
     }
 
-    // Function to filter tasks based on status
     function filterTasks(status) {
-        const rows = document.querySelectorAll('.task-table tbody tr');
-        let total = 0, overdueCount = 0, upcomingCount = 0;
-        rows.forEach(row => {
-            const statusText = row.cells[2].textContent.trim().toLowerCase();
-            if (statusText === "overdue") overdueCount++;
-            if (statusText === "upcoming") upcomingCount++;
-            if (status === 'all' || statusText === status) {
-                row.style.display = '';
-                total++;
-            } else {
-                row.style.display = 'none';
-            }
-        });
-        document.getElementById('all-count').textContent = rows.length;
-        document.getElementById('overdue-count').textContent = overdueCount;
-        document.getElementById('upcoming-count').textContent = upcomingCount;
+    const allButton = document.getElementById('filter-all');
+    const overdueButton = document.getElementById('filter-overdue');
+    const upcomingButton = document.getElementById('filter-upcoming');
+
+    // Reset all buttons to non-active state
+    allButton.classList.remove('active');
+    overdueButton.classList.remove('active');
+    upcomingButton.classList.remove('active');
+
+    // Activate the correct button
+    if (status === 'all') {
+        allButton.classList.add('active');
+    } else if (status === 'overdue') {
+        overdueButton.classList.add('active');
+    } else if (status === 'upcoming') {
+        upcomingButton.classList.add('active');
     }
+
+    // Your existing filtering logic here...
+    const rows = document.querySelectorAll('.task-table tbody tr');
+    let total = 0, overdueCount = 0, upcomingCount = 0;
+    rows.forEach(row => {
+        const statusText = row.cells[2].textContent.trim().toLowerCase();
+        if (statusText === "overdue") overdueCount++;
+        if (statusText === "upcoming") upcomingCount++;
+        if (status === 'all' || statusText === status) {
+            row.style.display = '';
+            total++;
+        } else {
+            row.style.display = 'none';
+        }
+    });
+    document.getElementById('all-count').textContent = rows.length;
+    document.getElementById('overdue-count').textContent = overdueCount;
+    document.getElementById('upcoming-count').textContent = upcomingCount;
+}
+
 
     // Function to send tasks to selected recipients
     function sendTasks() {
