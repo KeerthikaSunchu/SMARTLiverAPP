@@ -5,43 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SMART Liver App</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
-
         body {
             font-family: 'Roboto', sans-serif;
-                margin: 0;
-                background-color: #D9D9D9;
-                overflow: hidden;
-            }
+            margin: 0;
+            background-color: #D9D9D9;
+            overflow: hidden;
+        }
 
-            .header {
-                background-color: #223C97;
-                color: white;
-                padding: 10px 20px;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                height: 50px;
-            }
+        .header {
+            background-color: #223C97;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 50px;
+        }
 
-            .header .logo {
-                display: flex;
-                align-items: center;
-            }
+        .header .logo {
+            display: flex;
+            align-items: center;
+        }
 
-            .header .logo img {
-                height: 50px;
-                margin-right: 10px;
-            }
+        .header .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
 
-            .header .title {
-                font-size: 20px;
-                font-weight: normal;
-                white-space: nowrap;
-            }
-            .header .patient-info {
+        .header .title {
+            font-size: 20px;
+            font-weight: normal;
+            white-space: nowrap;
+        }
+
+        .header .patient-info {
             display: flex;
             justify-content: flex-end;
             width: 100%;
@@ -53,214 +52,197 @@
             flex-direction: column;
             align-items: flex-end;
         }
-         .header .patient-info {
-                    display: flex;
-                    justify-content: flex-end;
-                    width: 100%;
-                }
-                .header .patient-info .info-item {
-                    margin-right: 30px;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: flex-end;
-                }
-                .header .patient-info p {
-                    margin: 0;
-                    font-size: 14px;
-                }
 
-             .header .controls {
-                    display: flex;
-                    align-items: center;
-                }
-                .header .controls .dot {
-                    height: 15px;
-                    width: 15px;
-                    border-radius: 50%;
-                    margin-left: 10px;
-                    cursor: pointer;
-                }
-                .header .controls .dot.yellow {
-                    background-color: yellow;
-                }
-                .header .controls .dot.red {
-                    background-color: red;
-                }
+        .header .patient-info p {
+            margin: 0;
+            font-size: 14px;
+        }
 
-            .sub-header {
-                background-color: #D9D9D9;
-                padding: 10px 20px;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
+        .header .controls {
+            display: flex;
+            align-items: center;
+        }
 
-            .sub-header .buttons {
-                display: flex;
-                gap: 10px;
-            }
+        .header .controls .dot {
+            height: 15px;
+            width: 15px;
+            border-radius: 50%;
+            margin-left: 10px;
+            cursor: pointer;
+        }
 
-            .sub-header .buttons button {
-                padding: 10px 20px;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-                font-weight: normal;
-                background-color: #223C97;
-                color: white;
-                border: 2px solid transparent;
-                font-size: 14px;
-            }
+        .header .controls .dot.yellow {
+            background-color: yellow;
+        }
 
-            .sub-header .buttons button.active {
-                border: 2px solid white;
-            }
+        .header .controls .dot.red {
+            background-color: red;
+        }
 
-            .sub-header .ESLD-Scoring-btn {
-                background-color: #223C97;
-                color: white;
-                padding: 10px 20px;
-                border-radius: 5px;
-                border: none;
-                cursor: pointer;
-                font-size: 14px;
-                font-weight: normal;
-            }
+        .sub-header {
+            background-color: #D9D9D9;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-            .content {
-                display: flex;
-                height: calc(100vh - 120px);
-                background-color: #D9D9D9;
-                border: 1px solid #D9D9D9;
-            }
+        .sub-header .buttons {
+            display: flex;
+            gap: 10px;
+        }
 
-            .sidebar {
-                background-color: #F2F8FD;
-                width: 240px;
-                padding: 10px 0;
-                overflow-y: auto;
-                font-size: 13px;
-                font-weight: bold;
-            }
+        .sub-header .buttons button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: normal;
+            background-color: #223C97;
+            color: white;
+            border: 2px solid transparent;
+            font-size: 14px;
+        }
 
-            .sidebar ul {
-                list-style: none;
-                padding: 0;
-                margin: 0;
-            }
+        .sub-header .buttons button.active {
+            border: 2px solid white;
+        }
 
-            .sidebar ul li {
-                padding: 8px 20px;
-                cursor: pointer;
-                color: #515151;
-                background-color: #F2F8FD;
-                transition: color 0.2s;
-                border-left: 3px solid transparent;
-            }
+        .sub-header .ESLD-Scoring-btn {
+            background-color: #223C97;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: normal;
+        }
 
-            .sidebar ul li.active {
-                background-color: #F2F8FD;
-                font-weight: bold;
-                color: #223C97;
-                border-left: 3px solid #223C97;
-            }
+        .content {
+            display: flex;
+            height: calc(100vh - 120px);
+            background-color: #D9D9D9;
+            border: 1px solid #D9D9D9;
+        }
 
-            .sidebar ul li:hover {
-                color: #223C97;
-            }
+        .sidebar {
+            background-color: #F2F8FD;
+            width: 240px;
+            padding: 10px 0;
+            overflow-y: auto;
+            font-size: 13px;
+            font-weight: bold;
+        }
 
-            .main-content {
-                flex-grow: 1;
-                padding: 0;
-                overflow-y: auto;
-                background-color: white;
-                margin: 20px;
-                border-radius: 10px;
-                padding: 20px;
-            }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
 
-            .tab-buttons-container {
-                background-color: #F2F8FD;
-                padding: 10px 20px; /* Reduced padding to make the bar narrower */
-            }
+        .sidebar ul li {
+            padding: 8px 20px;
+            cursor: pointer;
+            color: #515151;
+            background-color: #F2F8FD;
+            transition: color 0.2s;
+            border-left: 3px solid transparent;
+        }
 
+        .sidebar ul li.active {
+            background-color: #F2F8FD;
+            font-weight: bold;
+            color: #223C97;
+            border-left: 3px solid #223C97;
+        }
 
-            .search-container {
-                width: 100%;
-                text-align: right;
-                padding-right: 20px;
-            }
-            .search-container input {
-                padding: 5px 10px; /* Reduced padding for a slimmer look */
-                width: 200px; /* Slightly increased width */
-                border: 1px solid #ccc;
-                border-radius: 5px;
-                transition: border-color 0.3s;
-                font-size: 0.9rem; /* Slightly smaller font size */
-            }
+        .sidebar ul li:hover {
+            color: #223C97;
+        }
 
-            .search-container input:focus {
-                border-color: #223C97; /* Border color when search input is focused */
-                outline: none; /* Remove the default outline */
-            }
+        .main-content {
+            flex-grow: 1;
+            padding: 0;
+            overflow-y: auto;
+            background-color: white;
+            margin: 20px;
+            border-radius: 10px;
+            padding: 20px;
+        }
 
-            table {
-                width: 100%;
-                border-collapse: collapse;
-            }
+        .tab-buttons-container {
+            background-color: #F2F8FD;
+            padding: 10px 20px;
+        }
 
-            th, td {
-                text-align: left;
-                padding: 8px;
-                border-bottom: 1px solid #ddd;
-            }
+        .search-container {
+            width: 100%;
+            text-align: right;
+            padding-right: 20px;
+        }
 
-            th {
-                background-color: #f2f2f2;
-            }
+        .search-container input {
+            padding: 5px 10px;
+            width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+            font-size: 0.9rem;
+        }
 
-            .clickable {
-                color: #223C97;
-                cursor: pointer;
-                text-decoration: none;
-            }
+        .search-container input:focus {
+            border-color: #223C97;
+            outline: none;
+        }
 
-            .clickable:hover {
-                text-decoration: underline;
-            }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
 
-            .necessity-label {
-                 margin-right: 10px; /* Adds spacing between labels */
-                 font-weight: normal; /* Default font weight */
-                 cursor: pointer; /* Pointer cursor on hover */
-            }
+        th, td {
+            text-align: left;
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
 
-            .necessity-required {
-                 color: #5CD416; /* Green color for 'Required' */
-            }
+        th {
+            background-color: #f2f2f2;
+        }
 
-            .necessity-not-required {
-                  color: #FD1818; /* Red color for 'Not Required' */
-            }
+        .clickable {
+            color: #223C97;
+            cursor: pointer;
+            text-decoration: none;
+        }
 
-            .necessity-remind-me-later {
-                  color: #223C97; /* Blue color for 'Remind Me Later' */
-            }
+        .clickable:hover {
+            text-decoration: underline;
+        }
 
+        .necessity-label {
+             margin-right: 10px;
+             font-weight: normal;
+             cursor: pointer;
+        }
 
-            @media (max-width: 768px) {
-                .header .patient-info {
-                    font-size: 12px;
-                }
+        .necessity-required {
+             color: #5CD416;
+        }
 
-                .sidebar {
-                    width: 200px;
-                }
-            }
+        .necessity-not-required {
+              color: #FD1818;
+        }
+
+        .necessity-remind-me-later {
+              color: #223C97;
+        }
+
         @media (max-width: 768px) {
             .header {
-                flex-direction: column; /* Stack items */
-                align-items: flex-start; /* Align to left */
+                flex-direction: column;
+                align-items: flex-start;
                 height: 60px;
                 padding: 10px;
             }
@@ -270,7 +252,7 @@
             }
 
             .header .controls {
-                margin-top: 10px; /* Adjust margin */
+                margin-top: 10px;
             }
 
             .sidebar {
@@ -279,20 +261,20 @@
 
             .sub-header .buttons button,
             .sub-header .ESLD-Scoring-btn {
-                font-size: 14px; /* Smaller font size */
-                padding: 2px 10px; /* Reduced padding */
-                width: 100%; /* Full width for smaller screens */
-                max-width: 150px; /* Max width to prevent overly wide buttons */
+                font-size: 14px;
+                padding: 2px 10px;
+                width: 100%;
+                max-width: 150px;
             }
 
             .tab-buttons button {
-                font-size: 10px; /* Smaller font size */
-                padding: 5px 5px; /* Reduce button padding */
-                max-width: 150px; /* Max width for better control */
+                font-size: 10px;
+                padding: 5px 5px;
+                max-width: 150px;
             }
 
             .tab-buttons .search-container input {
-                width: 70px; /* Adjust input width */
+                width: 70px;
                 font-size: 10px;
             }
 
@@ -301,7 +283,7 @@
             }
 
             .task-table .search-container input {
-                width: 100px; /* Adjust input width for smaller screens */
+                width: 100px;
                 font-size: 10px;
             }
         }
@@ -329,7 +311,7 @@
     </div>
     <div class="controls">
         <div class="dot yellow"  onclick="minimizePage()"></div>
-        <div class="dot red"  onclick="closePage()"></div>
+        <div the="dot red"  onclick="closePage()"></div>
     </div>
 </div>
 
@@ -339,27 +321,26 @@
         <button class="cpg-recommended active" onclick="window.location.href='cpgrecommended.html'">CPG-Recommended</button>
         <button class="promis-score" onclick="window.location.href='promis.html'">PROMIS Score</button>
     </div>
-
     <button class="ESLD-Scoring-btn" onclick="window.location.href='ESLDScoring.html'">ESLD Scoring</button>
 </div>
 
 <div class="content">
     <div class="sidebar">
         <ul id="sidebarList">
-            <li class="active" onclick="filterTasks('all')" id="allBtn">ALL(<span id="allCount">14</span>)</li>
-            <li onclick="filterTasks('CONDITION/STATUS')" id="conditionBtn">CONDITION/STATUS(<span id="conditionCount">2</span>)</li>
-            <li onclick="filterTasks('ORDER SETS')" id="orderSetsBtn">ORDER SETS(<span id="orderSetsCount">5</span>)</li>
+            <li class="active" onclick="filterTasks('all')" id="allBtn">ALL(<span id="allCount">4</span>)</li>
+            <li onclick="filterTasks('CONDITION/STATUS')" id="conditionBtn">CONDITION/STATUS(<span id="conditionCount">0</span>)</li>
+            <li onclick="filterTasks('ORDER SETS')" id="orderSetsBtn">ORDER SETS(<span id="orderSetsCount">0</span>)</li>
             <li onclick="filterTasks('PATIENT CARE')" id="patientCareBtn">PATIENT CARE(<span id="patientCareCount">0</span>)</li>
-            <li onclick="filterTasks('NUTRITION SERVICES')" id="nutritionBtn">NUTRITION SERVICES(<span id="nutritionServicesCount">2</span>)</li>
-            <li onclick="filterTasks('CONTINUOUS INFUSIONS')" id="continuousInfusionsBtn">CONTINUOUS INFUSIONS(<span id="continuousInfusionsCount">1</span>)</li>
-            <li onclick="filterTasks('LABORATORY SERVICES')" id="laboratoryServicesBtn">LABORATORY SERVICES(<span id="laboratoryServicesCount">2</span>)</li>
-            <li onclick="filterTasks('RADIOLOGY SERVICES')" id="radiologyBtn">RADIOLOGY SERVICES(<span id="radiologyServicesCount">2</span>)</li>
-            <li onclick="filterTasks('CARDIOVASCULAR SERVICES')" id="cardiovascularBtn">CARDIOVASCULAR SERVICES(<span id="cardiovascularServicesCount">2</span>)</li>
-            <li onclick="filterTasks('PULMONARY SERVICES')" id="pulmonaryBtn">PULMONARY SERVICES(<span id="pulmonaryServicesCount">2</span>)</li>
-            <li onclick="filterTasks('SURGICAL PROCEDURES')" id="surgicalBtn">SURGICAL PROCEDURES(<span id="surgicalProceduresCount">2</span>)</li>
-            <li onclick="filterTasks('OTHER DEPARTMENTS')" id="otherDeptsBtn">OTHER DEPARTMENTS(<span id="otherDepartmentsCount">2</span>)</li>
-            <li onclick="filterTasks('MEDICAL SUPPLIES')" id="medicalSuppliesBtn">MEDICAL SUPPLIES(<span id="medicalSuppliesCount">2</span>)</li>
-            <li onclick="filterTasks('NON CATEGORIZED')" id="nonCategorizedBtn">NON CATEGORIZED(<span id="nonCategorizedCount">2</span>)</li>
+            <li onclick="filterTasks('NUTRITION SERVICES')" id="nutritionBtn">NUTRITION SERVICES(<span id="nutritionServicesCount">0</span>)</li>
+            <li onclick="filterTasks('CONTINUOUS INFUSIONS')" id="continuousInfusionsBtn">CONTINUOUS INFUSIONS(<span id="continuousInfusionsCount">0</span>)</li>
+            <li onclick="filterTasks('LABORATORY SERVICES')" id="laboratoryServicesBtn">LABORATORY SERVICES(<span id="laboratoryServicesCount">0</span>)</li>
+            <li onclick="filterTasks('RADIOLOGY SERVICES')" id="radiologyBtn">RADIOLOGY SERVICES(<span id="radiologyServicesCount">0</span>)</li>
+            <li onclick="filterTasks('CARDIOVASCULAR SERVICES')" id="cardiovascularBtn">CARDIOVASCULAR SERVICES(<span id="cardiovascularServicesCount">0</span>)</li>
+            <li onclick="filterTasks('PULMONARY SERVICES')" id="pulmonaryBtn">PULMONARY SERVICES(<span id="pulmonaryServicesCount">0</span>)</li>
+            <li onclick="filterTasks('SURGICAL PROCEDURES')" id="surgicalBtn">SURGICAL PROCEDURES(<span id="surgicalProceduresCount">0</span>)</li>
+            <li onclick="filterTasks('OTHER DEPARTMENTS')" id="otherDeptsBtn">OTHER DEPARTMENTS(<span id="otherDepartmentsCount">0</span>)</li>
+            <li onclick="filterTasks('MEDICAL SUPPLIES')" id="medicalSuppliesBtn">MEDICAL SUPPLIES(<span id="medicalSuppliesCount">0</span>)</li>
+            <li onclick="filterTasks('NON CATEGORIZED')" id="nonCategorizedBtn">NON CATEGORIZED(<span id="nonCategorizedCount">0</span>)</li>
         </ul>
     </div>
 
@@ -369,7 +350,7 @@
                 <input type="text" id="searchInput" placeholder="Search" onkeyup="searchTasks()">
             </div>
         </div>
-        <table class="table">
+        <table class="table task-table">
             <thead>
             <tr>
                 <th>Task Name</th>
@@ -400,13 +381,13 @@
                 <td><a href="viewcpg.html" class="clickable">View</a></td>
                 <td>
                     <label class="necessity-label necessity-required">
-                        <input type="radio" name="necessity-task1" value="Required" onclick="setNecessity(this, 'Required')"> Required
+                        <input type="radio" name="necessity-task2" value="Required" onclick="setNecessity(this, 'Required')"> Required
                     </label>
                     <label class="necessity-label necessity-not-required">
-                        <input type="radio" name="necessity-task1" value="Not Required" onclick="setNecessity(this, 'Not Required')"> Not Required
+                        <input type="radio" name="necessity-task2" value="Not Required" onclick="setNecessity(this, 'Not Required')"> Not Required
                     </label>
                     <label class="necessity-label necessity-remind-me-later">
-                        <input type="radio" name="necessity-task1" value="Remind Me Later" onclick="setNecessity(this, 'Remind Me Later')"> Remind Me Later
+                        <input type="radio" name="necessity-task2" value="Remind Me Later" onclick="setNecessity(this, 'Remind Me Later')"> Remind Me Later
                     </label>
                 </td>
                 <td><a href="#" class="clickable">Order Now</a></td>
@@ -416,16 +397,15 @@
                 <td><a href="viewcpg.html" class="clickable">View</a></td>
                 <td>
                     <label class="necessity-label necessity-required">
-                        <input type="radio" name="necessity-task1" value="Required" onclick="setNecessity(this, 'Required')"> Required
+                        <input type="radio" name="necessity-task3" value="Required" onclick="setNecessity(this, 'Required')"> Required
                     </label>
                     <label class="necessity-label necessity-not-required">
-                        <input type="radio" name="necessity-task1" value="Not Required" onclick="setNecessity(this, 'Not Required')"> Not Required
+                        <input type="radio" name="necessity-task3" value="Not Required" onclick="setNecessity(this, 'Not Required')"> Not Required
                     </label>
                     <label class="necessity-label necessity-remind-me-later">
-                        <input type="radio" name="necessity-task1" value="Remind Me Later" onclick="setNecessity(this, 'Remind Me Later')"> Remind Me Later
+                        <input type="radio" name="necessity-task3" value="Remind Me Later" onclick="setNecessity(this, 'Remind Me Later')"> Remind Me Later
                     </label>
                 </td>
-
                 <td><a href="#" class="clickable">Order Now</a></td>
             </tr>
             <tr data-category="CONTINUOUS INFUSIONS">
@@ -433,16 +413,15 @@
                 <td><a href="viewcpg.html" class="clickable">View</a></td>
                 <td>
                     <label class="necessity-label necessity-required">
-                        <input type="radio" name="necessity-task1" value="Required" onclick="setNecessity(this, 'Required')"> Required
+                        <input type="radio" name="necessity-task4" value="Required" onclick="setNecessity(this, 'Required')"> Required
                     </label>
                     <label class="necessity-label necessity-not-required">
-                        <input type="radio" name="necessity-task1" value="Not Required" onclick="setNecessity(this, 'Not Required')"> Not Required
+                        <input type="radio" name="necessity-task4" value="Not Required" onclick="setNecessity(this, 'Not Required')"> Not Required
                     </label>
                     <label class="necessity-label necessity-remind-me-later">
-                        <input type="radio" name="necessity-task1" value="Remind Me Later" onclick="setNecessity(this, 'Remind Me Later')"> Remind Me Later
+                        <input type="radio" name="necessity-task4" value="Remind Me Later" onclick="setNecessity(this, 'Remind Me Later')"> Remind Me Later
                     </label>
                 </td>
-
                 <td><a href="#" class="clickable">Order Now</a></td>
             </tr>
             <!-- Add more rows as needed -->
@@ -451,83 +430,69 @@
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    // Function to filter tasks based on category or tab selection
+    function filterTasks(category) {
+        // Normalize the category to match the ID format
+        var categoryId = category.replace(/ /g, '').toLowerCase() + 'Btn';
 
-function filterTasks(category) {
-// Reset active state on sidebar buttons
-document.querySelectorAll('.sidebar ul li').forEach(function(li) {
-li.classList.remove('active');
-});
+        // Reset active state on all sidebar buttons
+        document.querySelectorAll('.sidebar ul li').forEach(function(li) {
+            li.classList.remove('active');
+            li.style.color = '#515151'; // Reset text color
+            li.style.borderLeft = '3px solid transparent'; // Reset border color
+        });
 
-// Set active state on clicked sidebar button
-document.getElementById(category.toLowerCase().replace(/ /g, '') + 'Btn').classList.add('active');
+        // Set active state on the clicked sidebar button
+        var activeButton = document.getElementById(categoryId);
+        if (activeButton) {
+            activeButton.classList.add('active');
+            activeButton.style.color = '#223C97'; // Set text color for active item
+            activeButton.style.borderLeft = '3px solid #223C97'; // Set border color for active item
+        } else {
+            console.error('No element with ID:', categoryId);
+        }
 
-// Filter table rows based on category
-var rows = document.querySelectorAll('.table tbody tr');
-var allCount = 0;
-var counts = {
-"CONDITION/STATUS": 0,
-"ORDER SETS": 0,
-"PATIENT CARE": 0,
-"NUTRITION SERVICES": 0,
-"CONTINUOUS INFUSIONS": 0,
-"LABORATORY SERVICES": 0,
-"RADIOLOGY SERVICES": 0,
-"CARDIOVASCULAR SERVICES": 0,
-"PULMONARY SERVICES": 0,
-"SURGICAL PROCEDURES": 0,
-"OTHER DEPARTMENTS": 0,
-"MEDICAL SUPPLIES": 0,
-"NON CATEGORIZED": 0
-};
+        // Count and filter tasks based on the category
+        var rows = document.querySelectorAll('.task-table tbody tr');
+        var counts = { "ALL": 0 };
+        rows.forEach(function(row) {
+            var rowCategory = row.getAttribute('data-category').toUpperCase().replace(/ /g, '');
+            counts[rowCategory] = counts[rowCategory] || 0; // Initialize count if not set
+            if (category === 'ALL' || category.replace(/ /g, '') === rowCategory) {
+                row.style.display = ''; // Show row
+                counts[rowCategory]++;
+                counts["ALL"]++;
+            } else {
+                row.style.display = 'none'; // Hide row
+            }
+        });
 
-rows.forEach(function(row) {
-row.style.display = 'none';
-if (category === 'all' || row.dataset.category === category) {
-row.style.display = '';
-counts[row.dataset.category]++;
-allCount++;
-}
-});
+        // Update counts in the sidebar
+        for (var cat in counts) {
+            var countId = cat.toLowerCase() + 'Count';
+            var countElement = document.getElementById(countId);
+            if (countElement) {
+                countElement.innerText = counts[cat]; // Update count
+            }
+        }
+    }
 
-// Update counts in sidebar
-document.getElementById('allCount').innerText = allCount;
-Object.keys(counts).forEach(function(key) {
-document.getElementById(key.toLowerCase().replace(/ /g, '') + 'Count').innerText = counts[key];
-});
-}
+    document.addEventListener('DOMContentLoaded', function() {
+        // Add click event listeners to sidebar items
+        const sidebarListItems = document.querySelectorAll('.sidebar ul li');
+        sidebarListItems.forEach(item => {
+            item.addEventListener('click', function() {
+                var categoryText = this.id.replace('Btn', '').replace(/([A-Z])/g, ' $1').trim().toUpperCase();
+                filterTasks(categoryText);
+            });
+        });
 
-function setNecessity(element, choice) {
-// Get all radio buttons within the same row
-const parentTd = element.parentElement.parentElement;
-const radios = parentTd.querySelectorAll('input[type="radio"]');
-
-// Iterate through all radios and check if the selected one matches
-radios.forEach(radio => {
-if (radio.value === choice) {
-radio.checked = true; // Mark the selected radio as checked
-}
-});
-
-// Perform any additional actions needed after the selection
-console.log("Selected necessity:", choice);
-}
-
-
-function searchTasks() {
-var input = document.getElementById('searchInput').value.toLowerCase();
-var rows = document.querySelectorAll('.table tbody tr');
-rows.forEach(function(row) {
-row.style.display = row.innerText.toLowerCase().includes(input) ? '' : 'none';
-});
-
-filterTasks(document.querySelector('.sidebar ul li.active').id.replace('Btn', ''));
-}
-
-// Initialize page by filtering all tasks
-filterTasks('all');
+        filterTasks('ALL'); // Initialize by showing all tasks
+    });
 </script>
 
 </body>
 </html>
+

@@ -174,7 +174,7 @@
     }
 
     .tab-buttons-container {
-        background-color: #F2F8FD;
+        background-color: #FFFFFF;
         padding: 0 20px;
     }
 
@@ -221,7 +221,7 @@
     }
 
     .task-table th {
-        background-color: #F8F9FA;
+        background-color: #FFFFFF;
         font-weight: bold;
     }
 
@@ -493,106 +493,76 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script>
-    function selectTab(selectedTab) {
-      const tabs = ['all', 'complete', 'overdue', 'upcoming'];
-      tabs.forEach(tab => {
-        const element = document.getElementById(tab + 'TabBtn');
-        element.classList.remove('active');
-        if (tab === selectedTab) {
-          element.classList.add('active');
-        }
-      });
-      filterTasks(selectedTab);
+    // Function to filter tasks based on category or tab selection
+    function filterTasks(filterType, category) {
+        const rows = document.querySelectorAll('.task-table tbody tr');
+        let totalCount = rows.length; // Always the total number of tasks
+        let visibleCount = 0; // Count of tasks visible after filter
+
+        // Update counts and visibility based on category or status
+        rows.forEach(row => {
+            let rowCategory = row.getAttribute('data-category').toUpperCase();
+            let rowStatus = row.getAttribute('data-status');
+
+            if (filterType === 'category' && (category === 'ALL' || category === rowCategory) ||
+                filterType === 'status' && (category === 'all' || category === rowStatus)) {
+                row.style.display = '';
+                visibleCount++;
+            } else {
+                row.style.display = 'none';
+            }
+        });
+
+        // Update the displayed count in the ALL button and handle sidebar styling
+        document.getElementById('allCount').innerText = totalCount;
+        document.getElementById('visibleCount').innerText = visibleCount; // You need an element to show the visible count
+        updateSidebar(filterType, category);
     }
 
-    function filterTasks(status) {
-      var rows = document.querySelectorAll('.task-row');
-      var allCount = 0, completeCount = 0, overdueCount = 0, upcomingCount = 0;
-      var categories = {
-        "CONDITION/STATUS": 0,
-        "ORDER SETS": 0,
-        "PATIENT CARE": 0,
-        "NUTRITION SERVICES": 0,
-        "CONTINUOUS INFUSIONS": 0,
-        "LABORATORY SERVICES": 0,
-        "RADIOLOGY SERVICES": 0,
-        "CARDIOVASCULAR SERVICES": 0,
-        "PULMONARY SERVICES": 0,
-        "SURGICAL PROCEDURES": 0,
-        "OTHER DEPARTMENTS": 0,
-        "MEDICAL SUPPLIES": 0,
-        "NON CATEGORIZED": 0
-      };
-
-      rows.forEach(row => {
-        const taskStatus = row.getAttribute('data-status');
-        const category = row.getAttribute('data-category');
-        row.style.display = 'none'; // Initially hide all rows
-        if (status === 'all' || status === taskStatus) {
-          row.style.display = ''; // Show row if it matches filter
-          allCount++;
-          if (taskStatus === 'complete') completeCount++;
-          if (taskStatus === 'overdue') overdueCount++;
-          if (taskStatus === 'upcoming') upcomingCount++;
-          if (categories.hasOwnProperty(category)) {
-            categories[category]++; // Increment the count for visible tasks
-          }
-        }
-      });
-
-      document.getElementById('allTabBtn').textContent = `ALL(${allCount})`;
-      document.getElementById('completeTabBtn').textContent = `COMPLETE(${completeCount})`;
-      document.getElementById('overdueTabBtn').textContent = `OVERDUE(${overdueCount})`;
-      document.getElementById('upcomingTabBtn').textContent = `UPCOMING(${upcomingCount})`;
-
-      // Update the sidebar counts
-      Object.keys(categories).forEach(category => {
-        let element = document.getElementById(category.replace(/ /g, '').toLowerCase() + 'Btn');
-        if (element) {
-          element.querySelector('span').textContent = categories[category];
-        }
-      });
+    // Update sidebar and tabs for active state
+    function updateSidebar(filterType, activeCategory) {
+        const elements = document.querySelectorAll(filterType === 'category' ? '.sidebar ul li' : '.tab-buttons button');
+        elements.forEach(el => {
+            const category = el.id.replace('Btn', '').replace(/([A-Z])/g, ' $1').trim().toUpperCase();
+            if (category === activeCategory) {
+                el.classList.add('active');
+                el.style.color = '#223C97';
+                el.style.borderLeft = '3px solid #223C97';
+            } else {
+                el.classList.remove('active');
+                el.style.color = '#515151';
+                el.style.borderLeft = '3px solid transparent';
+            }
+        });
     }
 
-    function setActiveSidebarItem() {
-      const sidebarListItems = document.querySelectorAll('.sidebar ul li');
-      sidebarListItems.forEach(item => {
-        item.classList.remove('active');
-      });
-
-      // Use 'this' to refer to the clicked list item and add 'active' class
-      this.classList.add('active');
-    }
-
+    // Event listeners for sidebar category clicks and tab status clicks
     document.addEventListener('DOMContentLoaded', () => {
-      const sidebarListItems = document.querySelectorAll('.sidebar ul li');
-      sidebarListItems.forEach(item => {
-        item.addEventListener('click', setActiveSidebarItem);
-      });
+        const sidebarItems = document.querySelectorAll('.sidebar ul li');
+        sidebarItems.forEach(item => {
+            item.addEventListener('click', () => filterTasks('category', item.id.replace('Btn', '').replace(/([A-Z])/g, ' $1').trim().toUpperCase()));
+        });
+
+        const statusTabs = document.querySelectorAll('.tab-buttons button');
+        statusTabs.forEach(tab => {
+            tab.addEventListener('click', () => filterTasks('status', tab.id.replace('TabBtn', '')));
+        });
+
+        // Initialize with all tasks visible
+        filterTasks('category', 'ALL');
     });
 
+    // Optional: Implement a search functionality if needed
     function searchTasks() {
-      var input = document.getElementById('searchInput').value.toLowerCase();
-      filterTasks('all'); // Reset filter before applying search to ensure all relevant rows are considered
-      var rows = document.querySelectorAll('.task-row');
-      var searchCounts = {
-        allCount: 0, completeCount: 0, overdueCount: 0, upcomingCount: 0
-      };
-
-      rows.forEach(row => {
-        const rowText = row.innerText.toLowerCase();
-        row.style.display = rowText.includes(input) ? '' : 'none';
-        if (row.style.display === '' && row.getAttribute('data-status') === 'complete') searchCounts.allCount++;
-      });
-
-      document.getElementById('allTabBtn').textContent = `ALL(${searchCounts.allCount})`;
+        const input = document.getElementById('searchInput').value.toLowerCase();
+        const rows = document.querySelectorAll('.task-row');
+        rows.forEach(row => {
+            const text = row.textContent.toLowerCase();
+            row.style.display = text.includes(input) ? '' : 'none';
+        });
     }
-
-    // Initialize counts on page load
-    selectTab('all');
-
-
   </script>
+
 
 
 
