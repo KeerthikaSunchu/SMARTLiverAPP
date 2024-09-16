@@ -93,7 +93,6 @@
         border-color: #223C97; /* Border color when search input is focused */
         outline: none; /* Remove the default outline */
     }
-
     .table-container {
 
         height: 540px; /* Adjust the height to fit 10 rows */
@@ -110,6 +109,7 @@
 
     table {
         width: 100%; /* Ensure the table takes up the full width of the container */
+        table-layout: fixed;
         border-collapse: collapse;
         background-color: white; /* Ensure all rows have a white background */
     }
@@ -118,7 +118,17 @@
         padding: 15px;
         text-align: left;
         border-bottom: 1px solid #ccc;
+        overflow: hidden; /* Prevents text from overflowing */
+        text-overflow: ellipsis; /* Adds an ellipsis if the text overflows */
+        white-space: nowrap; /* Keeps the content on a single line */
     }
+    /* Column Widths */
+        th:nth-child(1), td:nth-child(1) { width: 20%; } /* Names */
+        th:nth-child(2), td:nth-child(2) { width: 15%; } /* MRN */
+        th:nth-child(3), td:nth-child(3) { width: 15%; } /* Tasks */
+        th:nth-child(4), td:nth-child(4) { width: 20%; } /* Visit Reason */
+        th:nth-child(5), td:nth-child(5) { width: 15%; } /* Recent Visit */
+        th:nth-child(6), td:nth-child(6) { width: 15%; } /* Patient Communication */
 
     th {
         background-color: #f8f8f8;

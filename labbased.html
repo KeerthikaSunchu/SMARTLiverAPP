@@ -305,7 +305,14 @@
             font-size: 11px; /* Smaller font size */
             padding: 5px 5px; /* Reduce button padding */
             max-width: 150px; /* Max width for better control */
+            color: #D9D9D9; /* Ash color */
+            border-bottom: 3px solid transparent;
         }
+        .tab-buttons button.active {
+            color: #223C97; /* Blue color */
+            border-bottom: 3px solid #223C97; /* Blue underline */
+        }
+
 
         .tab-buttons .search-container input {
             width: 70px; /* Adjust input width */
@@ -366,30 +373,30 @@
   <div class="sidebar">
     <ul id="sidebarList">
       <li class="active" onclick="filterTasks('all')" id="allBtn">ALL(<span id="allCount">14</span>)</li>
-      <li onclick="filterTasks('CONDITION/STATUS')" id="conditionBtn">CONDITION/STATUS(<span id="conditionCount">2</span>)</li>
-      <li onclick="filterTasks('ORDER SETS')" id="orderSetsBtn">ORDER SETS(<span id="orderSetsCount">5</span>)</li>
+      <li onclick="filterTasks('CONDITION/STATUS')" id="conditionBtn">CONDITION/STATUS(<span id="conditionCount">0</span>)</li>
+      <li onclick="filterTasks('ORDER SETS')" id="orderSetsBtn">ORDER SETS(<span id="orderSetsCount">0</span>)</li>
       <li onclick="filterTasks('PATIENT CARE')" id="patientCareBtn">PATIENT CARE(<span id="patientCareCount">0</span>)</li>
-      <li onclick="filterTasks('NUTRITION SERVICES')" id="nutritionBtn">NUTRITION SERVICES(<span id="nutritionServicesCount">2</span>)</li>
-      <li onclick="filterTasks('CONTINUOUS INFUSIONS')" id="continuousInfusionsBtn">CONTINUOUS INFUSIONS(<span id="continuousInfusionsCount">1</span>)</li>
-      <li onclick="filterTasks('LABORATORY SERVICES')" id="laboratoryServicesBtn">LABORATORY SERVICES(<span id="laboratoryServicesCount">2</span>)</li>
-      <li onclick="filterTasks('RADIOLOGY SERVICES')" id="radiologyBtn">RADIOLOGY SERVICES(<span id="radiologyServicesCount">2</span>)</li>
-      <li onclick="filterTasks('CARDIOVASCULAR SERVICES')" id="cardiovascularBtn">CARDIOVASCULAR SERVICES(<span id="cardiovascularServicesCount">2</span>)</li>
-      <li onclick="filterTasks('PULMONARY SERVICES')" id="pulmonaryBtn">PULMONARY SERVICES(<span id="pulmonaryServicesCount">2</span>)</li>
-      <li onclick="filterTasks('SURGICAL PROCEDURES')" id="surgicalBtn">SURGICAL PROCEDURES(<span id="surgicalProceduresCount">2</span>)</li>
-      <li onclick="filterTasks('OTHER DEPARTMENTS')" id="otherDeptsBtn">OTHER DEPARTMENTS(<span id="otherDepartmentsCount">2</span>)</li>
-      <li onclick="filterTasks('MEDICAL SUPPLIES')" id="medicalSuppliesBtn">MEDICAL SUPPLIES(<span id="medicalSuppliesCount">2</span>)</li>
-      <li onclick="filterTasks('NON CATEGORIZED')" id="nonCategorizedBtn">NON CATEGORIZED(<span id="nonCategorizedCount">2</span>)</li>
+      <li onclick="filterTasks('NUTRITION SERVICES')" id="nutritionBtn">NUTRITION SERVICES(<span id="nutritionServicesCount">0</span>)</li>
+      <li onclick="filterTasks('CONTINUOUS INFUSIONS')" id="continuousInfusionsBtn">CONTINUOUS INFUSIONS(<span id="continuousInfusionsCount">0</span>)</li>
+      <li onclick="filterTasks('LABORATORY SERVICES')" id="laboratoryServicesBtn">LABORATORY SERVICES(<span id="laboratoryServicesCount">0</span>)</li>
+      <li onclick="filterTasks('RADIOLOGY SERVICES')" id="radiologyBtn">RADIOLOGY SERVICES(<span id="radiologyServicesCount">0</span>)</li>
+      <li onclick="filterTasks('CARDIOVASCULAR SERVICES')" id="cardiovascularBtn">CARDIOVASCULAR SERVICES(<span id="cardiovascularServicesCount">0</span>)</li>
+      <li onclick="filterTasks('PULMONARY SERVICES')" id="pulmonaryBtn">PULMONARY SERVICES(<span id="pulmonaryServicesCount">0</span>)</li>
+      <li onclick="filterTasks('SURGICAL PROCEDURES')" id="surgicalBtn">SURGICAL PROCEDURES(<span id="surgicalProceduresCount">0</span>)</li>
+      <li onclick="filterTasks('OTHER DEPARTMENTS')" id="otherDeptsBtn">OTHER DEPARTMENTS(<span id="otherDepartmentsCount">0</span>)</li>
+      <li onclick="filterTasks('MEDICAL SUPPLIES')" id="medicalSuppliesBtn">MEDICAL SUPPLIES(<span id="medicalSuppliesCount">0</span>)</li>
+      <li onclick="filterTasks('NON CATEGORIZED')" id="nonCategorizedBtn">NON CATEGORIZED(<span id="nonCategorizedCount">0</span>)</li>
     </ul>
   </div>
 
   <div class="main-content">
     <div class="tab-buttons-container">
       <div class="tab-buttons">
-        <button class="active" data-filter="all" onclick="filterTasks('all')" id="allTabBtn">ALL(<span id="allCountBtn">14</span>)</button>
-        <button data-filter="complete" onclick="filterTasks('complete')" id="completeTabBtn">COMPLETE(<span id="completeCount">2</span>)</button>
-        <button data-filter="overdue" onclick="filterTasks('overdue')" id="overdueTabBtn">OVERDUE(<span id="overdueCount">2</span>)</button>
-        <button data-filter="upcoming" onclick="filterTasks('upcoming')" id="upcomingTabBtn">UPCOMING(<span id="upcomingCount">5</span>)</button>
-      <div class="task-table">
+        <button id="allTabBtn" onclick="selectTab('all')">ALL(14)</button>
+        <button id="completeTabBtn" onclick="selectTab('complete')">COMPLETE(6)</button>
+        <button id="overdueTabBtn" onclick="selectTab('overdue')">OVERDUE(0)</button>
+        <button id="upcomingTabBtn" onclick="selectTab('upcoming')">UPCOMING(0)</button>
+        <div class="task-table">
         <div class="search-container">
           <input type="text" id="searchInput" placeholder="Search" onkeyup="searchTasks()">
         </div>
@@ -485,138 +492,109 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-<script>
+  <script>
+    function selectTab(selectedTab) {
+      const tabs = ['all', 'complete', 'overdue', 'upcoming'];
+      tabs.forEach(tab => {
+        const element = document.getElementById(tab + 'TabBtn');
+        element.classList.remove('active');
+        if (tab === selectedTab) {
+          element.classList.add('active');
+        }
+      });
+      filterTasks(selectedTab);
+    }
 
-  function filterTasks(status) {
+    function filterTasks(status) {
       var rows = document.querySelectorAll('.task-row');
       var allCount = 0, completeCount = 0, overdueCount = 0, upcomingCount = 0;
       var categories = {
-          "CONDITION/STATUS": 0,
-          "ORDER SETS": 0,
-          "PATIENT CARE": 0,
-          "NUTRITION SERVICES": 0,
-          "CONTINUOUS INFUSIONS": 0,
-          "LABORATORY SERVICES": 0,
-          "RADIOLOGY SERVICES": 0,
-          "CARDIOVASCULAR SERVICES": 0,
-          "PULMONARY SERVICES": 0,
-          "SURGICAL PROCEDURES": 0,
-          "OTHER DEPARTMENTS": 0,
-          "MEDICAL SUPPLIES": 0,
-          "NON CATEGORIZED": 0
+        "CONDITION/STATUS": 0,
+        "ORDER SETS": 0,
+        "PATIENT CARE": 0,
+        "NUTRITION SERVICES": 0,
+        "CONTINUOUS INFUSIONS": 0,
+        "LABORATORY SERVICES": 0,
+        "RADIOLOGY SERVICES": 0,
+        "CARDIOVASCULAR SERVICES": 0,
+        "PULMONARY SERVICES": 0,
+        "SURGICAL PROCEDURES": 0,
+        "OTHER DEPARTMENTS": 0,
+        "MEDICAL SUPPLIES": 0,
+        "NON CATEGORIZED": 0
       };
 
-       rows.forEach(row => {
-        row.style.display = 'none';
-        if (status === 'all' || row.getAttribute('data-status') === status) {
-            row.style.display = '';
-            allCount++;
-            if (row.getAttribute('data-status') === 'complete') completeCount++;
-            if (row.getAttribute('data-status') === 'overdue') overdueCount++;
-            if (row.getAttribute('data-status') === 'upcoming') upcomingCount++;
-            var category = row.getAttribute('data-category');
-            if (categories.hasOwnProperty(category)) {
-                categories[category]++;
-            }
+      rows.forEach(row => {
+        const taskStatus = row.getAttribute('data-status');
+        const category = row.getAttribute('data-category');
+        row.style.display = 'none'; // Initially hide all rows
+        if (status === 'all' || status === taskStatus) {
+          row.style.display = ''; // Show row if it matches filter
+          allCount++;
+          if (taskStatus === 'complete') completeCount++;
+          if (taskStatus === 'overdue') overdueCount++;
+          if (taskStatus === 'upcoming') upcomingCount++;
+          if (categories.hasOwnProperty(category)) {
+            categories[category]++; // Increment the count for visible tasks
+          }
         }
-    });
-
-      // Update counts in tab buttons
-      document.getElementById('allCountBtn').innerText = allCount;
-      document.getElementById('completeCount').innerText = completeCount;
-      document.getElementById('overdueCount').innerText = overdueCount;
-      document.getElementById('upcomingCount').innerText = upcomingCount;
-
-      // Update counts in the sidebar
-      document.getElementById('conditionCount').innerText = categories["CONDITION/STATUS"];
-      document.getElementById('orderSetsCount').innerText = categories["ORDER SETS"];
-      document.getElementById('patientCareCount').innerText = categories["PATIENT CARE"];
-      document.getElementById('nutritionServicesCount').innerText = categories["NUTRITION SERVICES"];
-      document.getElementById('continuousInfusionsCount').innerText = categories["CONTINUOUS INFUSIONS"];
-      document.getElementById('laboratoryServicesCount').innerText = categories["LABORATORY SERVICES"];
-      document.getElementById('radiologyServicesCount').innerText = categories["RADIOLOGY SERVICES"];
-      document.getElementById('cardiovascularServicesCount').innerText = categories["CARDIOVASCULAR SERVICES"];
-      document.getElementById('pulmonaryServicesCount').innerText = categories["PULMONARY SERVICES"];
-      document.getElementById('surgicalProceduresCount').innerText = categories["SURGICAL PROCEDURES"];
-      document.getElementById('otherDepartmentsCount').innerText = categories["OTHER DEPARTMENTS"];
-      document.getElementById('medicalSuppliesCount').innerText = categories["MEDICAL SUPPLIES"];
-      document.getElementById('nonCategorizedCount').innerText = categories["NON CATEGORIZED"];
-
-      // Update active button styling in the sidebar
-      document.querySelectorAll('.sidebar ul li').forEach(button => {
-          button.classList.remove('active');
       });
-      document.querySelector('.sidebar ul li[onclick="filterTasks(\'' + status + '\')"]').classList.add('active');
 
-     // Update active button styling in the tab buttons
-    document.querySelectorAll('.tab-buttons button').forEach(button => {
-        button.classList.remove('active');
+      document.getElementById('allTabBtn').textContent = `ALL(${allCount})`;
+      document.getElementById('completeTabBtn').textContent = `COMPLETE(${completeCount})`;
+      document.getElementById('overdueTabBtn').textContent = `OVERDUE(${overdueCount})`;
+      document.getElementById('upcomingTabBtn').textContent = `UPCOMING(${upcomingCount})`;
+
+      // Update the sidebar counts
+      Object.keys(categories).forEach(category => {
+        let element = document.getElementById(category.replace(/ /g, '').toLowerCase() + 'Btn');
+        if (element) {
+          element.querySelector('span').textContent = categories[category];
+        }
+      });
+    }
+
+    function setActiveSidebarItem() {
+      const sidebarListItems = document.querySelectorAll('.sidebar ul li');
+      sidebarListItems.forEach(item => {
+        item.classList.remove('active');
+      });
+
+      // Use 'this' to refer to the clicked list item and add 'active' class
+      this.classList.add('active');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const sidebarListItems = document.querySelectorAll('.sidebar ul li');
+      sidebarListItems.forEach(item => {
+        item.addEventListener('click', setActiveSidebarItem);
+      });
     });
-    document.querySelector(`.tab-buttons button[data-filter="${status}"]`).classList.add('active'); // Corrected line
-}
-
 
     function searchTasks() {
-        var input = document.getElementById('searchInput').value.toLowerCase();
-        var rows = document.querySelectorAll('.task-row');
-        var allCount = 0, completeCount = 0, overdueCount = 0, upcomingCount = 0;
-        var categories = {
-            "CONDITION/STATUS": 0,
-            "ORDER SETS": 0,
-            "PATIENT CARE": 0,
-            "NUTRITION SERVICES": 0,
-            "CONTINUOUS INFUSIONS": 0,
-            "LABORATORY SERVICES": 0,
-            "RADIOLOGY SERVICES": 0,
-            "CARDIOVASCULAR SERVICES": 0,
-            "PULMONARY SERVICES": 0,
-            "SURGICAL PROCEDURES": 0,
-            "OTHER DEPARTMENTS": 0,
-            "MEDICAL SUPPLIES": 0,
-            "NON CATEGORIZED": 0
-        };
+      var input = document.getElementById('searchInput').value.toLowerCase();
+      filterTasks('all'); // Reset filter before applying search to ensure all relevant rows are considered
+      var rows = document.querySelectorAll('.task-row');
+      var searchCounts = {
+        allCount: 0, completeCount: 0, overdueCount: 0, upcomingCount: 0
+      };
 
-        rows.forEach(row => {
-            row.style.display = 'none';
-            if (row.innerText.toLowerCase().includes(input)) {
-                row.style.display = '';
-                allCount++;
-                if (row.getAttribute('data-status') === 'complete') completeCount++;
-                if (row.getAttribute('data-status') === 'overdue') overdueCount++;
-                if (row.getAttribute('data-status') === 'upcoming') upcomingCount++;
-                var category = row.getAttribute('data-category');
-                if (categories.hasOwnProperty(category)) {
-                    categories[category]++;
-                }
-            }
-        });
+      rows.forEach(row => {
+        const rowText = row.innerText.toLowerCase();
+        row.style.display = rowText.includes(input) ? '' : 'none';
+        if (row.style.display === '' && row.getAttribute('data-status') === 'complete') searchCounts.allCount++;
+      });
 
-        // Update counts in tab buttons
-        document.getElementById('allCountBtn').innerText = allCount;
-        document.getElementById('completeCount').innerText = completeCount;
-        document.getElementById('overdueCount').innerText = overdueCount;
-        document.getElementById('upcomingCount').innerText = upcomingCount;
-
-        // Update counts in the sidebar
-        document.getElementById('conditionCount').innerText = categories["CONDITION/STATUS"];
-        document.getElementById('orderSetsCount').innerText = categories["ORDER SETS"];
-        document.getElementById('patientCareCount').innerText = categories["PATIENT CARE"];
-        document.getElementById('nutritionServicesCount').innerText = categories["NUTRITION SERVICES"];
-        document.getElementById('continuousInfusionsCount').innerText = categories["CONTINUOUS INFUSIONS"];
-        document.getElementById('laboratoryServicesCount').innerText = categories["LABORATORY SERVICES"];
-        document.getElementById('radiologyServicesCount').innerText = categories["RADIOLOGY SERVICES"];
-        document.getElementById('cardiovascularServicesCount').innerText = categories["CARDIOVASCULAR SERVICES"];
-        document.getElementById('pulmonaryServicesCount').innerText = categories["PULMONARY SERVICES"];
-        document.getElementById('surgicalProceduresCount').innerText = categories["SURGICAL PROCEDURES"];
-        document.getElementById('otherDepartmentsCount').innerText = categories["OTHER DEPARTMENTS"];
-        document.getElementById('medicalSuppliesCount').innerText = categories["MEDICAL SUPPLIES"];
-        document.getElementById('nonCategorizedCount').innerText = categories["NON CATEGORIZED"];
+      document.getElementById('allTabBtn').textContent = `ALL(${searchCounts.allCount})`;
     }
 
     // Initialize counts on page load
-    filterTasks('all');
+    selectTab('all');
 
-</script>
+
+  </script>
+
+
 
 </body>
 </html>
