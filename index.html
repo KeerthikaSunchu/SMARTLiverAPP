@@ -98,14 +98,15 @@
     }
     table {
         width: 100%;
-        table-layout: fixed;
+        table-layout: auto;
         border-collapse: collapse;
         background-color: white;
         font-size: 16px;
+
     }
     th, td {
         padding: 12px;
-        text-align: left;
+        text-align: left !important;
         border-bottom: 1px solid #ccc;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -153,6 +154,13 @@
     .container-fluid {
         margin-top: 0px; /* Reduces the space above the table container */
     }
+    .dataTables_filter input {
+        background-color: white;
+        border: 1px solid #ccc; /* Optional: adds a light border */
+        color: #000; /* Ensure the text inside is visible */
+        padding: 5px;
+        border-radius: 4px; /* Optional: smooth edges */
+    }
 
 
     @media (max-width: 768px) {
@@ -188,8 +196,11 @@
 <body>
 <div class="header">
   <div class="header-left">
-    <img src="images/liver.png" alt="Liver Icon">
-    <h1>SMART Liver</h1>
+    <!-- Make only the logo clickable -->
+    <a href="index.html">
+      <img src="images/liver.png" alt="Liver Icon">
+    </a>
+    <h1>SMART Liver</h1> <!-- Non-clickable text -->
   </div>
   <div class="header-right">
     <a href="#">Help</a>
