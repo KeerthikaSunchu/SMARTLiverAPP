@@ -4,12 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SMART Liver App</title>
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.1.7/css/dataTables.dataTables.css" />
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
   <style>
-
     body {
         font-family: 'Roboto', sans-serif;
         margin: 0;
@@ -17,7 +16,6 @@
         background-color: #E4E4E4;
         overflow: hidden;
     }
-
     .header {
         background-color: #223C97;
         color: white;
@@ -26,36 +24,31 @@
         justify-content: space-between;
         align-items: center;
         height: 50px;
+        font-weight: semi-bold;
     }
-
     .header .logo {
         display: flex;
         align-items: center;
     }
-
     .header .logo img {
-        height: 50px;
+        height: 55px;
         margin-right: 10px;
     }
-
     .header .title {
         font-size: 20px;
         white-space: nowrap;
     }
-
     .header .patient-info {
         display: flex;
         justify-content: flex-end;
         width: 100%;
     }
-
     .header .patient-info .info-item {
         margin-right: 30px;
         display: flex;
         flex-direction: column;
         align-items: flex-end;
     }
-
     .header .patient-info p {
         margin: 0;
         font-size: 14px;
@@ -67,12 +60,10 @@
         justify-content: space-between;
         align-items: center;
     }
-
     .sub-header .buttons {
         display: flex;
         gap: 10px;
     }
-
     .sub-header .buttons button {
         padding: 10px 20px;
         border: none;
@@ -84,11 +75,9 @@
         border: 2px solid transparent;
         font-size: 14px;
     }
-
     .sub-header .buttons button.active {
         border: 2px solid white;
     }
-
     .sub-header .ESLD-Scoring-btn {
         background-color: #223C97;
         color: white;
@@ -99,64 +88,54 @@
         font-size: 14px;
         font-weight: normal;
     }
-
     .content {
         display: flex;
         height: calc(100vh - 120px);
         background-color: #D9D9D9;
         border: 1px solid #D9D9D9;
     }
-
     .sidebar {
         background-color: #F2F8FD;
         width: 240px;
-        padding: 10px 0; /* Reduced padding to fit content */
-        overflow-y: hidden; /* Removed scroll bar */
-        font-size: 13px; /* Reduced font size */
+        padding: 10px 0;
+        font-size: 13px;
         font-weight: bold;
     }
-
     .sidebar ul {
         list-style: none;
         padding: 0;
         margin: 0;
     }
-
     .sidebar ul li {
-        padding: 8px 20px; /* Reduced padding */
+        padding: 8px 20px;
         cursor: pointer;
         color: #515151;
         background-color: #F2F8FD;
         transition: color 0.2s;
         border-left: 3px solid transparent;
     }
-
     .sidebar ul li.active {
         background-color: #F2F8FD;
         font-weight: bold;
         color: #223C97;
         border-left: 3px solid #223C97;
     }
-
     .sidebar ul li:hover {
         color: #223C97;
     }
-
     .main-content {
         flex-grow: 1;
         padding: 0;
         overflow-y: auto;
         background-color: white;
-        margin: 20px;
+        margin: 5px;
         border-radius: 10px;
         padding: 20px;
     }
-
     .tab-buttons-container {
         background-color: #FFFFFF;
         padding: 0 20px;
     }
-
     .tab-buttons {
         display: flex;
         align-items: center;
@@ -166,7 +145,6 @@
         background-color: #F2F8FD;
         border-bottom: 1px solid #D9D9D9;
     }
-
     .tab-buttons button {
         padding: 10px 20px;
         background-color: #F2F8FD;
@@ -178,58 +156,27 @@
         border-radius: 5px 5px 0 0;
         font-size: 14px;
     }
-
     .tab-buttons button.active {
         background-color: #F2F8FD;
         color: #223C97;
         border-bottom: 3px solid #223C97;
     }
-
     .task-table {
         width: 100%;
         border-collapse: collapse;
         margin-top: 0;
         padding: 0 20px;
     }
-
     .task-table th, .task-table td {
         padding: 10px;
         border-bottom: 1px solid #E0E0E0;
         text-align: left;
         font-size: 16px;
     }
-
     .task-table th {
         background-color: #FFFFFF;
         font-weight: bold;
     }
-
-    .task-table .search-container {
-        display: flex;
-        align-items: auto;
-        justify-content: flex-end;
-        padding: 5px;
-    }
-
-    .task-table .search-container input {
-    padding: 5px;
-    border: 1px solid #D9D9D9; /* Ash color for the border */
-    border-radius: 3px;
-    width: 100%;
-    max-width: 200px;
-    font-size: 14px;
-    margin: 0;
-    color: #D9D9D9; /* Ash color for the text */
-    background: white; /* Background color */
-    transition: border-color 0.3s, color 0.3s; /* Smooth transition for color and border */
-}
-
-.task-table .search-container input:focus {
-    border: 1px solid #223C97; /* Blue color when focused */
-    color: #223C97; /* Text color changes to blue when focused */
-    outline: none;
-}
-
 
 
     .task-table td.status {
@@ -239,84 +186,63 @@
     .task-table td.status.complete {
         color: green;
     }
-
     .task-table td.status.overdue {
         color: red;
     }
-
+    .task-table td.status.upcoming {
+        color: blue;
+    }
     .task-table td.action a {
         color: #223C97;
         text-decoration: none;
     }
-
     .task-table td.action a:hover {
         text-decoration: underline;
     }
-
     @media (max-width: 768px) {
         .header {
-            flex-direction: column; /* Stack items */
-            align-items: flex-start; /* Align to left */
+            flex-direction: column;
+            align-items: flex-start;
             height: 60px;
         }
-
         .header .patient-info {
-            display: none; /* Hide patient details when minimized */
+            display: none;
         }
-
         .header .controls {
-            margin-top: 10px; /* Adjust margin */
+            margin-top: 10px;
         }
-
         .sidebar {
             display: none;
         }
-
         .sub-header .buttons button,
         .sub-header .ESLD-Scoring-btn {
-            font-size: 14px; /* Smaller font size */
-            padding: 2px 0px; /* Reduced padding */
-            width: 100%; /* Full width for smaller screens */
-            max-width: 150px; /* Max width to prevent overly wide buttons */
+            font-size: 14px;
+            padding: 2px 0px;
+            width: 100%;
+            max-width: 150px;
         }
-
         .tab-buttons button {
-            font-size: 11px; /* Smaller font size */
-            padding: 5px 5px; /* Reduce button padding */
-            max-width: 150px; /* Max width for better control */
-            color: #D9D9D9; /* Ash color */
+            font-size: 11px;
+            padding: 5px 5px;
+            max-width: 150px;
+            color: #D9D9D9;
             border-bottom: 3px solid transparent;
         }
         .tab-buttons button.active {
-            color: #223C97; /* Blue color */
-            border-bottom: 3px solid #223C97; /* Blue underline */
-        }
-
-
-        .tab-buttons .search-container input {
-            width: 70px; /* Adjust input width */
-            font-size: 10px;
+            color: #223C97;
+            border-bottom: 3px solid #223C97;
         }
 
         .task-table th, .task-table td {
             font-size: 13px;
         }
 
-        .task-table .search-container input {
-            width: 100px; /* Adjust input width for smaller screens */
-            font-size: 10px;
-        }
     }
-
-
-
   </style>
 </head>
 <body>
-
 <div class="header">
   <div class="logo">
-    <!-- Wrap the image with an anchor tag to make it clickable -->
     <a href="index.html">
       <img src="images/liver.png" alt="Logo">
     </a>
@@ -333,17 +259,14 @@
     </div>
   </div>
 </div>
-
 <div class="sub-header">
   <div class="buttons">
     <button class="lab-based active" onclick="window.location.href='labbased.html'">Lab-Based</button>
-    <button class="cpg-recommended " onclick="window.location.href='cpgrecommended.html'">CPG-Recommended</button>
+    <button class="cpg-recommended" onclick="window.location.href='cpgrecommended.html'">CPG-Recommended</button>
     <button class="promis-score" onclick="window.location.href='promis.html'">PROMIS Score</button>
   </div>
-
   <button class="ESLD-Scoring-btn" onclick="window.location.href='ESLDScoring.html'">ESLD Scoring</button>
 </div>
-
 <div class="content">
   <div class="sidebar">
     <ul id="sidebarList">
@@ -363,183 +286,169 @@
       <li onclick="filterTasks('NON CATEGORIZED')" id="nonCategorizedBtn">NON CATEGORIZED(<span id="nonCategorizedCount">0</span>)</li>
     </ul>
   </div>
-
   <div class="main-content">
-    <div class="tab-buttons-container">
-      <div class="tab-buttons">
-        <button id="allTabBtn" onclick="selectTab('all')">ALL(14)</button>
-        <button id="completeTabBtn" onclick="selectTab('complete')">COMPLETE(6)</button>
-        <button id="overdueTabBtn" onclick="selectTab('overdue')">OVERDUE(0)</button>
-        <button id="upcomingTabBtn" onclick="selectTab('upcoming')">UPCOMING(0)</button>
         <div class="task-table">
-        <div class="search-container">
-          <input type="text" id="searchInput" placeholder="Search" onkeyup="searchTasks()">
-        </div>
-      </div>
-
-
+      <table class="task-table" id="taskTable">
+        <thead>
+        <tr>
+          <th>Task Name</th>
+          <th>Due Date</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="task-row" data-status="upcoming" data-category="CONDITION/STATUS">
+          <td>Hemogram-Platelets-WBC</td>
+          <td>08/20/2024</td>
+          <td class="status">Upcoming</td>
+          <td class="action"><a href="sendnotification.html">Send Notification</a></td>
+        </tr>
+        <tr class="task-row" data-status="complete" data-category="ORDER SETS">
+          <td>Ultrasound</td>
+          <td>08/12/2024</td>
+          <td class="status complete">Complete</td>
+          <td class="action"><a href="#">View Results</a></td>
+        </tr>
+        <tr class="task-row" data-status="complete" data-category="NUTRITION SERVICES">
+          <td>Vital Signs</td>
+          <td>08/14/2024</td>
+          <td class="status complete">Complete</td>
+          <td class="action"><a href="#">View Results</a></td>
+        </tr>
+        <tr class="task-row" data-status="overdue" data-category="GASTROENTEROLOGY">
+          <td>Gastroenterology Procedures</td>
+          <td>08/18/2024</td>
+          <td class="status overdue">Overdue</td>
+          <td class="action"><a href="#">Order Now</a></td>
+        </tr>
+        <tr class="task-row" data-status="upcoming" data-category="CONDITION/STATUS">
+          <td>Blood Glucose Monitoring</td>
+          <td>08/20/2024</td>
+          <td class="status">Upcoming</td>
+          <td class="action"><a href="sendnotification.html">Send Notification</a></td>
+        </tr>
+        <tr class="task-row" data-status="complete" data-category="ORDER SETS">
+          <td>Liver Function Test</td>
+          <td>08/12/2024</td>
+          <td class="status complete">Complete</td>
+          <td class="action"><a href="#">View Results</a></td>
+        </tr>
+        <tr class="task-row" data-status="complete" data-category="NUTRITION SERVICES">
+          <td>Medication Reconciliation</td>
+          <td>08/14/2024</td>
+          <td class="status complete">Complete</td>
+          <td class="action"><a href="#">View Results</a></td>
+        </tr>
+        <tr class="task-row" data-status="overdue" data-category="GASTROENTEROLOGY">
+          <td>Electrocardiogram (ECG)</td>
+          <td>08/18/2024</td>
+          <td class="status overdue">Overdue</td>
+          <td class="action"><a href="#">Order Now</a></td>
+        </tr>
+        <tr class="task-row" data-status="upcoming" data-category="CONDITION/STATUS">
+          <td>Chest X-ray</td>
+          <td>08/20/2024</td>
+          <td class="status">Upcoming</td>
+          <td class="action"><a href="sendnotification.html">Send Notification</a></td>
+        </tr>
+        <tr class="task-row" data-status="complete" data-category="ORDER SETS">
+          <td>Renal Function Panel</td>
+          <td>08/12/2024</td>
+          <td class="status complete">Complete</td>
+          <td class="action"><a href="#">View Results</a></td>
+        </tr>
+        <tr class="task-row" data-status="complete" data-category="NUTRITION SERVICES">
+          <td>Blood Pressure Check</td>
+          <td>08/14/2024</td>
+          <td class="status complete">Complete</td>
+          <td class="action"><a href="#">View Results</a></td>
+        </tr>
+        <tr class="task-row" data-status="overdue" data-category="GASTROENTEROLOGY">
+          <td>Medication Administration</td>
+          <td>08/18/2024</td>
+          <td class="status overdue">Overdue</td>
+          <td class="action"><a href="#">Order Now</a></td>
+        </tr>
+        </tbody>
+      </table>
     </div>
-
-    <table class="task-table" id="taskTable">
-      <thead>
-      <tr>
-        <th>Task Name</th>
-        <th>Due Date</th>
-        <th>Status</th>
-        <th>Action</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr class="task-row" data-status="upcoming" data-category="CONDITION/STATUS">
-        <td>Hemogram-Platelets-WBC</td>
-        <td>08/20/2024</td>
-        <td class="status">Upcoming</td>
-        <td class="action"><a href="sendnotification.html">Send Notification</a></td>
-      </tr>
-      <tr class="task-row" data-status="complete" data-category="ORDER SETS">
-        <td>Ultrasound</td>
-        <td>08/12/2024</td>
-        <td class="status complete">Complete</td>
-        <td class="action"><a href="#">View Results</a></td>
-      </tr>
-      <tr class="task-row" data-status="complete" data-category="NUTRITION SERVICES">
-        <td>Vital Signs</td>
-        <td>08/14/2024</td>
-        <td class="status complete">Complete</td>
-        <td class="action"><a href="#">View Results</a></td>
-      </tr>
-      <tr class="task-row" data-status="overdue" data-category="GASTROENTEROLOGY">
-        <td>Gastroenterology Procedures</td>
-        <td>08/18/2024</td>
-        <td class="status overdue">Overdue</td>
-        <td class="action"><a href="#">Order Now</a></td>
-      </tr>
-      <tr class="task-row" data-status="upcoming" data-category="CONDITION/STATUS">
-        <td>Blood Glucose Monitoring</td>
-        <td>08/20/2024</td>
-        <td class="status">Upcoming</td>
-        <td class="action"><a href="sendnotification.html">Send Notification</a></td>
-      </tr>
-      <tr class="task-row" data-status="complete" data-category="ORDER SETS">
-        <td>Liver Function Test</td>
-        <td>08/12/2024</td>
-        <td class="status complete">Complete</td>
-        <td class="action"><a href="#">View Results</a></td>
-      </tr>
-      <tr class="task-row" data-status="complete" data-category="NUTRITION SERVICES">
-        <td>Medication Reconciliation</td>
-        <td>08/14/2024</td>
-        <td class="status complete">Complete</td>
-        <td class="action"><a href="#">View Results</a></td>
-      </tr>
-      <tr class="task-row" data-status="overdue" data-category="GASTROENTEROLOGY">
-        <td>Electrocardiogram (ECG)</td>
-        <td>08/18/2024</td>
-        <td class="status overdue">Overdue</td>
-        <td class="action"><a href="#">Order Now</a></td>
-      </tr>
-      <tr class="task-row" data-status="upcoming" data-category="CONDITION/STATUS">
-        <td>Chest X-ray</td>
-        <td>08/20/2024</td>
-        <td class="status">Upcoming</td>
-        <td class="action"><a href="sendnotification.html">Send Notification</a></td>
-      </tr>
-      <tr class="task-row" data-status="complete" data-category="ORDER SETS">
-        <td>Renal Function Panel</td>
-        <td>08/12/2024</td>
-        <td class="status complete">Complete</td>
-        <td class="action"><a href="#">View Results</a></td>
-      </tr>
-      <tr class="task-row" data-status="complete" data-category="NUTRITION SERVICES">
-        <td>Blood Pressure Check</td>
-        <td>08/14/2024</td>
-        <td class="status complete">Complete</td>
-        <td class="action"><a href="#">View Results</a></td>
-      </tr>
-      <tr class="task-row" data-status="overdue" data-category="GASTROENTEROLOGY">
-        <td>Medication Administration</td>
-        <td>08/18/2024</td>
-        <td class="status overdue">Overdue</td>
-        <td class="action"><a href="#">Order Now</a></td>
-      </tbody>
-    </table>
   </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  <script>
-    // Function to filter tasks based on category or tab selection
-    function filterTasks(filterType, category) {
-        const rows = document.querySelectorAll('.task-table tbody tr');
-        let totalCount = rows.length; // Always the total number of tasks
-        let visibleCount = 0; // Count of tasks visible after filter
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-        // Update counts and visibility based on category or status
-        rows.forEach(row => {
-            let rowCategory = row.getAttribute('data-category').toUpperCase();
-            let rowStatus = row.getAttribute('data-status');
+<!-- DataTables JS -->
+<script src="https://cdn.datatables.net/2.1.7/js/dataTables.js"></script>
+<script>
+  $(document).ready(function () {
+    // Initialize the DataTable
+    $('#taskTable').DataTable({
+      paging: true,         // Enable pagination
+      searching: true,      // Enable search
+      ordering: true,       // Enable column ordering
+      responsive: true,     // Enable responsive design
+      lengthChange: true,   // Allow user to change page length
+      pageLength: 8,       // Default number of rows per page
+      lengthMenu: [10, 25, 50, "All"],  // Page length options
+    });
+  });
+  function filterTasks(filterType, category) {
+    const rows = document.querySelectorAll('.task-table tbody tr');
+    let totalCount = rows.length;
+    let visibleCount = 0;
 
-            if (filterType === 'category' && (category === 'ALL' || category === rowCategory) ||
-                filterType === 'status' && (category === 'all' || category === rowStatus)) {
-                row.style.display = '';
-                visibleCount++;
-            } else {
-                row.style.display = 'none';
-            }
-        });
+    rows.forEach(row => {
+      let rowCategory = row.getAttribute('data-category').toUpperCase();
+      let rowStatus = row.getAttribute('data-status');
 
-        // Update the displayed count in the ALL button and handle sidebar styling
-        document.getElementById('allCount').innerText = totalCount;
-        document.getElementById('visibleCount').innerText = visibleCount; // You need an element to show the visible count
-        updateSidebar(filterType, category);
-    }
-
-    // Update sidebar and tabs for active state
-    function updateSidebar(filterType, activeCategory) {
-        const elements = document.querySelectorAll(filterType === 'category' ? '.sidebar ul li' : '.tab-buttons button');
-        elements.forEach(el => {
-            const category = el.id.replace('Btn', '').replace(/([A-Z])/g, ' $1').trim().toUpperCase();
-            if (category === activeCategory) {
-                el.classList.add('active');
-                el.style.color = '#223C97';
-                el.style.borderLeft = '3px solid #223C97';
-            } else {
-                el.classList.remove('active');
-                el.style.color = '#515151';
-                el.style.borderLeft = '3px solid transparent';
-            }
-        });
-    }
-
-    // Event listeners for sidebar category clicks and tab status clicks
-    document.addEventListener('DOMContentLoaded', () => {
-        const sidebarItems = document.querySelectorAll('.sidebar ul li');
-        sidebarItems.forEach(item => {
-            item.addEventListener('click', () => filterTasks('category', item.id.replace('Btn', '').replace(/([A-Z])/g, ' $1').trim().toUpperCase()));
-        });
-
-        const statusTabs = document.querySelectorAll('.tab-buttons button');
-        statusTabs.forEach(tab => {
-            tab.addEventListener('click', () => filterTasks('status', tab.id.replace('TabBtn', '')));
-        });
-
-        // Initialize with all tasks visible
-        filterTasks('category', 'ALL');
+      if (filterType === 'category' && (category === 'ALL' || category === rowCategory) ||
+          filterType === 'status' && (category === 'all' || category === rowStatus)) {
+        row.style.display = '';
+        visibleCount++;
+      } else {
+        row.style.display = 'none';
+      }
     });
 
-    // Optional: Implement a search functionality if needed
-    function searchTasks() {
-        const input = document.getElementById('searchInput').value.toLowerCase();
-        const rows = document.querySelectorAll('.task-row');
-        rows.forEach(row => {
-            const text = row.textContent.toLowerCase();
-            row.style.display = text.includes(input) ? '' : 'none';
-        });
-    }
-  </script>
+    document.getElementById('allCount').innerText = totalCount;
+    document.getElementById('visibleCount').innerText = visibleCount;
+    updateSidebar(filterType, category);
+  }
+
+  function updateSidebar(filterType, activeCategory) {
+    const elements = document.querySelectorAll(filterType === 'category' ? '.sidebar ul li' : '.tab-buttons button');
+    elements.forEach(el => {
+      const category = el.id.replace('Btn', '').replace(/([A-Z])/g, ' $1').trim().toUpperCase();
+      if (category === activeCategory) {
+        el.classList.add('active');
+        el.style.color = '#223C97';
+        el.style.borderLeft = '3px solid #223C97';
+      } else {
+        el.classList.remove('active');
+        el.style.color = '#515151';
+        el.style.borderLeft = '3px solid transparent';
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const sidebarItems = document.querySelectorAll('.sidebar ul li');
+    sidebarItems.forEach(item => {
+      item.addEventListener('click', () => filterTasks('category', item.id.replace('Btn', '').replace(/([A-Z])/g, ' $1').trim().toUpperCase()));
+    });
+
+    const statusTabs = document.querySelectorAll('.tab-buttons button');
+    statusTabs.forEach(tab => {
+      tab.addEventListener('click', () => filterTasks('status', tab.id.replace('TabBtn', '')));
+    });
+
+    filterTasks('category', 'ALL');
+  });
 
 
-
-
+</script>
 </body>
 </html>

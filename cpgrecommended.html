@@ -30,7 +30,7 @@
         }
 
         .header .logo img {
-            height: 50px;
+            height: 55px;
             margin-right: 10px;
         }
 
@@ -57,28 +57,6 @@
             margin: 0;
             font-size: 14px;
         }
-
-        .header .controls {
-            display: flex;
-            align-items: center;
-        }
-
-        .header .controls .dot {
-            height: 15px;
-            width: 15px;
-            border-radius: 50%;
-            margin-left: 10px;
-            cursor: pointer;
-        }
-
-        .header .controls .dot.yellow {
-            background-color: yellow;
-        }
-
-        .header .controls .dot.red {
-            background-color: red;
-        }
-
         .sub-header {
             background-color: #D9D9D9;
             padding: 10px 20px;
@@ -133,6 +111,7 @@
             overflow-y: auto;
             font-size: 13px;
             font-weight: bold;
+            margin-top: 20px;
         }
 
         .sidebar ul {
@@ -250,11 +229,6 @@
             .header .patient-info {
                 display: none;
             }
-
-            .header .controls {
-                margin-top: 10px;
-            }
-
             .sidebar {
                 display: none;
             }
@@ -297,7 +271,7 @@
         <a href="index.html">
             <img src="images/liver.png" alt="Logo">
         </a>
-        <div class="title">SMART Liver</div>
+        <div class="title">SMARTLiver</div>
     </div>
     <div class="patient-info">
         <div class="info-item">
@@ -308,10 +282,6 @@
             <p><strong>MRN:</strong> 65374683</p>
             <p><strong>Age:</strong> 45</p>
         </div>
-    </div>
-    <div class="controls">
-        <div class="dot yellow"  onclick="minimizePage()"></div>
-        <div the="dot red"  onclick="closePage()"></div>
     </div>
 </div>
 

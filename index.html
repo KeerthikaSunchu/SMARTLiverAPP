@@ -36,7 +36,7 @@
       }
 
       .header-left img {
-          width: 50px;
+          width: 55px;
           margin-right: 10px;
       }
 
@@ -44,10 +44,11 @@
           font-size: 20px; /* Adjusted font size */
           margin: 0;
           white-space: nowrap; /* Ensure 'SMART Liver' stays on one line */
+          font-weight: semi-bold;
       }
 
       .header-right {
-      font-size: 20px;
+      font-size: 16px;
           display: flex; /* Flex to arrange the links */
           align-items: center; /* Align links vertically */
           margin-left: auto; /* Pushes Help and Profile to the right */
@@ -59,10 +60,13 @@
           text-decoration: none;
       }
     .tabs {
+        background-color: white;
+        padding: 5px 10px; /* Adjust padding for a better appearance */
+        border-radius: 5px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0/* Ensure that the tabs are on the left and the search bar is on the right */
+        margin-top: -15px;
     }
     .tabs-left {
         display: flex;
@@ -87,6 +91,7 @@
         color: #223C97;
     }
     .table-container {
+        background-color: white;
         height: 580px;
         overflow-y: auto;
         border: 1px solid #ccc;
@@ -94,13 +99,13 @@
         width: 100%;
         margin: 0 auto;
         padding: 0;
-        margin-top: -20px;
+        margin-top: -6px;
     }
     table {
         width: 100%;
         table-layout: auto;
         border-collapse: collapse;
-        background-color: white;
+        background-color: ;
         font-size: 16px;
 
     }
@@ -119,7 +124,6 @@
     th:nth-child(5), td:nth-child(5) { width: 15%; }
     th:nth-child(6), td:nth-child(6) { width: 15%; }
     th {
-        background-color: white;
         position: sticky;
         top: 0;
         z-index: 1;
@@ -155,7 +159,7 @@
         margin-top: 0px; /* Reduces the space above the table container */
     }
     .dataTables_filter input {
-        background-color: white;
+        background-color: #E4E4E4;
         border: 1px solid #ccc; /* Optional: adds a light border */
         color: #000; /* Ensure the text inside is visible */
         padding: 5px;
@@ -200,7 +204,7 @@
     <a href="index.html">
       <img src="images/liver.png" alt="Liver Icon">
     </a>
-    <h1>SMART Liver</h1> <!-- Non-clickable text -->
+    <h1>SMARTLiver</h1> <!-- Non-clickable text -->
   </div>
   <div class="header-right">
     <a href="#">Help</a>

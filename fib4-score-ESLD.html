@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liver Function Tests</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <style>
+
+    body {
+        font-family: 'Roboto', sans-serif;
+            margin: 0;
+            background-color: #3A3A3A;
+            color: #000;
+            overflow: hidden;
+        }
+
+        .app-container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+        }
+
+        /* Header Container */
+        .header {
+            background-color: #223C97;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 50px;
+        }
+
+        /* Logo Section */
+        .header .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Logo Image */
+        .header .logo img {
+            height: 55px;
+            margin-right: 10px;
+        }
+
+        /* Application Title */
+        .header .title {
+            font-size: 20px;
+            font-weight: normal;
+            white-space: nowrap;
+        }
+
+        /* Patient Information Section */
+        .header .patient-info {
+            display: flex;
+            justify-content: flex-end;
+            width: 100%;
+        }
+
+        /* Individual Info Items */
+        .header .patient-info .info-item {
+            margin-right: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        /* Paragraphs within Info Items */
+        .header .patient-info p {
+            margin: 0;
+            font-size: 14px;
+        }
+        /* New Button Section Below the Header */
+.button-section {
+    background-color: #F1F1F1;
+    padding: 5px 20px;
+    display: flex;
+    justify-content: left;
+    gap: 5px;
+}
+
+.button-section button {
+    padding: 3px 20px;
+    background-color: #223C97;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+}
+        .main-content {
+            display: flex;
+            flex: 1;
+            background-color: #F1F1F1;
+            border-radius: 0 0 10px 10px;
+            overflow: hidden;
+        }
+
+        .sidebar {
+            background-color: #F2F8FD;
+            padding: 5px;
+            width: 300px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            overflow-y: auto;
+            margin-top: 30px;
+        }
+
+        .sidebar h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .sidebar a,
+        .sidebar h2 {
+            text-decoration: none;
+            color: #515151; /* Default color */
+            padding: 10px 5px;
+            margin: 0px 0;
+            display: block;
+            border-left: 3px solid transparent;
+            font-size: 13px;
+            font-weight: bold; /* Make all options bold */
+            cursor: pointer; /* Make the section header clickable */
+        }
+
+        .sidebar a.active,
+        .sidebar h2.active {
+            color: #223C97; /* Active color */
+            border-left: 3px solid #223C97;
+        }
+
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-y: hidden;
+        }
+
+        h3 {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 2px;
+            color: #000;
+            margin-top: 10px;
+        }
+        h4 {
+        font-size: 14px;
+            font-weight: bold;
+        }
+
+
+        .top-section {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .top-section .left-top-section {
+            width: 40%;
+            padding-right: 20px;
+            border-right: 1px solid #ddd;
+        }
+
+        .top-section .right-top-section {
+            width: 60%;
+            padding-left: 20px;
+            margin-top: 60px;
+        }
+
+        .top-section .right-top-section .Fib4-score-info {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .bottom-section {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .bottom-section .left-bottom-section {
+            width: 60%;
+            padding-right: 20px;
+        }
+
+        .bottom-section .right-bottom-section {
+            width: 40%;
+            padding-left: 20px;
+        }
+
+        table {
+            background-color: #fff;
+            width: 100%; /* Slightly reduced width */
+            border-collapse: collapse;
+            margin-bottom: -5px;
+            font-size: 12px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #000000;
+            padding: 4px 8px;
+        }
+
+        th,
+        td {
+
+            text-align: center;
+        }
+
+        th {
+            background-color: #FFFFFF;
+            font-weight: bold;
+        }
+        .chart-container {
+            width: 100%; /* Adjust width as needed */
+            padding: 10px; /* For some padding around the chart */
+            border: 2px solid #ddd; /* Pink border, you can change the color as needed */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: adds shadow for depth */
+            border-radius: 5px; /* Rounded corners */
+            margin: 20px auto; /* Centering the chart container */
+            background-color: transparent; /* Ensuring the background is transparent */
+            height: 375px;
+        }
+
+        .canvas {
+             width: 100% !important; /* Ensures canvas fills the container */
+             height: 100% !important; /* Ensures canvas fills the container */
+        }
+
+            .date-range {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .date-range label {
+            margin-right: 5px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .date-range input[type="date"] {
+            padding: 5px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 14px;
+        }
+
+        .date-range button {
+            padding: 5px 15px;
+            background-color: #223C97;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .results p {
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+        .interpretation {
+            margin-top: 0px;
+            font-size: 13px;
+            background-color: #ffffff;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .Fib4-table-wrapper {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .Fib4-table-wrapper table {
+            width: 95%;
+        }
+
+        .results {
+            margin-top: 5px;
+        }
+
+        .results-table-wrapper {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        @media (max-width: 768px) {
+            /* Adjust header for smaller screens */
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                height: 60px;
+                padding: 10px;
+            }
+
+            .header .logo {
+                margin-bottom: 10px;
+            }
+
+            .header .patient-info {
+                display: none;
+            }
+
+            /* Move Sidebar to the Top */
+            .sidebar {
+                width: 100%;
+                height: auto;
+                display: flex; /* Change to flex for horizontal layout */
+                flex-direction: row; /* Horizontal layout */
+                overflow-x: auto; /* Enable horizontal scrolling */
+                overflow-y: hidden; /* Disable vertical scrolling */
+                white-space: nowrap; /* Prevent line wrapping */
+                padding: 60px 0; /* Adjust padding */
+                border-bottom: 1px solid #ddd; /* Add bottom border for separation */
+                box-shadow: none; /* Remove box shadow */
+            }
+
+            .sidebar a,
+            .sidebar h2 {
+                text-decoration: none; /* Ensure no underline or strike-through */
+                color: #515151; /* Default color */
+                padding: 5px 5px;
+                margin: 0;
+                display: block;
+                border-left: 3px solid transparent;
+                border-bottom: none; /* Ensure no default bottom border */
+                font-size: 13px;
+                font-weight: bold; /* Make all options bold */
+                cursor: pointer; /* Make the section header clickable */
+            }
+
+            .sidebar a.active,
+            .sidebar h2.active {
+                color: #223C97; /* Active color */
+                border-left: none #223C97; /* Consistent left border for active state */
+                border-bottom: none; /* Ensure no bottom border to prevent double lines */
+                text-decoration: none; /* Ensure no text decoration like underline */
+            }
+
+            .sidebar a.active::after,
+            .sidebar h2.active::after {
+                content: '';
+                display: block;
+                width: 100%;
+                height: 3px; /* Line thickness */
+                background-color: #223C97; /* Line color */
+                margin-top: 2px; /* Adjust margin as needed */
+            }
+
+            /* Adjust Sidebar Content for Horizontal Layout */
+            .sidebar ul {
+                display: flex; /* Use flexbox for horizontal list */
+                padding: 0;
+                margin: 0;
+                list-style: none;
+                width: 100%;
+            }
+
+            .sidebar ul li {
+                display: inline-block; /* Display list items inline */
+            }
+
+            /* Adjust main content for smaller screens */
+            .main-content {
+                flex-direction: column; /* Stack content vertically */
+                padding: 10px; /* Adjust padding */
+                margin: 0; /* Remove margin */
+            }
+            .content {
+            overflow: auto;
+            }
+
+            .top-section, .bottom-section {
+                flex-direction: column; /* Stack sections vertically */
+            }
+
+            .top-section .left-top-section,
+            .top-section .right-top-section,
+            .bottom-section .left-bottom-section,
+            .bottom-section .right-bottom-section {
+                width: 100%; /* Full width */
+                padding: 0; /* Remove padding */
+                margin: 10px 0; /* Add margin between sections */
+            }
+
+            .Fib4-table-wrapper {
+                flex-direction: column; /* Stack tables vertically */
+            }
+
+            .Fib4-table-wrapper table {
+                width: 100%; /* Full width */
+                margin-bottom: 20px; /* Add spacing between tables */
+            }
+
+            /* Adjust table within results section */
+            .results-table-wrapper {
+                margin: 0;
+                width: 100%; /* Full width */
+            }
+
+            .date-range {
+                flex-direction: column; /* Stack date inputs vertically */
+                align-items: flex-start;
+            }
+
+            .date-range input[type="date"], .date-range button {
+                width: 100%; /* Full width for inputs */
+                margin-bottom: 10px; /* Add margin between elements */
+            }
+
+            .chart {
+    width: 100%;
+    height: 330px;
+    background-color:;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    position: relative;
+    padding: 10px;
+    box-sizing: border-box; /* Includes padding and border in the width and height */
+}
+
+.chart .chart-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+    color: #333;
+}
+
+            /* Other necessary adjustments */
+            .sub-header .buttons button,
+            .sub-header .ESLD-Scoring-btn {
+                width: 100%; /* Full width for buttons */
+                padding: 10px 5px; /* Adjust padding */
+            }
+        }
+
+  </style>
+</head>
+
+<body>
+
+<div class="app-container">
+  <div class="header">
+    <div class="logo">
+      <!-- Wrap the image with an anchor tag to make it clickable -->
+      <a href="index.html">
+        <img src="images/liver.png" alt="Logo">
+      </a>
+      <div class="title">SMARTLiver</div>
+    </div>
+    <div class="patient-info">
+      <div class="info-item">
+        <p><strong>Name:</strong> Jessica Taylor</p>
+        <p><strong>Sex:</strong> Female</p>
+      </div>
+      <div class="info-item">
+        <p><strong>MRN:</strong> 65374683</p>
+        <p><strong>Age:</strong> 45</p>
+      </div>
+    </div>
+  </div>
+  <!-- New Button Section -->
+  <div class="button-section">
+    <button>LAB-BASED</button>
+    <button>CPG-RECOMMENDED</button>
+    <button>PROMIS SCORE</button>
+    <button>ESLD SCORING</button>
+  </div>
+
+  <div class="main-content">
+    <div class="sidebar">
+      <a href="C:\Users\keert\Downloads\SMARTLiverAPP\meld-score-ESLD.html">MELD SCORE (MODEL FOR END-STAGE LIVER DISEASE)</a>
+      <a href="C:\Users\keert\Downloads\SMARTLiverAPP\ctp-score-ESLD.html">CHILD-TURCOTTE-PUGH (CTP) SCORE</a>
+      <a href="C:\Users\keert\Downloads\SMARTLiverAPP\fib4-score-ESLD.html" class="active">FIBROSIS-4 INDEX (FIB-4)</a>
+      <a href="C:\Users\keert\Downloads\SMARTLiverAPP\apri-score.html">APRI (AST TO PLATELET RATIO INDEX)</a>
+      <a href="C:\Users\keert\Downloads\SMARTLiverAPP\liverstiff-score.html">LIVER STIFFNESS</a>
+      <a href="C:\Users\keert\Downloads\SMARTLiverAPP\NAFLD-score.html">NAFLD (NON-ALCOHOLIC FATTY LIVER DISEASE) FIBROSIS SCORE</a>
+    </div>
+
+    <div class="content">
+      <div id="fib4-score" class="content-section"> <!-- Show MELD-Na score section by default -->
+        <div class="top-section">
+          <div class="left-top-section">
+            <h3>Fibrosis-4 (FIB4) Index for Liver Fibrosis</h3>
+            <table>
+              <tr>
+                <th>Parameter</th>
+                <th>Normal Range</th>
+              </tr>
+              <tr>
+                <td>Age</td>
+                <td>Any age (years)</td>
+              </tr>
+              <tr>
+                <td>AST (Aspartate Aminotransferase)</td>
+                <td>15 - 41 U/L</td>
+
+              </tr>
+              <tr>
+                <td>ALT (Alanine Aminotransferase)</td>
+                <td>1 - 35 U/L</td>
+              </tr>
+              <tr>
+                <td>Platelet count</td>
+                <td>150 - 350 × 10³/µL</td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="right-top-section">
+            <table>
+              <tr>
+                <th>FIB-4 Score</th>
+                <th>Interpretation</th>
+
+              </tr>
+              <tr>
+                <td>< 1.45</td>
+                <td>Low likelihood of significant fibrosis (F0-F1); Normal.</td>
+              </tr>
+              <tr>
+                <td>1.45 - 3.25</td>
+                <td>Intermediate risk of fibrosis (F2);Further evaluation recommended.</td>
+              </tr>
+              <tr>
+                <td>> 3.25</td>
+                <td>High likelihood of advanced fibrosis (F3-F4); Abnormal.</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="bottom-section">
+          <div class="left-bottom-section">
+            <h4>Date</h4>
+            <div class="date-range">
+              <label for="from">From</label>
+              <input type="date" id="from">
+              <label for="to">To</label>
+              <input type="date" id="to">
+              <button>Done</button>
+            </div>
+            <h4>Patient's Clinical Values for FIB-4 Score Calculation</h4>
+
+            <div class="results-table-wrapper">
+              <table>
+                <tr>
+                  <th>Parameter</th>
+                  <th>Values</th>
+                </tr>
+                <tr>
+                  <td>Age</td>
+                  <td>55 years</td>
+                </tr>
+                <tr>
+                  <td>AST (Aspartate Aminotransferase)</td>
+                  <td>80 U/L</td>
+                </tr>
+                <tr>
+                  <td>ALT (Alanine Aminotransferase)</td>
+                  <td>65 U/L</td>
+                </tr>
+                <tr>
+                  <td>Platelet count</td>
+                  <td>150 × 10^9/L</td>
+                </tr>
+              </table>
+            </div>
+            <div class="results">
+              <p><strong>Results</strong></p>
+              <p>FIB-4 Score: 3.64</p>
+            </div>
+
+            <div class="interpretation">
+              <strong>Interpretation:</strong>  With a FIB-4 score of 3.64, this patient falls into the > 3.25 range, suggesting a high likelihood of advanced liver fibrosis (F3-F4). This is considered abnormal, and further diagnostic workup or specialist referral is typically recommended.
+            </div>
+          </div>
+          <div class="chart-container">
+            <canvas id="fib4chart"></canvas>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      const ctx = document.getElementById('fib4chart').getContext('2d');
+      const fib4Chart = new Chart(ctx, {
+          type: 'line',
+          data: {
+              labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+              datasets: [{
+                  label: 'FIB-4 Score',
+                  data: [2, 3.5, 3.64, 2.5, 3, 2.75, 3, 3.2, 3.5, 3.6, 3.2, 3], // Example scores
+                  borderColor: 'rgb(75, 192, 192)',  // Line color
+                  backgroundColor: 'rgba(75, 192, 192, 0.5)',  // Fill color
+                  pointBackgroundColor: 'rgb(75, 192, 192)',  // Point color
+                  pointBorderColor: '#fff',
+                  pointHoverBackgroundColor: '#fff',
+                  pointHoverBorderColor: 'rgb(75, 192, 192)'
+              }]
+          },
+          options: {
+              plugins: {
+                  legend: {
+                      labels: {
+                          font: {
+                              size: 14
+                          }
+                      }
+                  },
+                  tooltip: {
+                      enabled: true,
+                      mode: 'index',
+                      intersect: false,
+                      callbacks: {
+                          label: function(context) {
+                              return context.dataset.label + ': ' + context.parsed.y + ' points';
+                          }
+                      }
+                  }
+              },
+              scales: {
+                  y: {
+                      beginAtZero: true,
+                      min: 0,
+                      max: 5,  // Adjusting the max value of the y-axis to 5
+                      ticks: {
+                          stepSize: 1  // Adjusting step size to 1
+                      },
+                      title: {
+                          display: true,
+                          text: 'FIB-4 Score'  // Y-axis title
+                      }
+                  },
+                  x: {
+                      title: {
+                          display: true,
+                          text: 'Month'  // X-axis title
+                      }
+                  }
+              },
+              responsive: true,
+              maintainAspectRatio: false,
+              backgroundColor: 'transparent'
+          }
+      });
+  });
+        // Remove or adjust this code if using multi-page approach
+links.forEach(link => {
+    link.addEventListener('click', function (e) {
+        e.preventDefault(); // Remove this if not needed
+        links.forEach(link => link.classList.remove('active'));
+        this.classList.add('active');
+        sections.forEach(section => section.style.display = 'none');
+        const target = this.getAttribute('data-target');
+        document.getElementById(target).style.display = 'block';
+    });
+});
+</script>
+
+</body>
+
+</html>
