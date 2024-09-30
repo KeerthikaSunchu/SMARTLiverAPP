@@ -5,18 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="52b2f826-fd7e-4209-8c2a-0e03a2c3e2e4" name="Changes" comment="send">
-      <change afterPath="$PROJECT_DIR$/NAFLD-score.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/apri-score.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fib4-score-ESLD.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/liverstiff-score.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/meld-score-ESLD.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/promis-score.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ESLDScoring.html" beforeDir="false" afterPath="$PROJECT_DIR$/ctp-score-ESLD.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NAFLD-score.html" beforeDir="false" afterPath="$PROJECT_DIR$/NAFLD-score.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apri-score.html" beforeDir="false" afterPath="$PROJECT_DIR$/apri-score.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cpgrecommended.html" beforeDir="false" afterPath="$PROJECT_DIR$/cpgrecommended.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ctp-score-ESLD.html" beforeDir="false" afterPath="$PROJECT_DIR$/ctp-score-ESLD.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fib4-score-ESLD.html" beforeDir="false" afterPath="$PROJECT_DIR$/fib4-score-ESLD.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/labbased.html" beforeDir="false" afterPath="$PROJECT_DIR$/labbased.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/promis.html" beforeDir="false" afterPath="$PROJECT_DIR$/promis.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sendnotification.html" beforeDir="false" afterPath="$PROJECT_DIR$/sendnotification.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/liverstiff-score.html" beforeDir="false" afterPath="$PROJECT_DIR$/liverstiff-score.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/meld-score-ESLD.html" beforeDir="false" afterPath="$PROJECT_DIR$/meld-score-ESLD.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/promis.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/viewcpg.html" beforeDir="false" afterPath="$PROJECT_DIR$/viewcpg.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +68,10 @@
     &quot;git-widget-placeholder&quot;: &quot;gh-pages&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/keert/Downloads/NEOROO&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;
+    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
   <component name="RecentsManager">

@@ -13,7 +13,7 @@
         body {
             font-family: 'Roboto', sans-serif;
                 margin: 0;
-                background-color: #3A3A3A;
+                background-color: #E4E4E4;
                 color: #000;
                 overflow: auto;
             }
@@ -463,21 +463,23 @@
         </div>
     </div>
     <!-- New Button Section -->
+    <!-- New Button Section with Clickable Links -->
     <div class="button-section">
-        <button>LAB-BASED</button>
-        <button>CPG-RECOMMENDED</button>
-        <button>PROMIS SCORE</button>
-        <button>ESLD SCORING</button>
+        <a href="labbased.html"><button>LAB-BASED</button></a>
+        <a href="cpgrecommended.html"><button>CPG-RECOMMENDED</button></a>
+        <a href="promis-score.html"><button>PROMIS SCORE</button></a>
+        <a href="meld-score-ESLD.html"><button>ESLD SCORING</button></a>
     </div>
+
 
     <div class="main-content">
         <div class="sidebar">
-            <a href="C:\Users\keert\Downloads\SMARTLiverAPP\meld-score-ESLD.html" class="active">MELD SCORE (MODEL FOR END-STAGE LIVER DISEASE)</a>
-            <a href="C:\Users\keert\Downloads\SMARTLiverAPP\ctp-score-ESLD.html">CHILD-TURCOTTE-PUGH (CTP) SCORE</a>
-            <a href="C:\Users\keert\Downloads\SMARTLiverAPP\fib4-score-ESLD.html">FIBROSIS-4 INDEX (FIB-4)</a>
-            <a href="C:\Users\keert\Downloads\SMARTLiverAPP\apri-score.html">APRI (AST TO PLATELET RATIO INDEX)</a>
-            <a href="C:\Users\keert\Downloads\SMARTLiverAPP\liverstiff-score.html">LIVER STIFFNESS</a>
-            <a href="C:\Users\keert\Downloads\SMARTLiverAPP\NAFLD-score.html">NAFLD (NON-ALCOHOLIC FATTY LIVER DISEASE) FIBROSIS SCORE</a>
+            <a href="meld-score-ESLD.html" class="active">MELD SCORE (MODEL FOR END-STAGE LIVER DISEASE)</a>
+            <a href="ctp-score-ESLD.html">CHILD-TURCOTTE-PUGH (CTP) SCORE</a>
+            <a href="fib4-score-ESLD.html">FIBROSIS-4 INDEX (FIB-4)</a>
+            <a href="apri-score.html">APRI (AST TO PLATELET RATIO INDEX)</a>
+            <a href="liverstiff-score.html">LIVER STIFFNESS</a>
+            <a href="NAFLD-score.html">NAFLD (NON-ALCOHOLIC FATTY LIVER DISEASE) FIBROSIS SCORE</a>
         </div>
 
         <div class="content">
@@ -678,42 +680,6 @@
             }
         });
     });
-
-    // JavaScript to handle the click events on sidebar links and update content
-    const links = document.querySelectorAll('.sidebar a, .sidebar h2');
-    const sections = document.querySelectorAll('.content-section');
-
-    links.forEach(link => {
-        link.addEventListener('click', function (e) {
-            console.log('Link clicked:', this.getAttribute('data-target'));
-            e.preventDefault(); // Prevent default link behavior
-
-            // Remove active class from all links
-            links.forEach(link => link.classList.remove('active'));
-
-            // Add active class to the clicked link
-            this.classList.add('active');
-
-            // Hide all sections
-            sections.forEach(section => section.style.display = 'none');
-
-            // Show the selected section
-            const target = this.getAttribute('data-target');
-            document.getElementById(target).style.display = 'none';
-        });
-    });
-        // Remove or adjust this code if using multi-page approach
-links.forEach(link => {
-    link.addEventListener('click', function (e) {
-        e.preventDefault(); // Remove this if not needed
-        links.forEach(link => link.classList.remove('active'));
-        this.classList.add('active');
-        sections.forEach(section => section.style.display = 'none');
-        const target = this.getAttribute('data-target');
-        document.getElementById(target).style.display = 'block';
-    });
-});
-
 </script>
 
 </body>

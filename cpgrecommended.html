@@ -10,7 +10,7 @@
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
-            background-color: #D9D9D9;
+            background-color: #E4E4E4;
             overflow: hidden;
         }
 
@@ -58,50 +58,51 @@
             font-size: 14px;
         }
         .sub-header {
-            background-color: #D9D9D9;
             padding: 10px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .sub-header .buttons {
-            display: flex;
-            gap: 10px;
-        }
+        /* Adjusted Button Section */
+.button-section {
+    padding: 5px 20px;
+    display: flex;
+    justify-content: left; /* Align buttons to the left */
+    gap: 5px; /* Gap between buttons for a cleaner layout */
+    margin-bottom: 10px;
+}
 
-        .sub-header .buttons button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: normal;
-            background-color: #223C97;
-            color: white;
-            border: 2px solid transparent;
-            font-size: 14px;
-        }
+.button-section a {
+    text-decoration: none; /* Remove underline from the link */
+}
 
-        .sub-header .buttons button.active {
-            border: 2px solid white;
-        }
+.button-section button {
+    padding: 3px 20px; /* Uniform padding for all buttons */
+    background-color: #223C97; /* Button background color */
+    color: white;
+    border: none;
+    border-radius: 20px; /* Smooth rounded corners */
+    font-size: 14px; /* Font size */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+}
 
-        .sub-header .ESLD-Scoring-btn {
-            background-color: #223C97;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            border: none;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: normal;
-        }
+/* Button hover effect for all four buttons */
+.button-section button:hover {
+    background-color: #1A2F70; /* Slightly darker shade on hover */
+}
+
+/* Optional: Button focus effect to give visual feedback when clicked */
+.button-section button:focus {
+    outline: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Subtle shadow when focused */
+}
+
 
         .content {
             display: flex;
-            height: calc(100vh - 120px);
-            background-color: #D9D9D9;
-            border: 1px solid #D9D9D9;
+            height: calc(100vh - 115px);
         }
 
         .sidebar {
@@ -112,6 +113,7 @@
             font-size: 13px;
             font-weight: bold;
             margin-top: 20px;
+
         }
 
         .sidebar ul {
@@ -145,9 +147,11 @@
             padding: 0;
             overflow-y: auto;
             background-color: white;
-            margin: 20px;
+            margin-right: 10px;
+            margin-left: 5px;
             border-radius: 10px;
             padding: 20px;
+            margin-top: 20px;
         }
 
         .tab-buttons-container {
@@ -285,13 +289,11 @@
     </div>
 </div>
 
-<div class="sub-header">
-    <div class="buttons">
-        <button class="lab-based" onclick="window.location.href='labbased.html'">Lab-Based</button>
-        <button class="cpg-recommended active" onclick="window.location.href='cpgrecommended.html'">CPG-Recommended</button>
-        <button class="promis-score" onclick="window.location.href='promis.html'">PROMIS Score</button>
-    </div>
-    <button class="ESLD-Scoring-btn" onclick="window.location.href='ESLDScoring.html'">ESLD Scoring</button>
+<div class="button-section">
+    <a href="labbased.html"><button>LAB-BASED</button></a>
+    <a href="cpgrecommended.html"><button>CPG-RECOMMENDED</button></a>
+    <a href="promis-score.html"><button>PROMIS SCORE</button></a>
+    <a href="meld-score-ESLD.html"><button>ESLD SCORING</button></a>
 </div>
 
 <div class="content">
