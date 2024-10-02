@@ -104,13 +104,13 @@
      .sidebar {
                 background-color: #F2F8FD;
                 padding: 5px;
-                width: 245px;
+                width: 280px;
                 box-shadow: 2px 0 5px rgba(0, 0, 0, 0);
                 display: flex;
                 flex-direction: column;
                 justify-content: flex-start;
                 overflow-y: auto;
-                margin-top: 30px;
+                margin-top: 30px;height: 92%;
             }
 
             .sidebar h2 {
@@ -140,13 +140,14 @@
             }
 
 
-        .content {
+        .content {background-color: #ffffff;
+            margin-top: 30px;
             flex-grow: 1;
             padding: 20px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            overflow-y: hidden;
+            overflow-y: auto;margin-left: 5px; margin-right: 5px;height:92%;
         }
 
         h3 {
@@ -154,11 +155,11 @@
             font-weight: bold;
             margin-bottom: 2px;
             color: #000;
-            margin-top: 10px;
+            margin-top:-10px;
         }
         h4 {
             font-size: 14px;
-            font-weight: bold;
+            font-weight: bold;margin-top: -35px;
         }
 
         .top-section {
@@ -175,7 +176,7 @@
         .top-section .right-top-section {
             width: 50%;
             padding-left: 20px;
-            margin-top: 85px;
+            margin-top: 60px;
         }
 
         .top-section .right-top-section .LIVERSTIFF-score-info {
@@ -232,9 +233,9 @@
             border: 2px solid #ddd; /* Pink border, you can change the color as needed */
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: adds shadow for depth */
             border-radius: 5px; /* Rounded corners */
-            margin: 20px auto; /* Centering the chart container */
+            margin: 10px auto; /* Centering the chart container */
             background-color: transparent; /* Ensuring the background is transparent */
-            height: 330px;
+            height: 310px;
         }
 
         .canvas {
@@ -243,7 +244,7 @@
         }
 
             .date-range {
-            margin-bottom: 10px;
+            margin-bottom: 50px;
             display: flex;
             align-items: center;
         }
@@ -327,7 +328,7 @@
 
             /* Move Sidebar to the Top */
             .sidebar {
-                width: 200px;
+                width: 340px;
                 height: auto;
                 display: flex; /* Change to flex for horizontal layout */
                 flex-direction: row; /* Horizontal layout */

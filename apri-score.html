@@ -105,13 +105,14 @@
         .sidebar {
             background-color: #F2F8FD;
             padding: 5px;
-            width: 300px;
+            width: 360px;
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0);
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
             overflow-y: auto;
             margin-top: 30px;
+            height:92%
         }
 
         .sidebar h2 {
@@ -141,20 +142,26 @@
         }
 
         .content {
-            flex-grow: 1;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            overflow-y: hidden;
-        }
+                background-color: #ffffff;
+                flex-grow: 1;
+                margin-top: 30px; /* Margin around the content for some spacing */
+                margin-left: 5px;
+                margin-right: 5px;
+                height:92%;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                overflow-y: hidden;
+            }
 
         h3 {
             font-size: 16px;
             font-weight: bold;
             margin-bottom: 2px;
             color: #000;
-            margin-top: 10px;
+            margin-top: -10px;
         }
         h4{
         font-size: 14px;
@@ -175,7 +182,7 @@
         .top-section .right-top-section {
             width: 60%;
             padding-left: 20px;
-            margin-top: 30px;
+            margin-top: 10px;
         }
 
         .top-section .right-top-section .APRI-score-info {
@@ -212,7 +219,7 @@
         th,
         td {
             border: 1px solid #000000;
-            padding: 8px 8px;
+            padding: 4px 8px;
         }
 
         th,
@@ -283,6 +290,7 @@
             padding: 10px;
             border-radius: 5px;
             border: 1px solid #ddd;
+            margin-left: 0px;
         }
 
         .APRI-table-wrapper {
@@ -324,7 +332,7 @@
 
             /* Move Sidebar to the Top */
             .sidebar {
-                width: 100%;
+                width: 340px;
                 height: auto;
                 display: flex; /* Change to flex for horizontal layout */
                 flex-direction: row; /* Horizontal layout */
