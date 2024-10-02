@@ -4,26 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="52b2f826-fd7e-4209-8c2a-0e03a2c3e2e4" name="Changes" comment="send">
-      <change afterPath="$PROJECT_DIR$/anxiety.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/depression.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fatigue.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/painintensity.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/paininterference.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sleepdisturbance.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/socialparticipation.html" afterDir="false" />
+    <list default="true" id="52b2f826-fd7e-4209-8c2a-0e03a2c3e2e4" name="Changes" comment="links">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NAFLD-score.html" beforeDir="false" afterPath="$PROJECT_DIR$/NAFLD-score.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cpgrecommended.html" beforeDir="false" afterPath="$PROJECT_DIR$/cpgrecommended.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ctp-score-ESLD.html" beforeDir="false" afterPath="$PROJECT_DIR$/ctp-score-ESLD.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fib4-score-ESLD.html" beforeDir="false" afterPath="$PROJECT_DIR$/fib4-score-ESLD.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/labbased.html" beforeDir="false" afterPath="$PROJECT_DIR$/labbased.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/liverstiff-score.html" beforeDir="false" afterPath="$PROJECT_DIR$/liverstiff-score.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/meld-score-ESLD.html" beforeDir="false" afterPath="$PROJECT_DIR$/meld-score-ESLD.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/promis-score.html" beforeDir="false" afterPath="$PROJECT_DIR$/promis-score.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sendnotification.html" beforeDir="false" afterPath="$PROJECT_DIR$/sendnotification.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/viewcpg.html" beforeDir="false" afterPath="$PROJECT_DIR$/viewcpg.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -228,7 +210,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727737199648</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="links">
+      <option name="closed" value="true" />
+      <created>1727834416871</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1727834416871</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -250,6 +240,7 @@
     <MESSAGE value="liver icon for landing page" />
     <MESSAGE value="filter option for share tasks" />
     <MESSAGE value="send" />
-    <option name="LAST_COMMIT_MESSAGE" value="send" />
+    <MESSAGE value="links" />
+    <option name="LAST_COMMIT_MESSAGE" value="links" />
   </component>
 </project>
