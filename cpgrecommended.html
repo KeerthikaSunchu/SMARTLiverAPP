@@ -108,12 +108,14 @@
 
         .sidebar {
             background-color: #F2F8FD;
-            width: 240px;
+            width: 215px;
             padding: 10px 0;
             overflow-y: auto;
             font-size: 13px;
             font-weight: bold;
             margin-top: 20px;
+            overflow: hidden;
+            margin-bottom: -5px;
 
         }
 
@@ -148,36 +150,37 @@
             padding: 0;
             overflow-y: auto;
             background-color: white;
-            margin-right: 10px;
             margin-left: 5px;
-            border-radius: 10px;
             padding: 20px;
             margin-top: 20px;
+            margin-right:5px;
+            margin-bottom: -5px;
         }
-
-        .tab-buttons-container {
-            background-color: #F2F8FD;
-            padding: 10px 20px;
-        }
-
         .search-container {
-            width: 100%;
-            text-align: right;
-            padding-right: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end; /* Align the search box to the right */
+            margin-bottom: 10px;
+        }
+
+        .search-label {
+            margin-right: 5px; /* Space between label and input */
+            font-size: 16px; /* Adjust font size */
         }
 
         .search-container input {
-            padding: 5px 10px;
-            width: 200px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            transition: border-color 0.3s;
-            font-size: 0.9rem;
+            padding: 7px 8px;
+            width:200px;
+            border: 1px solid grey; /* Initial border */
+            border-radius: 3px;
+            font-size: 14px;
+            transition: border-color 0.3s ease, border-width 0.3s ease; /* Add smooth transition */
         }
 
         .search-container input:focus {
-            border-color: #223C97;
-            outline: none;
+            border-color: black; /* Thicker black border on focus */
+            border-width: 2px; /* Increase border width on focus */
+            outline: none; /* Remove default outline */
         }
 
         table {
@@ -237,28 +240,8 @@
             .sidebar {
                 display: none;
             }
-
-            .sub-header .buttons button,
-            .sub-header .ESLD-Scoring-btn {
-                font-size: 14px;
-                padding: 2px 10px;
-                width: 100%;
-                max-width: 150px;
-            }
-
-            .tab-buttons button {
-                font-size: 10px;
-                padding: 5px 5px;
-                max-width: 150px;
-            }
-
-            .tab-buttons .search-container input {
-                width: 70px;
-                font-size: 10px;
-            }
-
             .task-table th, .task-table td {
-                font-size: 13px;
+                font-size: 10px;
             }
 
             .task-table .search-container input {
@@ -293,10 +276,9 @@
 <div class="button-section">
     <a href="labbased.html"><button>LAB-BASED</button></a>
     <a href="cpgrecommended.html"><button>CPG-RECOMMENDED</button></a>
-    <a href="promis-score.html"><button>PROMIS SCORE</button></a>
-    <a href="meld-score-ESLD.html"><button>ESLD SCORING</button></a>
+    <a href="promis-score.html"><button>PROMIS29-SCORE</button></a>
+    <a href="meld-score-ESLD.html"><button>ESLD-SCORING</button></a>
 </div>
-
 <div class="content">
     <div class="sidebar">
         <ul id="sidebarList">
@@ -320,8 +302,10 @@
     <div class="main-content">
         <div class="tab-buttons-container">
             <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Search" onkeyup="searchTasks()">
+                <label for="searchInput" class="search-label">Search:</label>
+                <input type="text" id="searchInput" onkeyup="searchTasks()">
             </div>
+
         </div>
         <table class="table task-table">
             <thead>

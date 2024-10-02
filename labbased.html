@@ -13,10 +13,10 @@
     body {
         font-family: 'Roboto', sans-serif;
         margin: 0;
-        font-family: Arial, sans-serif;
         background-color: #E4E4E4;
         overflow: hidden;
     }
+
     .header {
         background-color: #223C97;
         color: white;
@@ -25,227 +25,204 @@
         justify-content: space-between;
         align-items: center;
         height: 50px;
-        font-weight: semi-bold;
     }
+
     .header .logo {
         display: flex;
         align-items: center;
     }
+
     .header .logo img {
         height: 55px;
         margin-right: 10px;
     }
+
     .header .title {
         font-size: 20px;
+        font-weight: normal;
         white-space: nowrap;
     }
+
     .header .patient-info {
         display: flex;
         justify-content: flex-end;
         width: 100%;
     }
+
     .header .patient-info .info-item {
         margin-right: 30px;
         display: flex;
         flex-direction: column;
         align-items: flex-end;
     }
+
     .header .patient-info p {
         margin: 0;
         font-size: 14px;
     }
     .sub-header {
-        background-color: #D9D9D9;
         padding: 10px 20px;
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
-            /* Adjusted Button Section */
+        /* Adjusted Button Section */
 .button-section {
-    padding: 5px 20px;
-    display: flex;
-    justify-content: left; /* Align buttons to the left */
-    gap: 5px; /* Gap between buttons for a cleaner layout */
+padding: 5px 20px;
+display: flex;
+justify-content: left; /* Align buttons to the left */
+gap: 5px; /* Gap between buttons for a cleaner layout */
 }
 
 .button-section a {
-    text-decoration: none; /* Remove underline from the link */
+text-decoration: none; /* Remove underline from the link */
 }
 
 .button-section button {
-    padding: 3px 20px; /* Uniform padding for all buttons */
-    background-color: #223C97; /* Button background color */
-    color: white;
-    border: none;
-    border-radius: 20px; /* Smooth rounded corners */
-    font-size: 14px; /* Font size */
-    cursor: pointer;
-    transition: background-color 0.3s ease; /* Smooth hover effect */
+padding: 3px 20px; /* Uniform padding for all buttons */
+background-color: #223C97; /* Button background color */
+color: white;
+border: none;
+border-radius: 20px; /* Smooth rounded corners */
+font-size: 14px; /* Font size */
+cursor: pointer;
+transition: background-color 0.3s ease; /* Smooth hover effect */
 }
 
 /* Button hover effect for all four buttons */
 .button-section button:hover {
-    background-color: #1A2F70; /* Slightly darker shade on hover */
+background-color: #1A2F70; /* Slightly darker shade on hover */
 }
 
 /* Optional: Button focus effect to give visual feedback when clicked */
 .button-section button:focus {
-    outline: white;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Subtle shadow when focused */
+outline: white;
+box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Subtle shadow when focused */
 }
 
-    .content {
-        display: flex;
-        height: calc(100vh - 95px);
-        padding-top: 30px;
+.content {
+    display: flex;
+    height: calc(100vh - 95px);
+    padding-top: 30px;
+}
+.sidebar {
+    background-color: #F2F8FD;
+    width: 220px;
+    padding: 10px 0;
+    font-size: 13px;
+    font-weight: bold;
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.sidebar ul li {
+    padding: 8px 20px;
+    cursor: pointer;
+    color: #515151;
+    background-color: #F2F8FD;
+    transition: color 0.2s;
+    border-left: 3px solid transparent;
+}
+.sidebar ul li.active {
+    background-color: #F2F8FD;
+    font-weight: bold;
+    color: #223C97;
+    border-left: 3px solid #223C97;
+}
+.sidebar ul li:hover {
+    color: #223C97;
+}
+.main-content {
+    flex-grow: 1;
+    padding: 0;
+    overflow-y: auto;
+    background-color: white;
+    margin: 5px;
+    border-radius: 0px;
+    padding: 0px;
+    margin-top: 0px;
+}
+.task-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0;
+    padding: 0 20px;
+}
+.task-table th, .task-table td {
+    padding: 10px;
+    border-bottom: 1px solid #E0E0E0;
+    text-align: left;
+    font-size: 16px;
+}
+.task-table th {
+    background-color: #FFFFFF;
+    font-weight: bold;
+}
+
+
+.task-table td.status {
+    color: #007BFF;
+}
+
+.task-table td.status.complete {
+    color: green;
+}
+.task-table td.status.overdue {
+    color: red;
+}
+.task-table td.status.upcoming {
+    color: blue;
+}
+.task-table td.action a {
+    color: #223C97;
+    text-decoration: none;
+}
+.task-table td.action a:hover {
+    text-decoration: underline;
+}
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        height: 60px;
+    }
+    .header .patient-info {
+        display: none;
+    }
+    .header .controls {
+        margin-top: 10px;
     }
     .sidebar {
-        background-color: #F2F8FD;
-        width: 240px;
-        padding: 10px 0;
-        font-size: 13px;
-        font-weight: bold;
-        margin-top: 8px;
-        margin-bottom: 10px;
+        display: none;
     }
-    .sidebar ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-    .sidebar ul li {
-        padding: 8px 20px;
-        cursor: pointer;
-        color: #515151;
-        background-color: #F2F8FD;
-        transition: color 0.2s;
-        border-left: 3px solid transparent;
-    }
-    .sidebar ul li.active {
-        background-color: #F2F8FD;
-        font-weight: bold;
-        color: #223C97;
-        border-left: 3px solid #223C97;
-    }
-    .sidebar ul li:hover {
-        color: #223C97;
-    }
-    .main-content {
-        flex-grow: 1;
-        padding: 0;
-        overflow-y: auto;
-        background-color: white;
-        margin: 5px;
-        border-radius: 10px;
-        padding: 20px;
-    }
-    .tab-buttons-container {
-        background-color: #FFFFFF;
-        padding: 10 20px;
-    }
-    .tab-buttons {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 0;
-        padding-top: 10px;
-        background-color: #F2F8FD;
-        border-bottom: 1px solid #D9D9D9;
+    .sub-header .buttons button,
+    .sub-header .ESLD-Scoring-btn {
+        font-size: 14px;
+        padding: 2px 0px;
+        width: 100%;
+        max-width: 150px;
     }
     .tab-buttons button {
-        padding: 4px 8px;
-        background-color: #F2F8FD;
-        border: none;
-        cursor: pointer;
-        font-weight: bold;
-        color: #515151;
+        font-size: 11px;
+        padding: 5px 5px;
+        max-width: 150px;
+        color: #D9D9D9;
         border-bottom: 3px solid transparent;
-        border-radius: 5px 5px 0 0;
-        font-size: 14px;
     }
     .tab-buttons button.active {
-        background-color: #F2F8FD;
         color: #223C97;
         border-bottom: 3px solid #223C97;
     }
-    .task-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 0;
-        padding: 0 20px;
-    }
+
     .task-table th, .task-table td {
-        padding: 10px;
-        border-bottom: 1px solid #E0E0E0;
-        text-align: left;
-        font-size: 16px;
-    }
-    .task-table th {
-        background-color: #FFFFFF;
-        font-weight: bold;
+        font-size: 13px;
     }
 
-
-    .task-table td.status {
-        color: #007BFF;
-    }
-
-    .task-table td.status.complete {
-        color: green;
-    }
-    .task-table td.status.overdue {
-        color: red;
-    }
-    .task-table td.status.upcoming {
-        color: blue;
-    }
-    .task-table td.action a {
-        color: #223C97;
-        text-decoration: none;
-    }
-    .task-table td.action a:hover {
-        text-decoration: underline;
-    }
-    @media (max-width: 768px) {
-        .header {
-            flex-direction: column;
-            align-items: flex-start;
-            height: 60px;
-        }
-        .header .patient-info {
-            display: none;
-        }
-        .header .controls {
-            margin-top: 10px;
-        }
-        .sidebar {
-            display: none;
-        }
-        .sub-header .buttons button,
-        .sub-header .ESLD-Scoring-btn {
-            font-size: 14px;
-            padding: 2px 0px;
-            width: 100%;
-            max-width: 150px;
-        }
-        .tab-buttons button {
-            font-size: 11px;
-            padding: 5px 5px;
-            max-width: 150px;
-            color: #D9D9D9;
-            border-bottom: 3px solid transparent;
-        }
-        .tab-buttons button.active {
-            color: #223C97;
-            border-bottom: 3px solid #223C97;
-        }
-
-        .task-table th, .task-table td {
-            font-size: 13px;
-        }
-
-    }
+}
   </style>
 </head>
 <body>
@@ -267,12 +244,12 @@
     </div>
   </div>
 </div>
-  <div class="button-section">
-    <a href="labbased.html"><button>LAB-BASED</button></a>
-    <a href="cpgrecommended.html"><button>CPG-RECOMMENDED</button></a>
-    <a href="promis-score.html"><button>PROMIS SCORE</button></a>
-    <a href="meld-score-ESLD.html"><button>ESLD SCORING</button></a>
-  </div>
+<div class="button-section">
+  <a href="labbased.html"><button>LAB-BASED</button></a>
+  <a href="cpgrecommended.html"><button>CPG-RECOMMENDED</button></a>
+  <a href="promis-score.html"><button>PROMIS29-SCORE</button></a>
+  <a href="meld-score-ESLD.html"><button>ESLD-SCORING</button></a>
+</div>
 <div class="content">
   <div class="sidebar">
     <ul id="sidebarList">
