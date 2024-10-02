@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PROMIS29-Score</title>
+  <link rel="icon" sizes="256x256" href="images/liver.png" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        margin: 0;
+        background-color: #E4E4E4;
+        color: #000;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .app-container {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+    }
+
+    .header {
+        background-color: #223C97;
+        color: white;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 50px;
+    }
+
+    .header .logo {
+        display: flex;
+        align-items: center;
+    }
+
+    .header .logo img {
+        height: 55px;
+        margin-right: 10px;
+    }
+
+    .header .title {
+        font-size: 20px;
+        font-weight: normal;
+        white-space: nowrap;
+    }
+
+    .header .patient-info {
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+    }
+
+    .header .patient-info .info-item {
+        margin-right: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    .header .patient-info p {
+        margin: 0;
+        font-size: 14px;
+    }
+
+    .button-section {
+        background-color: #F1F1F1;
+        padding: 5px 20px;
+        display: flex;
+        justify-content: left;
+        gap: 5px;
+    }
+
+    .button-section button {
+        padding: 3px 20px;
+        background-color: #223C97;
+        color: white;
+        border: none;
+        border-radius: 20px;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+    .main-content {
+        display: flex;
+        flex: 1;
+        background-color: #F1F1F1;
+    }
+
+    .sidebar {
+        background-color: #F2F8FD;
+        padding: 5px;
+        width: 180px;
+        display: flex;
+        flex-direction: column;
+        height: 92%;
+        margin-top: 30px;
+    }
+
+    .sidebar a {
+        text-decoration: none;
+        color: #515151;
+        padding: 10px 5px;
+        margin: 0px 0;
+        display: block;
+        border-left: 3px solid transparent;
+        font-size: 13px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .sidebar a.active {
+        color: #223C97;
+        border-left: 3px solid #223C97;
+    }
+
+    .content {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        width: calc(100% - 200px);
+        padding: 20px;
+    }
+
+    h3 {
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #000;
+        text-align: center;
+    }
+
+    .white-container {
+        background-color: white;
+        padding:20px;
+        border-radius:0px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        margin-left: -15px;
+        margin-top: 10px;
+    }
+    .top-section {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .left-section {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+    }
+
+    .right-section {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        align-items: flex-end;
+    }
+
+    .range-bar {
+        display: flex;
+        height: 50px;
+        margin-bottom: 10px;
+        margin-right: 10px;
+        width: 400px;
+        margin-top: 10px;
+    }
+
+    .range-bar span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: black;
+        font-size: 10px;
+        font-weight: bold;
+    }
+
+    .green {
+        background-color: #00FF00;
+        width: 40%;
+    }
+
+    .yellow {
+        background-color: #FFFF00;
+        width: 20%;
+    }
+
+    .orange {
+        background-color: #FFA500;
+        width: 20%;
+    }
+
+    .red {
+        background-color: #FF0000;
+        width: 20%;
+    }
+
+    .range-label {
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        width: 100%;
+        margin-top: -10px;
+        margin-right: 10px;
+        margin-bottom: 0px;
+    }
+
+    .chart-container {
+        width: 100%;
+        height: 380px;
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        background-colour: F2F8FD;
+    }
+
+    .canvas {
+        width: 100%;
+        height: 100%;
+    }
+
+    .date-input {
+        font-size: 14px;
+        margin-top: 10px;
+        margin-left: 10px;
+        font-weight: bold;
+    }
+
+    .date-input input[type="date"] {
+        font-size: 12px;
+        padding: 4px;
+        width: auto;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div class="app-container">
+  <div class="header">
+    <div class="logo">
+      <a href="index.html">
+        <img src="images/liver.png" alt="Logo">
+      </a>
+      <div class="title">SMART Liver</div>
+    </div>
+    <div class="patient-info">
+      <div class="info-item">
+        <p><strong>Name:</strong> Jessica Taylor</p>
+        <p><strong>Sex:</strong> Female</p>
+      </div>
+      <div class="info-item">
+        <p><strong>MRN:</strong> 65374683</p>
+        <p><strong>Age:</strong> 45</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="button-section">
+    <a href="labbased.html"><button>LAB-BASED</button></a>
+    <a href="cpgrecommended.html"><button>CPG-RECOMMENDED</button></a>
+    <a href="promis-score.html"><button>PROMIS SCORE</button></a>
+    <a href="meld-score-ESLD.html"><button>ESLD SCORING</button></a>
+  </div>
+
+  <div class="main-content">
+    <div class="sidebar">
+      <a href="promis-score.html">ALL</a>
+      <a href="physicalfunction.html">PHYSICAL FUNCTION</a>
+      <a href="anxiety.html">ANXIETY</a>
+      <a href="depression.html" class="active">DEPRESSION</a>
+      <a href="fatigue.html">FATIGUE</a>
+      <a href="sleepdisturbance.html">SLEEP DISTURBANCE</a>
+      <a href="socialparticipation.html">SOCIAL PARTICIPATION</a>
+      <a href="paininterference.html">PAIN INTERFERENCE</a>
+      <a href="painintensity.html">PAIN INTENSITY</a>
+    </div>
+
+    <div class="content">
+      <div class="white-container">
+        <h3>Depression - PROMIS-29 SCORE</h3>
+
+        <div class="top-section">
+          <div class="date-input">
+            <label for="date">Date Range: </label>
+            <input type="date" id="from-date" name="from-date">
+            <input type="date" id="to-date" name="to-date">
+            <button>Done</button>
+          </div>
+
+          <div class="right-section">
+            <div class="bar-section">
+              <h3>Symptom</h3>
+              <div class="range-bar">
+                <span class="green">WITHIN NORMAL LIMITS</span>
+                <span class="yellow">MILD</span>
+                <span class="orange">MODERATE</span>
+                <span class="red">SEVERE</span>
+              </div>
+              <div class="range-label">
+                <span>20</span><span>30</span><span>40</span><span>50</span><span>60</span><span>70</span><span>80</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Section with the chart -->
+        <div class="chart-container">
+          <canvas id="promisChart" class="canvas"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Script for the chart -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const ctx = document.getElementById('promisChart').getContext('2d');
+  const promisChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+          datasets: [{
+              label: 'Depression',
+              data: [43.0, 57.8, 55.3, 54.1, 60.8, 41.6, 58.7, 44.3],
+              borderColor: 'purple',
+              fill: false,
+              tension: 0.1,
+              pointBackgroundColor: 'black',
+              pointBorderColor: 'black',
+              pointStyle: 'rect',
+              pointRadius: 5
+          }]
+      },
+      options: {
+          scales: {
+              y: {
+                  beginAtZero: false,
+                  max: 80,
+                  title: {
+                      display: true,
+                      text: 'Depression'
+                  }
+              },
+              x: {
+                  title: {
+                      display: true,
+                      text: 'Months of 2024'
+                  }
+              }
+          }
+      }
+  });
+</script>
+
+</body>
+
+</html>
