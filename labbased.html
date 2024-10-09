@@ -202,6 +202,37 @@ background-color: #1A2F70; /* Slightly darker shade on hover */
 .task-table td.action a:hover {
     text-decoration: underline;
 }
+/* Status Tabs styling */
+.status-tabs {
+  padding: 10px 20px;
+  background-color: #F2F8FD;
+  display: flex;
+  justify-content: start;
+  gap: 10px;
+  border-bottom: 3px solid transparent; /* Ensures the underline of active tab aligns neatly */
+}
+
+.tab-button {
+  cursor: pointer;
+  padding: 5px 15px;
+  transition: color 0.3s ease;
+  font-size: 13px;
+  font-weight: bold;
+  color: #515151;
+  background-color: #F2F8FD; /* Light blue background for inactive state */
+  margin-bottom: -10px; /* Pulls the button down to align it with the active state */
+}
+
+.tab-button:hover, .tab-button.active {
+  color: #223C97; /* Blue color for active/hover state */
+}
+
+.tab-button.active {
+  border-bottom: 3px solid #223C97; /* Blue underline for active tab */
+}
+
+
+
 @media (max-width: 768px) {
     .header {
         flex-direction: column;
@@ -245,6 +276,7 @@ background-color: #1A2F70; /* Slightly darker shade on hover */
   <a href="promis-score.html"><button>PROMIS29-SCORE</button></a>
   <a href="meld-score-ESLD.html"><button>ESLD-SCORING</button></a>
 </div>
+
 <div class="content">
   <div class="sidebar">
     <ul id="sidebarList">
@@ -265,7 +297,14 @@ background-color: #1A2F70; /* Slightly darker shade on hover */
     </ul>
   </div>
   <div class="main-content">
-        <div class="task-table">
+    <div class="status-tabs">
+      <span class="tab-button active" onclick="filterStatus('all')">ALL (<span id="count-all">0</span>)</span>
+      <span class="tab-button" onclick="filterStatus('complete')">COMPLETE (<span id="count-complete">0</span>)</span>
+      <span class="tab-button" onclick="filterStatus('overdue')">OVERDUE (<span id="count-overdue">0</span>)</span>
+      <span class="tab-button" onclick="filterStatus('upcoming')">UPCOMING (<span id="count-upcoming">0</span>)</span>
+    </div>
+
+    <div class="task-table">
       <table class="task-table" id="taskTable">
         <thead>
         <tr>
@@ -375,83 +414,79 @@ background-color: #1A2F70; /* Slightly darker shade on hover */
 <script src="https://cdn.datatables.net/2.1.7/js/dataTables.js"></script>
 <script>
   $(document).ready(function () {
-    // Initialize the DataTable
-    $('#taskTable').DataTable({
-      paging: true,         // Enable pagination
-      searching: true,      // Enable search
-      ordering: true,       // Enable column ordering
-      responsive: true,     // Enable responsive design
-      lengthChange: true,   // Allow user to change page length
-      pageLength: 8,       // Default number of rows per page
-      lengthMenu: [10, 25, 50, "All"],  // Page length options
-    });
-  });
-  function filterTasks(filterType, category) {
-    const rows = document.querySelectorAll('.task-table tbody tr');
-    let totalCount = rows.length;
-    let visibleCount = 0;
-
-    rows.forEach(row => {
-      let rowCategory = row.getAttribute('data-category').toUpperCase();
-      let rowStatus = row.getAttribute('data-status');
-
-      if (filterType === 'category' && (category === 'ALL' || category === rowCategory) ||
-          filterType === 'status' && (category === 'all' || category === rowStatus)) {
-        row.style.display = '';
-        visibleCount++;
-      } else {
-        row.style.display = 'none';
+    // Initialize the DataTable without lengthChange control
+    const dataTable = $('#taskTable').DataTable({
+      paging: true,
+      searching: true,
+      ordering: true,
+      responsive: true,
+      lengthChange: false,  // This disables the entries per page option
+      pageLength: 8,
+      drawCallback: function () {
+        updateTaskCounts(); // Update counts after any table operation
       }
     });
 
-    document.getElementById('allCount').innerText = totalCount;
-    document.getElementById('visibleCount').innerText = visibleCount;
-    updateSidebar(filterType, category);
+    updateTaskCounts(); // Update counts after initialization
+    setupTabs(); // Setup tabs for filtering
+  });
+
+  function updateTaskCounts() {
+    const allRows = document.querySelectorAll('.task-row');
+    let countAll = allRows.length;
+    let countComplete = 0;
+    let countOverdue = 0;
+    let countUpcoming = 0;
+
+    allRows.forEach(row => {
+      const status = row.getAttribute('data-status');
+      if (status === 'complete') countComplete++;
+      if (status === 'overdue') countOverdue++;
+      if (status === 'upcoming') countUpcoming++;
+    });
+
+    document.getElementById('count-all').textContent = countAll;
+    document.getElementById('count-complete').textContent = countComplete;
+    document.getElementById('count-overdue').textContent = countOverdue;
+    document.getElementById('count-upcoming').textContent = countUpcoming;
   }
 
-  function updateSidebar(filterType, activeCategory) {
-    const elements = document.querySelectorAll(filterType === 'category' ? '.sidebar ul li' : '.tab-buttons button');
-    elements.forEach(el => {
-      const category = el.id.replace('Btn', '').replace(/([A-Z])/g, ' $1').trim().toUpperCase();
-      if (category === activeCategory) {
-        el.classList.add('active');
-        el.style.color = '#223C97';
-        el.style.borderLeft = '3px solid #223C97';
+  function filterStatus(status) {
+    const dataTable = $('#taskTable').DataTable();
+    if (status === 'all') {
+      dataTable.search('').columns().search('').draw();
+    } else {
+      dataTable.columns(2).search(status, true, false).draw();
+    }
+    updateActiveTab(status);
+  }
+
+  function updateActiveTab(activeStatus) {
+    const tabs = document.querySelectorAll('.tab-button');
+    tabs.forEach(tab => {
+      if (tab.textContent.toLowerCase().includes(activeStatus)) {
+        tab.classList.add('active');
+        tab.style.borderBottom = '3px solid #223C97'; // Add blue underline to active tab
       } else {
-        el.classList.remove('active');
-        el.style.color = '#515151';
-        el.style.borderLeft = '3px solid transparent';
+        tab.classList.remove('active');
+        tab.style.borderBottom = 'none'; // Remove underline from non-active tabs
       }
     });
   }
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const sidebarItems = document.querySelectorAll('.sidebar ul li');
-    sidebarItems.forEach(item => {
-      item.addEventListener('click', () => filterTasks('category', item.id.replace('Btn', '').replace(/([A-Z])/g, ' $1').trim().toUpperCase()));
+  function setupTabs() {
+    document.querySelectorAll('.tab-button').forEach(button => {
+      button.addEventListener('click', function() {
+        const status = this.textContent.split(' ')[0].toLowerCase();
+        filterStatus(status);
+      });
     });
 
-    const statusTabs = document.querySelectorAll('.tab-buttons button');
-    statusTabs.forEach(tab => {
-      tab.addEventListener('click', () => filterTasks('status', tab.id.replace('TabBtn', '')));
-    });
-
-    filterTasks('category', 'ALL');
-  });
-  document.addEventListener('DOMContentLoaded', function() {
-    var buttons = document.querySelectorAll('.button-section button');
-
-    buttons.forEach(function(btn) {
-        btn.addEventListener('click', function() {
-            // Remove active class from all buttons
-            buttons.forEach(function(b) { b.classList.remove('active'); });
-            // Add active class to the clicked button
-            this.classList.add('active');
-            console.log('Active class applied to:', this.textContent); // Check which button gets active class
-        });
-    });
-});
-
+    // Initially set 'all' as the active tab
+    filterStatus('all');
+  }
 </script>
+
+
 </body>
 </html>
