@@ -94,11 +94,31 @@ transition: background-color 0.3s ease; /* Smooth hover effect */
 background-color: #1A2F70; /* Slightly darker shade on hover */
 }
 
-/* Optional: Button focus effect to give visual feedback when clicked */
-.button-section button:focus {
-outline: white;
-box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Subtle shadow when focused */
+.button-section button.active {
+    background-color: #1A2F70;
+
 }
+
+  .btn-notification {
+    background-color: #223C97; /* Blue for sending notifications */
+    color: white; /* Set text color to black */
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    padding: 2px 8px;
+    display: inline-block; /* Ensure the a element behaves like a button */
+    text-align: center;
+    font-size: 13px;
+    text-decoration: none; /* Remove underline from links */
+    width: 120px; /* Set a fixed width for all buttons */
+}
+
+/* Hover style for "Send Notification" button */
+.btn-notification:hover {
+    background-color: #4261CF; /* Lighter blue on hover */
+}
+
+
 
 .content {
     display: flex;
@@ -162,8 +182,6 @@ box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Subtle shadow when focused */
     background-color: #FFFFFF;
     font-weight: bold;
 }
-
-
 .task-table td.status {
     color: #007BFF;
 }
@@ -199,30 +217,7 @@ box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Subtle shadow when focused */
     .sidebar {
         display: none;
     }
-    .sub-header .buttons button,
-    .sub-header .ESLD-Scoring-btn {
-        font-size: 14px;
-        padding: 2px 0px;
-        width: 100%;
-        max-width: 150px;
-    }
-    .tab-buttons button {
-        font-size: 11px;
-        padding: 5px 5px;
-        max-width: 150px;
-        color: #D9D9D9;
-        border-bottom: 3px solid transparent;
-    }
-    .tab-buttons button.active {
-        color: #223C97;
-        border-bottom: 3px solid #223C97;
-    }
 
-    .task-table th, .task-table td {
-        font-size: 13px;
-    }
-
-}
   </style>
 </head>
 <body>
@@ -245,7 +240,7 @@ box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Subtle shadow when focused */
   </div>
 </div>
 <div class="button-section">
-  <a href="labbased.html"><button>LAB-BASED</button></a>
+  <a href="labbased.html"><button class="active">LAB-BASED</button></a>
   <a href="cpgrecommended.html"><button>CPG-RECOMMENDED</button></a>
   <a href="promis-score.html"><button>PROMIS29-SCORE</button></a>
   <a href="meld-score-ESLD.html"><button>ESLD-SCORING</button></a>
@@ -278,6 +273,7 @@ box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Subtle shadow when focused */
           <th>Due Date</th>
           <th>Status</th>
           <th>Action</th>
+          <th>Communication</th>
         </tr>
         </thead>
         <tbody>
@@ -285,73 +281,85 @@ box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Subtle shadow when focused */
           <td>Hemogram-Platelets-WBC</td>
           <td>08/20/2024</td>
           <td class="status">Upcoming</td>
-          <td class="action"><a href="sendnotification.html">Send Notification</a></td>
+          <td><a href="#" class="btn-notification">Order Now</a></td>
+          <td><a href="sendnotification.html" class="btn-notification">Send Notification</a></td>
         </tr>
         <tr class="task-row" data-status="complete" data-category="ORDER SETS">
           <td>Ultrasound</td>
           <td>08/12/2024</td>
           <td class="status complete">Complete</td>
-          <td class="action"><a href="#">View Results</a></td>
+          <td><a href="#" class="btn-notification">View Results</a></td>
+          <td><a href="sendnotification.html" class="btn-notification">Send Notification</a></td>
         </tr>
         <tr class="task-row" data-status="complete" data-category="NUTRITION SERVICES">
           <td>Vital Signs</td>
           <td>08/14/2024</td>
           <td class="status complete">Complete</td>
-          <td class="action"><a href="#">View Results</a></td>
+          <td><a href="#" class="btn-notification">View Results</a></td>
+          <td><a href="sendnotification.html" class="btn-notification">Send Notification</a></td>
         </tr>
         <tr class="task-row" data-status="overdue" data-category="GASTROENTEROLOGY">
           <td>Gastroenterology Procedures</td>
           <td>08/18/2024</td>
           <td class="status overdue">Overdue</td>
-          <td class="action"><a href="#">Order Now</a></td>
+          <td><a href="#" class="btn-notification">Order Now</a></td>
+          <td><a href="sendnotification.html" class="btn-notification">Send Notification</a></td>
         </tr>
         <tr class="task-row" data-status="upcoming" data-category="CONDITION/STATUS">
           <td>Blood Glucose Monitoring</td>
           <td>08/20/2024</td>
           <td class="status">Upcoming</td>
-          <td class="action"><a href="sendnotification.html">Send Notification</a></td>
+          <td><a href="#" class="btn-notification">Order Now</a></td>
+          <td><a href="sendnotification.html" class="btn-notification">Send Notification</a></td>
         </tr>
         <tr class="task-row" data-status="complete" data-category="ORDER SETS">
           <td>Liver Function Test</td>
           <td>08/12/2024</td>
           <td class="status complete">Complete</td>
-          <td class="action"><a href="#">View Results</a></td>
+          <td><a href="#" class="btn-notification">View Results</a></td>
+          <td><a href="sendnotification.html" class="btn-notification">Send Notification</a></td>
         </tr>
         <tr class="task-row" data-status="complete" data-category="NUTRITION SERVICES">
           <td>Medication Reconciliation</td>
           <td>08/14/2024</td>
           <td class="status complete">Complete</td>
-          <td class="action"><a href="#">View Results</a></td>
+          <td><a href="#" class="btn-notification">View Results</a></td>
+          <td><a href="sendnotification.html" class="btn-notification">Send Notification</a></td>
         </tr>
         <tr class="task-row" data-status="overdue" data-category="GASTROENTEROLOGY">
           <td>Electrocardiogram (ECG)</td>
           <td>08/18/2024</td>
           <td class="status overdue">Overdue</td>
-          <td class="action"><a href="#">Order Now</a></td>
+          <td><a href="#" class="btn-notification">Order Now</a></td>
+          <td><a href="sendnotification.html" class="btn-notification">Send Notification</a></td>
         </tr>
         <tr class="task-row" data-status="upcoming" data-category="CONDITION/STATUS">
           <td>Chest X-ray</td>
           <td>08/20/2024</td>
           <td class="status">Upcoming</td>
-          <td class="action"><a href="sendnotification.html">Send Notification</a></td>
+          <td><a href="#" class="btn-notification">Order Now</a></td>
+          <td><a href="sendnotification.html" class="btn-notification">Send Notification</a></td>
         </tr>
         <tr class="task-row" data-status="complete" data-category="ORDER SETS">
           <td>Renal Function Panel</td>
           <td>08/12/2024</td>
           <td class="status complete">Complete</td>
-          <td class="action"><a href="#">View Results</a></td>
+          <td><a href="#" class="btn-notification">View Results</a></td>
+          <td><a href="sendnotification.html" class="btn-notification">Send Notification</a></td>
         </tr>
         <tr class="task-row" data-status="complete" data-category="NUTRITION SERVICES">
           <td>Blood Pressure Check</td>
           <td>08/14/2024</td>
           <td class="status complete">Complete</td>
-          <td class="action"><a href="#">View Results</a></td>
+          <td><a href="#" class="btn-notification">View Results</a></td>
+          <td><a href="sendnotification.html" class="btn-notification">Send Notification</a></td>
         </tr>
         <tr class="task-row" data-status="overdue" data-category="GASTROENTEROLOGY">
           <td>Medication Administration</td>
           <td>08/18/2024</td>
           <td class="status overdue">Overdue</td>
-          <td class="action"><a href="#">Order Now</a></td>
+          <td><a href="#" class="btn-notification">Order Now</a></td>
+          <td><a href="sendnotification.html" class="btn-notification">Send Notification</a></td>
         </tr>
         </tbody>
       </table>
@@ -430,7 +438,19 @@ box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Subtle shadow when focused */
 
     filterTasks('category', 'ALL');
   });
+  document.addEventListener('DOMContentLoaded', function() {
+    var buttons = document.querySelectorAll('.button-section button');
 
+    buttons.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            // Remove active class from all buttons
+            buttons.forEach(function(b) { b.classList.remove('active'); });
+            // Add active class to the clicked button
+            this.classList.add('active');
+            console.log('Active class applied to:', this.textContent); // Check which button gets active class
+        });
+    });
+});
 
 </script>
 </body>

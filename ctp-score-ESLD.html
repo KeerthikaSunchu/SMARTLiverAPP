@@ -94,6 +94,13 @@
         font-size: 14px;
         cursor: pointer;
     }
+
+.button-section button:hover {
+    background-color: #1A2F70; /* Slightly darker shade on hover */
+}
+    .button-section button.active {
+    background-color: #1A2F70; /* Optionally change background color */
+}
             .main-content {
                 display: flex;
                 flex: 1;
@@ -483,7 +490,7 @@
         <a href="labbased.html"><button>LAB-BASED</button></a>
         <a href="cpgrecommended.html"><button>CPG-RECOMMENDED</button></a>
         <a href="promis-score.html"><button>PROMIS29-SCORE</button></a>
-        <a href="meld-score-ESLD.html"><button>ESLD-SCORING</button></a>
+        <a href="meld-score-ESLD.html"><button class="active">ESLD-SCORING</button></a>
     </div>
 
     <div class="main-content">
@@ -632,6 +639,8 @@
 
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script> <!-- Include the DataLabels plugin -->
+
 <script>
     const ctx = document.getElementById('ctpChart').getContext('2d');
     const ctpChart = new Chart(ctx, {
@@ -646,7 +655,9 @@
                 pointBackgroundColor: 'rgb(75, 192, 192)',
                 pointBorderColor: '#fff',
                 pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: 'rgb(75, 192, 192)'
+                pointHoverBorderColor: 'rgb(75, 192, 192)',
+                pointRadius: 3, // Make the points more visible
+                pointHoverRadius: 7, // Increase hover radius for better interaction
             }]
         },
         options: {
@@ -654,13 +665,13 @@
                 y: {
                     beginAtZero: true,
                     min: 0, // Set minimum value of y-axis to 0
-                    max: 40, // Set maximum value of y-axis to 20
+                    max: 20, // Set maximum value of y-axis to 20 for better scaling
                     ticks: {
                         stepSize: 2 // Set step size to 2
                     },
                     title: {
                         display: true,
-                        text: 'MELD-Na Score' // Label for y-axis
+                        text: 'CTP Score' // Corrected y-axis label
                     }
                 },
                 x: {
@@ -671,6 +682,17 @@
                 }
             },
             plugins: {
+                datalabels: {
+                    anchor: 'end', // Position the label at the end of the point
+                    align: 'top', // Align the label at the top of the point
+                    color: 'black', // Color of the label text
+                    font: {
+                        weight: 'bold' // Make the label text bold
+                    },
+                    formatter: function(value) {
+                        return value; // Show the value as the label
+                    }
+                },
                 tooltip: {
                     callbacks: {
                         label: function(context) {
@@ -690,10 +712,11 @@
             },
             responsive: true,
             maintainAspectRatio: false
-        }
+        },
+        plugins: [ChartDataLabels] // Add the plugin to the chart instance
     });
-
 </script>
+
 
 </body>
 

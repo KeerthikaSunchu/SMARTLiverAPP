@@ -85,6 +85,12 @@
             font-size: 14px;
             cursor: pointer;
         }
+        .button-section button:hover {
+            background-color: #1A2F70; /* Slightly darker shade on hover */
+        }
+        .button-section button.active {
+            background-color: #1A2F70; /* Optionally change background color */
+        }
 
         .main-content {
             display: flex;
@@ -333,7 +339,7 @@
     <div class="button-section">
         <a href="labbased.html"><button>LAB-BASED</button></a>
         <a href="cpgrecommended.html"><button>CPG-RECOMMENDED</button></a>
-        <a href="promis-score.html"><button>PROMIS29-SCORE</button></a>
+        <a href="promis-score.html"><button class="active">PROMIS29-SCORE</button></a>
         <a href="meld-score-ESLD.html"><button>ESLD-SCORING</button></a>
     </div>
     <div class="main-content">
@@ -462,61 +468,67 @@
 <!-- Script for the chart -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
-
-<script>
-    const ctx = document.getElementById('promisChart').getContext('2d');
-    const promisChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Physical Function', 'Anxiety', 'Depression', 'Fatigue', 'Sleep Disturbance', 'Social Participation', 'Pain Interference', 'Pain Intensity'],
-            datasets: [{
-                label: 'PROMIS-29 Score',
-                data: [43.0, 57.8, 55.3, 60.8, 54.1, 44.6, 58.7, 44.3],
-                backgroundColor: [
-                    'red', 'yellow', 'blue', 'magenta', 'green', 'orange', 'cyan', '#808080' // Changed last bar to grey
-                ]
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    title: {
-                        display: true,
-                        text: 'Mean Score'  // Y-axis label
+    <script>
+        const ctx = document.getElementById('promisChart').getContext('2d');
+        const promisChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Physical Function', 'Anxiety', 'Depression', 'Fatigue', 'Sleep Disturbance', 'Social Participation', 'Pain Interference', 'Pain Intensity'],
+                datasets: [{
+                    label: 'PROMIS-29 Score',
+                    data: [43.0, 57.8, 55.3, 60.8, 54.1, 44.6, 58.7, 44.3],
+                    backgroundColor: [
+                        'red', 'yellow', 'blue', 'magenta', 'green', 'orange', 'cyan', '#808080' // Changed last bar to grey
+                    ]
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Mean Score'  // Y-axis label
+                        }
+                    },
+                    x: {
+                        display: true,  // Keep the X-axis
+                        title: {
+                            display: true,
+                            text: 'Domain'  // X-axis label
+                        }
                     }
                 },
-                x: {
-                    display: true,  // Keep the X-axis but hide the labels below
-                    title: {
-                        display: true,
-                        text: 'Domain'  // X-axis label
+                plugins: {
+                    // Configuration for showing the label inside the bar
+                    datalabels: {
+                        anchor: 'center',       // Place label inside the bar
+                        align: 'center',        // Align in the center of the bar
+                        color: 'white',         // Label color for visibility inside the bar
+                        font: {
+                            weight: 'bold'
+                        },
+                        formatter: function(value, context) {
+                            return context.chart.data.labels[context.dataIndex]; // Show the domain label inside the bar
+                        }
                     },
-                    ticks: {
-                        display: false  // Hide the separate labels below the chart
+                    // Configuration for showing the value on top of the bar
+                    datalabels: {
+                        anchor: 'end',         // Place value on top of the bar
+                        align: 'end',          // Align the value at the top
+                        color: 'black',
+                        font: {
+                            weight: 'bold'
+                        },
+                        formatter: function(value) {
+                            return value;       // Display the score value on top of the bar
+                        }
                     }
                 }
             },
-            plugins: {
-                datalabels: {
-                    anchor: 'end',
-                    align: 'start',
-                    rotation: 90, // Rotate the label vertically
-                    color: 'black',
-                    font: {
-                        weight: 'bold'
-                    },
-                    formatter: function(value, context) {
-                        return context.chart.data.labels[context.dataIndex]; // Show labels vertically
-                    }
-                }
-            }
-        },
-        plugins: [ChartDataLabels]
-    });
-</script>
-
-
+            plugins: [ChartDataLabels]
+        });
+    </script>
 
 </body>
 

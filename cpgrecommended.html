@@ -94,12 +94,30 @@
 .button-section button:hover {
     background-color: #1A2F70; /* Slightly darker shade on hover */
 }
+.button-section button.active {
+    background-color: #1A2F70;
 
-/* Optional: Button focus effect to give visual feedback when clicked */
-.button-section button:focus {
-    outline: white;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Subtle shadow when focused */
 }
+.btn-notification {
+    background-color: #223C97; /* Blue for buttons */
+    color: white; /* Text color */
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    padding: 2px 2px; /* Uniform padding for better control */
+    display: inline-block;
+    text-align: center;
+    font-size: 13px;
+    text-decoration: none;
+    width: 120px; /* Fixed width for all buttons */
+    box-sizing: border-box; /* Include padding and border in the width */
+}
+
+/* Hover effect for buttons */
+.btn-notification:hover {
+    background-color: #4261CF;
+}
+
 
 
         .content {
@@ -276,7 +294,7 @@
 
 <div class="button-section">
     <a href="labbased.html"><button>LAB-BASED</button></a>
-    <a href="cpgrecommended.html"><button>CPG-RECOMMENDED</button></a>
+    <a href="cpgrecommended.html"><button class="active">CPG-RECOMMENDED</button></a>
     <a href="promis-score.html"><button>PROMIS29-SCORE</button></a>
     <a href="meld-score-ESLD.html"><button>ESLD-SCORING</button></a>
 </div>
@@ -320,7 +338,7 @@
             <tbody>
             <tr data-category="CONDITION/STATUS">
                 <td>Administer IV Albumin</td>
-                <td><a href="viewcpg.html" class="clickable">View</a></td>
+                <td><a href="viewcpg.html" class="btn-notification" >View</a></td>
                 <td>
                     <label class="necessity-label necessity-required">
                         <input type="radio" name="necessity-task1" value="Required" onclick="setNecessity(this, 'Required')"> Required
@@ -332,11 +350,11 @@
                         <input type="radio" name="necessity-task1" value="Remind Me Later" onclick="setNecessity(this, 'Remind Me Later')"> Remind Me Later
                     </label>
                 </td>
-                <td><a href="#" class="clickable">Order Now</a></td>
+                <td><a href="#" class="btn-notification">Order Now</a></td>
             </tr>
             <tr data-category="ORDER SETS">
                 <td>INR for coagulation</td>
-                <td><a href="viewcpg.html" class="clickable">View</a></td>
+                <td><a href="viewcpg.html" class="btn-notification">View</a></td>
                 <td>
                     <label class="necessity-label necessity-required">
                         <input type="radio" name="necessity-task2" value="Required" onclick="setNecessity(this, 'Required')"> Required
@@ -348,11 +366,11 @@
                         <input type="radio" name="necessity-task2" value="Remind Me Later" onclick="setNecessity(this, 'Remind Me Later')"> Remind Me Later
                     </label>
                 </td>
-                <td><a href="#" class="clickable">Order Now</a></td>
+                <td><a href="#" class="btn-notification">Order Now</a></td>
             </tr>
             <tr data-category="CONDITION/STATUS">
                 <td>Hepatitis B vaccine</td>
-                <td><a href="viewcpg.html" class="clickable">View</a></td>
+                <td><a href="viewcpg.html" class="btn-notification">View</a></td>
                 <td>
                     <label class="necessity-label necessity-required">
                         <input type="radio" name="necessity-task3" value="Required" onclick="setNecessity(this, 'Required')"> Required
@@ -364,11 +382,11 @@
                         <input type="radio" name="necessity-task3" value="Remind Me Later" onclick="setNecessity(this, 'Remind Me Later')"> Remind Me Later
                     </label>
                 </td>
-                <td><a href="#" class="clickable">Order Now</a></td>
+                <td><a href="#" class="btn-notification">Order Now</a></td>
             </tr>
             <tr data-category="CONTINUOUS INFUSIONS">
                 <td>ALT and AST levels</td>
-                <td><a href="viewcpg.html" class="clickable">View</a></td>
+                <td><a href="viewcpg.html" class="btn-notification">View</a></td>
                 <td>
                     <label class="necessity-label necessity-required">
                         <input type="radio" name="necessity-task4" value="Required" onclick="setNecessity(this, 'Required')"> Required
@@ -380,7 +398,7 @@
                         <input type="radio" name="necessity-task4" value="Remind Me Later" onclick="setNecessity(this, 'Remind Me Later')"> Remind Me Later
                     </label>
                 </td>
-                <td><a href="#" class="clickable">Order Now</a></td>
+                <td><a href="#" class="btn-notification">Order Now</a></td>
             </tr>
             <!-- Add more rows as needed -->
             </tbody>

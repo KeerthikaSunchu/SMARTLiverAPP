@@ -94,6 +94,12 @@
     font-size: 14px;
     cursor: pointer;
 }
+.button-section button:hover {
+    background-color: #1A2F70; /* Slightly darker shade on hover */
+}
+.button-section button.active {
+    background-color: #1A2F70; /* Optionally change background color */
+}
         .main-content {
             display: flex;
             flex: 1;
@@ -495,7 +501,7 @@
     <a href="labbased.html"><button>LAB-BASED</button></a>
     <a href="cpgrecommended.html"><button>CPG-RECOMMENDED</button></a>
     <a href="promis-score.html"><button>PROMIS29-SCORE</button></a>
-    <a href="meld-score-ESLD.html"><button>ESLD-SCORING</button></a>
+    <a href="meld-score-ESLD.html"><button class="active">ESLD-SCORING</button></a>
   </div>
 
   <div class="main-content">
@@ -617,6 +623,8 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script> <!-- Include the DataLabels plugin -->
+
 <script>
   document.addEventListener('DOMContentLoaded', function() {
       const ctx = document.getElementById('fib4chart').getContext('2d');
@@ -653,6 +661,17 @@
                               return context.dataset.label + ': ' + context.parsed.y + ' points';
                           }
                       }
+                  },
+                  datalabels: {
+                      anchor: 'end',  // Place the label at the end of the point
+                      align: 'top',   // Align the label at the top of the point
+                      color: 'black', // Label color
+                      font: {
+                          weight: 'bold'
+                      },
+                      formatter: function(value) {
+                          return value; // Show the value at each point
+                      }
                   }
               },
               scales: {
@@ -676,13 +695,14 @@
                   }
               },
               responsive: true,
-              maintainAspectRatio: false,
-              backgroundColor: 'transparent'
-          }
+              maintainAspectRatio: false
+          },
+          plugins: [ChartDataLabels]  // Add the DataLabels plugin
       });
   });
 
 </script>
+
 
 </body>
 

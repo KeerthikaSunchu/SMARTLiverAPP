@@ -94,6 +94,13 @@
     font-size: 14px;
     cursor: pointer;
 }
+.button-section button:hover {
+    background-color: #1A2F70; /* Slightly darker shade on hover */
+}
+.button-section button.active {
+    background-color: #1A2F70; /* Optionally change background color */
+}
+
         .main-content {
             display: flex;
             flex: 1;
@@ -490,7 +497,7 @@
     <a href="labbased.html"><button>LAB-BASED</button></a>
     <a href="cpgrecommended.html"><button>CPG-RECOMMENDED</button></a>
     <a href="promis-score.html"><button>PROMIS29-SCORE</button></a>
-    <a href="meld-score-ESLD.html"><button>ESLD-SCORING</button></a>
+    <a href="meld-score-ESLD.html"><button class="active">ESLD-SCORING</button></a>
   </div>
 
   <div class="main-content">
@@ -640,6 +647,8 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script> <!-- Include ChartDataLabels plugin -->
+
 <script>
   document.addEventListener('DOMContentLoaded', function() {
       const ctx = document.getElementById('LiverStiffnessMeasurement').getContext('2d');
@@ -648,7 +657,7 @@
           data: {
               labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
               datasets: [{
-                  label: ' Liver Stiffness Measurement (kPa)',
+                  label: 'Liver Stiffness Measurement (kPa)',
                   data: [12, 14, 10, 8, 7, 9, 15, 17, 18, 16, 19, 20], // Example scores
                   borderColor: 'rgb(255, 99, 132)',
                   backgroundColor: 'rgba(255, 99, 132, 0.5)',
@@ -662,7 +671,6 @@
               plugins: {
                   legend: {
                       labels: {
-                          // This more specific font property overrides the global property
                           font: {
                               size: 14
                           }
@@ -676,6 +684,17 @@
                           label: function(context) {
                               return context.dataset.label + ': ' + context.parsed.y + ' kPa';
                           }
+                      }
+                  },
+                  datalabels: {
+                      anchor: 'end',
+                      align: 'top',
+                      color: 'black',
+                      font: {
+                          weight: 'bold'
+                      },
+                      formatter: function(value) {
+                          return value.toFixed(2); // Show the value with 2 decimal places
                       }
                   }
               },
@@ -701,14 +720,13 @@
               },
               responsive: true,
               maintainAspectRatio: false,
-              // Make the background color transparent
               backgroundColor: 'transparent'
-          }
+          },
+          plugins: [ChartDataLabels] // Activate the ChartDataLabels plugin
       });
   });
-
-
 </script>
+
 
 </body>
 

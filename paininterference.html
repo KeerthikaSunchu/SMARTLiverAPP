@@ -85,6 +85,12 @@
         font-size: 14px;
         cursor: pointer;
     }
+    .button-section button:hover {
+    background-color: #1A2F70; /* Slightly darker shade on hover */
+}
+    .button-section button.active {
+    background-color: #1A2F70; /* Optionally change background color */
+}
 
     .main-content {
         display: flex;
@@ -293,7 +299,7 @@
   <div class="button-section">
     <a href="labbased.html"><button>LAB-BASED</button></a>
     <a href="cpgrecommended.html"><button>CPG-RECOMMENDED</button></a>
-    <a href="promis-score.html"><button>PROMIS29-SCORE</button></a>
+    <a href="promis-score.html"><button class="active">PROMIS29-SCORE</button></a>
     <a href="meld-score-ESLD.html"><button>ESLD-SCORING</button></a>
   </div>
 
@@ -351,6 +357,7 @@
 
 <!-- Script for the chart -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 
 <script>
   const ctx = document.getElementById('promisChart').getContext('2d');
@@ -386,10 +393,25 @@
                       text: 'Months of 2024'
                   }
               }
+          },
+          plugins: {
+              datalabels: {
+                  anchor: 'end',
+                  align: 'top',
+                  color: 'black',
+                  font: {
+                      weight: 'bold'
+                  },
+                  formatter: function(value) {
+                      return value;  // Display the value of each point
+                  }
+              }
           }
-      }
+      },
+      plugins: [ChartDataLabels]
   });
 </script>
+
 
 </body>
 

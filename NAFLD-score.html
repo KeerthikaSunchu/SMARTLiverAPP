@@ -94,6 +94,12 @@
     font-size: 14px;
     cursor: pointer;
 }
+.button-section button:hover {
+    background-color: #1A2F70; /* Slightly darker shade on hover */
+}
+.button-section button.active {
+    background-color: #1A2F70; /* Optionally change background color */
+}
         .main-content {
             display: flex;
             flex: 1;
@@ -496,7 +502,7 @@
     <a href="labbased.html"><button>LAB-BASED</button></a>
     <a href="cpgrecommended.html"><button>CPG-RECOMMENDED</button></a>
     <a href="promis-score.html"><button>PROMIS29-SCORE</button></a>
-    <a href="meld-score-ESLD.html"><button>ESLD-SCORING</button></a>
+    <a href="meld-score-ESLD.html"><button class="active">ESLD-SCORING</button></a>
   </div>
 
   <div class="main-content">
@@ -640,74 +646,86 @@
   </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-      const ctx = document.getElementById('NAFLDChart').getContext('2d');
-      const NAFLDChart = new Chart(ctx, {
-          type: 'line',
-          data: {
-              labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-              datasets: [{
-                  label: 'NAFLD SCORE',
-                  data: [0.12, 0.14, 0.8, 0.7, 0.9, 1.5, 1.7, 1.8, 1.6, 1.9, 20], // Example scores
-                  borderColor: 'rgb(255, 99, 132)',
-                  backgroundColor: 'rgba(255, 99, 132, 0.5)',
-                  pointBackgroundColor: 'rgb(255, 99, 132)',
-                  pointBorderColor: '#fff',
-                  pointHoverBackgroundColor: '#fff',
-                  pointHoverBorderColor: 'rgb(255, 99, 132)'
-              }]
-          },
-          options: {
-              plugins: {
-                  legend: {
-                      labels: {
-                          // This more specific font property overrides the global property
-                          font: {
-                              size: 14
-                          }
-                      }
-                  },
-                  tooltip: {
-                      enabled: true,
-                      mode: 'index',
-                      intersect: false,
-                      callbacks: {
-                          label: function(context) {
-                              return context.dataset.label + ': ' + context.parsed.y + ' points';
-                          }
-                      }
-                  }
-              },
-              scales: {
-                  y: {
-                      beginAtZero: true,
-                      min: 0,
-                      max: 5,
-                      ticks: {
-                          stepSize: 1
-                      },
-                      title: {
-                          display: true,
-                          text: 'NAFLD Score'
-                      }
-                  },
-                  x: {
-                      title: {
-                          display: true,
-                          text: 'Month'
-                      }
-                  }
-              },
-              responsive: true,
-              maintainAspectRatio: false,
-              // Make the background color transparent
-              backgroundColor: 'transparent'
-          }
-      });
-  });
-</script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script> <!-- Include ChartDataLabels plugin -->
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const ctx = document.getElementById('NAFLDChart').getContext('2d');
+        const NAFLDChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [{
+                    label: 'NAFLD SCORE',
+                    data: [0.12, 0.14, 0.8, 0.7, 0.9, 1.5, 1.7, 1.8, 1.6, 1.9, 2.0], // Example scores
+                    borderColor: 'rgb(255, 99, 132)',
+                    backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                    pointBackgroundColor: 'rgb(255, 99, 132)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgb(255, 99, 132)'
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        labels: {
+                            font: {
+                                size: 14
+                            }
+                        }
+                    },
+                    tooltip: {
+                        enabled: true,
+                        mode: 'index',
+                        intersect: false,
+                        callbacks: {
+                            label: function(context) {
+                                return context.dataset.label + ': ' + context.parsed.y + ' points';
+                            }
+                        }
+                    },
+                    datalabels: {
+                        anchor: 'end',
+                        align: 'top',
+                        color: 'black',
+                        font: {
+                            weight: 'bold'
+                        },
+                        formatter: function(value) {
+                            return value.toFixed(2); // Display values with 2 decimal points
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        min: 0,
+                        max: 5,
+                        ticks: {
+                            stepSize: 1
+                        },
+                        title: {
+                            display: true,
+                            text: 'NAFLD Score'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Month'
+                        }
+                    }
+                },
+                responsive: true,
+                maintainAspectRatio: false,
+                backgroundColor: 'transparent'
+            },
+            plugins: [ChartDataLabels] // Activate the ChartDataLabels plugin
+        });
+    });
+  </script>
 
 </body>
 
