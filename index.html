@@ -15,7 +15,6 @@
     body {
         font-family: 'Roboto', sans-serif;
         background-color: #E4E4E4;
-        box-sizing: border-box;
         margin: 0;
         padding: 0;
     }
@@ -61,13 +60,14 @@
           text-decoration: none;
       }
     .tabs {
-        background-color: white;
-        padding: 5px 10px; /* Adjust padding for a better appearance */
-        border-radius: 5px;
+        background-color: #F2F8FD;
+        padding: 10px 10px; /* Adjust padding for a better appearance */
+        border-radius: 0px;
         display: flex;
         align-items: center;
         justify-content: space-between;
         margin-top: -15px;
+        margin-bottom: -10px;
     }
     .tabs-left {
         display: flex;
@@ -75,13 +75,13 @@
     }
 
     .tabs a {
-        padding: 5px 20px;
+        padding: 10px 20px;
         text-decoration: none;
         color: #515151; /* Default color for non-active tabs */
         border-bottom: 2px solid transparent;
         transition: border-color 0.3s, color 0.3s;
         cursor: pointer;
-        font-size: 16px;
+        font-size: 14px;
         font-weight: bold; /* Make the font bold */
         margin-top: -20px !important;
         line-height: 0.8;
@@ -95,28 +95,28 @@
         background-color: white;
         height: 580px;
         overflow-y: auto;
-        border: 1px solid #ccc;
-        border-radius: 5px;
+        border-radius: 0px;
         width: 100%;
         margin: 0 auto;
-        padding: 0;
-        margin-top: -6px;
+        padding: 10px;
+        margin-top: 0px;
     }
     table {
         width: 100%;
         table-layout: auto;
         border-collapse: collapse;
-        background-color: ;
-        font-size: 16px;
+        background-color: white;
+        font-size: 14px;
 
     }
     th, td {
-        padding: 12px;
+        padding: 30px;
         text-align: left !important;
         border-bottom: 1px solid #ccc;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        background-colour: white;
     }
     th:nth-child(1), td:nth-child(1) { width: 20%; }
     th:nth-child(2), td:nth-child(2) { width: 15%; }
@@ -125,6 +125,7 @@
     th:nth-child(5), td:nth-child(5) { width: 15%; }
     th:nth-child(6), td:nth-child(6) { width: 15%; }
     th {
+    background-color: black;
         position: sticky;
         top: 0;
         z-index: 1;
@@ -157,14 +158,14 @@
         display: none;
     }
     .container-fluid {
-        margin-top: 0px; /* Reduces the space above the table container */
+        margin-top: 20px; /* Reduces the space above the table container */
     }
     .dataTables_filter input {
         background-color: #E4E4E4;
         border: 1px solid #ccc; /* Optional: adds a light border */
         color: #000; /* Ensure the text inside is visible */
-        padding: 5px;
-        border-radius: 4px; /* Optional: smooth edges */
+        padding: 2px;
+        border-radius: 2px; /* Optional: smooth edges */
     }
         /* Button styles for task status links */
     .btn-complete {
@@ -276,9 +277,9 @@
     <div class="col-12">
       <div class="tabs d-flex flex-wrap justify-content-between align-items-center">
         <div>
-          <a href="#" class="active" onclick="filterPatients('all')">ALL (12)</a>
-          <a href="#" onclick="filterPatients('in-progress')">IN PROGRESS (7)</a>
-          <a href="#" onclick="filterPatients('new')">NEW (5)</a>
+          <a href="#" data-filter="all" class="active">ALL (0)</a>
+          <a href="#" data-filter="existing-patients">EXISTING PATIENTS (0)</a>
+          <a href="#" data-filter="new-patients">NEW PATIENTS (0)</a>
         </div>
       </div>
     </div>
@@ -406,113 +407,67 @@
   </div>
 </div>
 
-<!-- Bootstrap JS Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<!-- DataTables JS -->
 <script src="https://cdn.datatables.net/2.1.7/js/dataTables.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script>
   $(document).ready(function() {
-    $('#patientTable').DataTable({
-        paging: true,
-        searching: true,
-        ordering: true,
-        responsive: true,
-        lengthChange: true, // Enable entries per page option
-        pageLength: 10, // Default number of rows per page
-        lengthMenu: [ [10, 25, 50, -1], [10, 25, 50, "All"] ], // Entries per page options
+    var table = $('#patientTable').DataTable({
+      paging: true,
+      searching: true,
+      ordering: true,
+      responsive: true,
+      lengthChange: false,
+      pageLength: 10
     });
-});
 
+    function updateTabCounts() {
+      // Update tab counts based on filtered entries
+      var allCount = table.rows({ search: 'applied' }).count();
+      var existingCount = table.rows({ search: 'applied' }).nodes().filter(function() {
+        return parseInt($(this).attr('data-visits')) > 1;
+      }).length;
+      var newCount = allCount - existingCount;
 
-  function updateTabCounts() {
-      const rows = document.querySelectorAll('#patient-list tr');
-      let allCount = 0;
-      let inProgressCount = 0;
-      let newCount = 0;
+      $('a[data-filter="all"]').text(`ALL (${allCount})`);
+      $('a[data-filter="existing-patients"]').text(`EXISTING PATIENTS (${existingCount})`);
+      $('a[data-filter="new-patients"]').text(`NEW PATIENTS (${newCount})`);
+    }
 
-      rows.forEach(row => {
-          const visits = parseInt(row.getAttribute('data-visits'));
-          allCount++;
-          if (visits > 1) {
-              inProgressCount++;
-          } else {
-              newCount++;
+    $('.tabs a').click(function(e) {
+      e.preventDefault();
+      $('.tabs a').removeClass('active');
+      $(this).addClass('active');
+      var filter = $(this).data('filter');
+
+      // Reset DataTables search to default
+      $.fn.dataTable.ext.search.pop(); // Clear existing search filters
+
+      if (filter === 'existing-patients') {
+        $.fn.dataTable.ext.search.push(
+          function(settings, data, dataIndex) {
+            var row = table.row(dataIndex).node();
+            return parseInt($(row).attr('data-visits')) > 1;
           }
-      });
-
-      document.querySelector('.tabs a:nth-child(1)').innerHTML = `ALL (${allCount})`;
-      document.querySelector('.tabs a:nth-child(2)').innerHTML = `IN PROGRESS (${inProgressCount})`;
-      document.querySelector('.tabs a:nth-child(3)').innerHTML = `NEW (${newCount})`;
-  }
-
-  function filterPatients(filter) {
-      const rows = document.querySelectorAll('#patient-list tr');
-      let visibleCount = 0;
-
-      rows.forEach(row => {
-          const visits = parseInt(row.getAttribute('data-visits'));
-          row.classList.remove('hidden');
-
-          if (filter === 'new' && visits > 1) {
-              row.classList.add('hidden');
-          } else if (filter === 'in-progress' && visits <= 1) {
-              row.classList.add('hidden');
-          } else if (filter === 'all') {
-              row.classList.remove('hidden');
+        );
+      } else if (filter === 'new-patients') {
+        $.fn.dataTable.ext.search.push(
+          function(settings, data, dataIndex) {
+            var row = table.row(dataIndex).node();
+            return parseInt($(row).attr('data-visits')) === 1;
           }
-
-          if (!row.classList.contains('hidden')) {
-              visibleCount++;
-          }
-      });
-
-      // Update the active tab
-      document.querySelectorAll('.tabs a').forEach(tab => {
-          tab.classList.remove('active');
-      });
-
-      if (filter === 'all') {
-          document.querySelector('.tabs a:nth-child(1)').classList.add('active');
-      } else if (filter === 'in-progress') {
-          document.querySelector('.tabs a:nth-child(2)').classList.add('active');
-      } else if (filter === 'new') {
-          document.querySelector('.tabs a:nth-child(3)').classList.add('active');
+        );
       }
 
-      updateTabCounts();
-  }
+      table.draw(); // Redraw the table with the new filter
+      updateTabCounts(); // Update counts after applying filters
+    });
 
-  function searchPatients() {
-      const input = document.getElementById('searchInput');
-      const filter = input.value.toLowerCase();
-      const rows = document.querySelectorAll('#patient-list tr');
-      let visibleCount = 0;
-
-      rows.forEach(row => {
-          const cells = row.querySelectorAll('td');
-          let match = false;
-
-          cells.forEach(cell => {
-              if (cell.textContent.toLowerCase().indexOf(filter) > -1) {
-                  match = true;
-              }
-          });
-
-          if (match) {
-              row.classList.remove('hidden');
-              visibleCount++;
-          } else {
-              row.classList.add('hidden');
-          }
-      });
-
-      updateTabCounts();
-  }
-
-  // Initial count update
-  document.addEventListener('DOMContentLoaded', updateTabCounts);
+    updateTabCounts(); // Update counts on initial load
+  });
 </script>
+
+
+
 </body>
 </html>
